@@ -1,0 +1,2980 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2018.02.06 07:47:54 =~=~=~=~=~=~=~=~=~=~=~=
+Using username "schwadorf".
+Authenticating with public key "Freifunk"
+Passphrase for key "Freifunk": 
+Welcome to Ubuntu 16.04.3 LTS (GNU/Linux 4.4.0-87-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+Last login: Tue Feb  6 07:40:27 2018 from 172.16.1.7schwadorf@build:~$ schwadorf@build:~$ cd /ff/gluon/
+schwadorf@build:/ff/gluon$ git branch -a
+  master
+* v2017.1.x
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/debug-oom
+  remotes/origin/debug-oom2
+  remotes/origin/domains-wip
+  remotes/origin/master
+  remotes/origin/next
+  remotes/origin/radv-filterd
+  remotes/origin/v2014.3.x
+  remotes/origin/v2014.4.x
+  remotes/origin/v2015.1.x
+  remotes/origin/v2016.1.x
+  remotes/origin/v2016.2.x
+  remotes/origin/v2017.1.x
+schwadorf@build:/ff/gluon$ git pull
+Already up-to-date.
+schwadorf@build:/ff/gluon$ cd site/
+schwadorf@build:/ff/gluon/site$ git branch -a
+  2017.x
+* master
+  remotes/origin/2016.x
+  remotes/origin/2017.x
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+schwadorf@build:/ff/gluon/site$ git chekckout v2017.x
+error: pathspec 'v2017.x' did not match any file(s) known to git.
+schwadorf@build:/ff/gluon/site$ git checkout v2017.x2017.x
+Switched to branch '2017.x'
+Your branch is up-to-date with 'origin/2017.x'.
+schwadorf@build:/ff/gluon/site$ git pull
+remote: Counting objects: 9, done.
+remote: Compressing objects:  20% (1/5)   remote: Compressing objects:  40% (2/5)   remote: Compressing objects:  60% (3/5)   remote: Compressing objects:  80% (4/5)   remote: Compressing objects: 100% (5/5)   remote: Compressing objects: 100% (5/5), done.
+remote: Total 9 (delta 6), reused 7 (delta 4), pack-reused 0
+Unpacking objects:  11% (1/9)   Unpacking objects:  22% (2/9)   Unpacking objects:  33% (3/9)   Unpacking objects:  44% (4/9)   Unpacking objects:  55% (5/9)   Unpacking objects:  66% (6/9)   Unpacking objects:  77% (7/9)   Unpacking objects:  88% (8/9)   Unpacking objects: 100% (9/9)   Unpacking objects: 100% (9/9), done.
+From https://github.com/cschwadorf/ff-mck
+   6616f81..dc20902  2017.x     -> origin/2017.x
+   a781e23..4580300  master     -> origin/master
+Updating 6616f81..dc20902
+Fast-forward
+ site.conf | 18 ++++++++++++++----
+ 1 file changed, 14 insertions(+), 4 deletions(-)
+schwadorf@build:/ff/gluon/site$ cd ..
+schwadorf@build:/ff/gluon$ cd ..
+schwadorf@build:/ff$ nano build_all.sh 
+[ Reading File ] 13 lines ]  GNU nano 2.5.3                                                                 File: build_all.sh                                                                                                                                          #!/bin/bashcd /ff/gluonstart=$(date +%s)#OPTIONS="BROKEN=1 DEFAULT_GLUON_RELEASE=stable-22.9.11~exp$(date  '+%Y%m%d%H%M')"OPTIONS="DEFAULT_GLUON_RELEASE=stable-22.9.11"CORES=5for TARGET in ar71xx-generic ar71xx-tiny ar71xx-nand brcm2708-bcm2708 brcm2708-bcm2709 mpc85xx-generic ramips-mt7621 x86-generic x86-geode x86-64; doecho "################# $(date) start building target $TARGET ###########################"make -j$CORES GLUON_TARGET=$TARGET $OPTIONS || exit 1 done && echo "alle Targets wurden erfolgreich erstellt im ordner output/"echo -n "finished: "; dateecho "Dauer: $((($(date +%s)-start)/60)) Minuten"^G Get Help^O Write Out^W Where Is^K Cut Text^J Justify^C Cur Pos^Y Prev PageM-\ First Line    M-W WhereIs Next  ^^ Mark TextM-} Indent Text   M-U Undo^B Back^X Exit^R Read File^\ Replace^U Uncut Text     ^T To Linter^_ Go To Line     ^V Next PageM-/ Last Line     M-] To Bracket    M-^ Copy Text     M-{ Unindent Text M-E Redo^F Forwardschwadorf@build:/ff$ bash build_all.sh 
+################# Tue Feb  6 07:48:52 CET 2018 start building target ar71xx-generic ###########################
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+ make[2] world
+ make[3] package/cleanup
+ make[3] target/compile
+ make[4] -C target/linux compile
+ make[3] package/compile
+ make[4] -C package/libs/ncurses host-compile
+ make[4] -C package/libs/toolchain compile
+ make[4] -C package/system/fwtool host-compile
+ make[4] -C /ff/gluon/packages/luci/modules/luci-base host-compile
+ make[4] -C package/system/usign host-compile
+ make[4] -C package/utils/lua host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/expat host-compile
+ make[4] -C package/utils/bzip2 host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/gperf host-compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/mtd-rw compile
+ make[4] -C /ff/gluon/packages/openwrt/net/siit compile
+ make[4] -C package/kernel/gpio-button-hotplug compile
+ make[4] -C package/kernel/trelay compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/lua-cjson host-compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/python host-compile
+ make[4] -C package/libs/libnl-tiny compile
+ make[4] -C package/libs/libjson-c compile
+ make[4] -C package/utils/lua compile
+ make[4] -C package/libs/ncurses compile
+ make[4] -C package/system/fwtool compile
+ make[4] -C package/system/lede-keyring compile
+ make[4] -C package/boot/rbcfg compile
+ make[4] -C package/libs/zlib compile
+ make[4] -C package/libs/gettext compile
+ make[4] -C package/libs/libiconv compile
+ make[4] -C package/utils/bzip2 compile
+ make[4] -C package/libs/argp-standalone compile
+ make[4] -C /ff/gluon/package/gluon-site compile
+ make[4] -C /ff/gluon/package/libgluonutil compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libplatforminfo compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-jsonc compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-nixio compile
+ make[4] -C package/firmware/linux-firmware compile
+ make[4] -C package/firmware/prism54-firmware compile
+ make[4] -C /ff/gluon/package/gluon-neighbour-info compile
+ make[4] -C /ff/gluon/packages/gluon/net/respondd compile
+ make[4] -C /ff/gluon/packages/gluon/utils/micrond compile
+ make[4] -C /ff/gluon/packages/routing/alfred compile
+ make[4] -C package/firmware/b43legacy-firmware compile
+ make[4] -C package/network/utils/iw compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/libuecc compile
+ make[4] -C package/network/services/dnsmasq compile
+ make[4] -C package/libs/mbedtls compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libpacketmark compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/nacl compile
+ make[4] -C /ff/gluon/packages/gluon/net/uradvd compile
+ make[4] -C /ff/gluon/packages/gluon/net/sse-multiplex compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/node host-compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/haveged compile
+ make[4] -C /ff/gluon/packages/openwrt/net/ethtool compile
+ make[4] -C package/libs/libnl compile
+ make[4] -C package/libs/libpcap compile
+ make[4] -C package/libs/openssl compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/tcp_wrappers compile
+ make[4] -C package/firmware/ath10k-firmware compile
+ make[4] -C package/kernel/om-watchdog compile
+ make[4] -C package/libs/libusb compile
+ make[4] -C package/network/services/dropbear compile
+ make[4] -C package/network/utils/linux-atm compile
+ make[4] -C package/network/utils/resolveip compile
+ make[4] -C package/libs/libmnl compile
+ make[4] -C package/network/utils/wwan compile
+ make[4] -C package/utils/nvram compile
+ make[4] -C package/utils/usbreset compile
+ make[4] -C package/libs/libubox compile
+ make[4] -C package/utils/util-linux compile
+ make[4] -C package/devel/binutils compile
+ make[4] -C package/libs/elfutils compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-platform-info compile
+ make[4] -C package/kernel/linux compile
+ make[4] -C package/network/ipv6/odhcp6c compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/ecdsautils compile
+ make[4] -C /ff/gluon/package/gluon-web compile
+ make[4] -C package/libs/ustream-ssl compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/eudev compile
+ make[4] -C package/system/mtd compile
+ make[4] -C package/utils/usbmode compile
+ make[4] -C package/system/ubus compile
+ make[4] -C package/system/uci compile
+ make[4] -C package/utils/jsonfilter compile
+ make[4] -C package/system/usign compile
+ make[4] -C package/devel/perf compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-hash compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-simple-uci compile
+ make[4] -C /ff/gluon/packages/gluon/admin/pretty-hostname compile
+ make[4] -C package/network/services/hostapd compile
+ make[4] -C package/network/utils/iwinfo compile
+ make[4] -C /ff/gluon/packages/gluon/admin/autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-web-theme compile
+ make[4] -C package/network/services/uhttpd compile
+ make[4] -C package/libs/uclient compile
+ make[4] -C package/network/services/hostapd compile
+ make[4] -C package/network/config/swconfig compile
+ make[4] -C package/network/services/odhcpd compile
+ make[4] -C package/network/utils/rssileds compile
+ make[4] -C package/system/opkg compile
+ make[4] -C package/utils/busybox compile
+ make[4] -C package/network/config/netifd compile
+ make[4] -C package/system/ubox compile
+ make[4] -C package/system/fstools compile
+ make[4] -C package/system/procd compile
+ make[4] -C package/base-files compile
+ make[4] -C package/boot/uboot-envtools compile
+ make[4] -C package/network/utils/iptables compile
+ make[4] -C package/network/utils/ebtables compile
+ make[4] -C /ff/gluon/packages/gluon/net/batman-adv-legacy compile
+ make[4] -C package/kernel/mac80211 compile
+ make[4] -C /ff/gluon/packages/gluon/net/simple-tc compile
+ make[4] -C /ff/gluon/packages/openwrt/net/fastd compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/dmx_usb_module compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/exfat-nofuse compile
+ make[4] -C /ff/gluon/packages/openwrt/net/jool compile
+ make[4] -C /ff/gluon/packages/openwrt/net/openvswitch compile
+ make[4] -C /ff/gluon/packages/openwrt/net/usbip compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/xr_usb_serial_common compile
+ make[4] -C package/network/ipv6/map compile
+ make[4] -C package/kernel/button-hotplug compile
+ make[4] -C package/kernel/i2c-gpio-custom compile
+ make[4] -C package/kernel/kmod-sched-cake compile
+ make[4] -C package/kernel/rotary-gpio-custom compile
+ make[4] -C package/kernel/spi-gpio-custom compile
+ make[4] -C package/kernel/w1-gpio-custom compile
+ make[4] -C package/network/services/ppp compile
+ make[4] -C package/network/services/wireguard compile
+ make[4] -C package/network/utils/umbim compile
+ make[4] -C package/network/utils/uqmi compile
+ make[4] -C package/network/utils/xtables-addons compile
+ make[4] -C package/network/config/firewall compile
+ make[4] -C /ff/gluon/packages/routing/nat46 compile
+ make[4] -C package/network/utils/comgt compile
+ make[4] -C /ff/gluon/package/gluon-core compile
+ make[4] -C /ff/gluon/package/gluon-respondd compile
+ make[4] -C /ff/gluon/package/gluon-client-bridge compile
+ make[4] -C /ff/gluon/package/gluon-ebtables compile
+ make[4] -C /ff/gluon/package/gluon-authorized-keys compile
+ make[4] -C /ff/gluon/package/gluon-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-lock-password compile
+ make[4] -C /ff/gluon/package/gluon-setup-mode compile
+ make[4] -C /ff/gluon/package/gluon-node-info compile
+ make[4] -C /ff/gluon/package/gluon-wan-dnsmasq compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-multicast compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-ra-dhcp compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-source-filter compile
+ make[4] -C /ff/gluon/package/gluon-radvd compile
+ make[4] -C /ff/gluon/package/gluon-status-page-api compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-core compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-core compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-contact-info compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-geo-location compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-hostname compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-mesh-vpn compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/package/gluon-status-page compile
+ make[4] -C /ff/gluon/package/gluon-web-admin compile
+ make[4] -C /ff/gluon/package/gluon-web-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-web-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/package/gluon-web-network compile
+ make[4] -C /ff/gluon/package/gluon-web-node-role compile
+ make[4] -C /ff/gluon/package/gluon-web-private-wifi compile
+ make[4] -C /ff/gluon/package/gluon-web-wifi-config compile
+ make[4] -C /ff/gluon/packages/routing/batman-adv compile
+ make[4] -C package/kernel/ath10k-ct compile
+ make[4] -C package/kernel/mt76 compile
+ make[4] -C /ff/gluon/packages/routing/batctl compile
+ make[4] -C /ff/gluon/package/gluon-mesh-batman-adv compile
+ make[4] -C /ff/gluon/package/gluon-alfred compile
+ make[3] package/install
+ make[4] -C package/libs/libubox host-compile
+ make[4] -C package/system/opkg host-compile
+ make[4] package/preconfig
+ make[3] target/install
+ make[4] -C target/linux install
+ make[7] -C target/linux/ar71xx/image legacy-images-prepare
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.elf
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.elf
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.elf
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.elf
+ make[7] -C target/linux/ar71xx/image legacy-images
+ make[3] package/index
+ make[3] diffconfig
+ make[3] checksum
+make[1]: Leaving directory '/ff/gluon/lede'
+################# Tue Feb  6 07:56:14 CET 2018 start building target ar71xx-tiny ###########################
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+ make[2] world
+ make[3] package/cleanup
+ make[3] target/compile
+ make[4] -C target/linux compile
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[3] package/compile
+ make[4] -C package/libs/ncurses host-compile
+ make[4] -C package/system/fwtool host-compile
+ make[4] -C /ff/gluon/packages/luci/modules/luci-base host-compile
+ make[4] -C package/system/usign host-compile
+ make[4] -C package/libs/toolchain compile
+ make[4] -C package/utils/lua host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/expat host-compile
+ make[4] -C package/utils/bzip2 host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/gperf host-compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/mtd-rw compile
+ make[4] -C /ff/gluon/packages/openwrt/net/siit compile
+ make[4] -C package/kernel/gpio-button-hotplug compile
+ make[4] -C package/kernel/trelay compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/lua-cjson host-compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/python host-compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/node host-compile
+ make[4] -C package/libs/libjson-c compile
+ make[4] -C package/utils/lua compile
+ make[4] -C package/libs/libnl-tiny compile
+ make[4] -C package/libs/ncurses compile
+ make[4] -C package/system/fwtool compile
+ make[4] -C package/boot/rbcfg compile
+ make[4] -C package/libs/zlib compile
+ make[4] -C package/libs/gettext compile
+ make[4] -C package/libs/libiconv compile
+ make[4] -C package/utils/bzip2 compile
+ make[4] -C package/libs/argp-standalone compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libplatforminfo compile
+ make[4] -C package/firmware/linux-firmware compile
+ make[4] -C package/firmware/prism54-firmware compile
+ make[4] -C /ff/gluon/package/gluon-neighbour-info compile
+ make[4] -C /ff/gluon/packages/gluon/net/respondd compile
+ make[4] -C /ff/gluon/packages/gluon/utils/micrond compile
+ make[4] -C /ff/gluon/packages/routing/alfred compile
+ make[4] -C package/firmware/b43legacy-firmware compile
+ make[4] -C package/network/utils/iw compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/libuecc compile
+ make[4] -C package/network/services/dnsmasq compile
+ make[4] -C package/libs/mbedtls compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libpacketmark compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/nacl compile
+ make[4] -C /ff/gluon/packages/gluon/net/uradvd compile
+ make[4] -C /ff/gluon/packages/gluon/net/sse-multiplex compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/haveged compile
+ make[4] -C /ff/gluon/packages/openwrt/net/ethtool compile
+ make[4] -C package/libs/libnl compile
+ make[4] -C package/libs/libpcap compile
+ make[4] -C package/libs/openssl compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/tcp_wrappers compile
+ make[4] -C package/network/services/dropbear compile
+ make[4] -C package/network/utils/linux-atm compile
+ make[4] -C package/network/utils/resolveip compile
+ make[4] -C package/libs/libmnl compile
+ make[4] -C package/network/utils/wwan compile
+ make[4] -C package/utils/nvram compile
+ make[4] -C package/libs/libubox compile
+ make[4] -C package/utils/util-linux compile
+ make[4] -C package/devel/binutils compile
+ make[4] -C package/libs/elfutils compile
+ make[4] -C /ff/gluon/package/gluon-site compile
+ make[4] -C /ff/gluon/package/libgluonutil compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-hash compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-platform-info compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-jsonc compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-nixio compile
+ make[4] -C package/network/ipv6/odhcp6c compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/ecdsautils compile
+ make[4] -C package/libs/ustream-ssl compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/eudev compile
+ make[4] -C package/system/mtd compile
+ make[4] -C package/system/ubus compile
+ make[4] -C package/system/uci compile
+ make[4] -C package/utils/jsonfilter compile
+ make[4] -C package/devel/perf compile
+ make[4] -C package/kernel/linux compile
+ make[4] -C package/utils/busybox compile
+ make[4] -C package/libs/uclient compile
+ make[4] -C package/network/config/netifd compile
+ make[4] -C package/system/ubox compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-simple-uci compile
+ make[4] -C /ff/gluon/packages/gluon/admin/pretty-hostname compile
+ make[4] -C package/network/services/hostapd compile
+ make[4] -C package/network/utils/iwinfo compile
+ make[4] -C /ff/gluon/package/gluon-web-theme compile
+ make[4] -C package/network/services/uhttpd compile
+ make[4] -C package/network/services/hostapd compile
+ make[4] -C package/network/config/swconfig compile
+ make[4] -C package/network/services/odhcpd compile
+ make[4] -C package/network/utils/rssileds compile
+ make[4] -C package/system/opkg compile
+ make[4] -C package/system/fstools compile
+ make[4] -C package/system/procd compile
+ make[4] -C /ff/gluon/packages/gluon/admin/autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-web compile
+ make[4] -C package/boot/uboot-envtools compile
+ make[4] -C package/base-files compile
+ make[4] -C package/network/utils/ebtables compile
+ make[4] -C package/network/utils/iptables compile
+ make[4] -C /ff/gluon/packages/gluon/net/batman-adv-legacy compile
+ make[4] -C package/kernel/mac80211 compile
+ make[4] -C /ff/gluon/packages/gluon/net/simple-tc compile
+ make[4] -C /ff/gluon/packages/openwrt/net/fastd compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/dmx_usb_module compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/exfat-nofuse compile
+ make[4] -C /ff/gluon/packages/openwrt/net/jool compile
+ make[4] -C /ff/gluon/packages/openwrt/net/openvswitch compile
+ make[4] -C /ff/gluon/packages/openwrt/net/usbip compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/xr_usb_serial_common compile
+ make[4] -C package/network/ipv6/map compile
+ make[4] -C package/kernel/button-hotplug compile
+ make[4] -C package/kernel/i2c-gpio-custom compile
+ make[4] -C package/kernel/kmod-sched-cake compile
+ make[4] -C package/kernel/rotary-gpio-custom compile
+ make[4] -C package/kernel/spi-gpio-custom compile
+ make[4] -C package/kernel/w1-gpio-custom compile
+ make[4] -C package/network/services/ppp compile
+ make[4] -C package/network/services/wireguard compile
+ make[4] -C package/network/utils/umbim compile
+ make[4] -C package/network/utils/uqmi compile
+ make[4] -C package/network/utils/xtables-addons compile
+ make[4] -C package/network/config/firewall compile
+ make[4] -C /ff/gluon/packages/routing/nat46 compile
+ make[4] -C package/network/utils/comgt compile
+ make[4] -C /ff/gluon/package/gluon-core compile
+ make[4] -C /ff/gluon/package/gluon-respondd compile
+ make[4] -C /ff/gluon/package/gluon-client-bridge compile
+ make[4] -C /ff/gluon/package/gluon-ebtables compile
+ make[4] -C /ff/gluon/package/gluon-authorized-keys compile
+ make[4] -C /ff/gluon/package/gluon-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-lock-password compile
+ make[4] -C /ff/gluon/package/gluon-setup-mode compile
+ make[4] -C /ff/gluon/package/gluon-node-info compile
+ make[4] -C /ff/gluon/package/gluon-wan-dnsmasq compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-multicast compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-ra-dhcp compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-source-filter compile
+ make[4] -C /ff/gluon/package/gluon-radvd compile
+ make[4] -C /ff/gluon/package/gluon-status-page-api compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-core compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-core compile
+ make[4] -C /ff/gluon/package/gluon-status-page compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-contact-info compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-geo-location compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-hostname compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-mesh-vpn compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/package/gluon-web-admin compile
+ make[4] -C /ff/gluon/package/gluon-web-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-web-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/package/gluon-web-network compile
+ make[4] -C /ff/gluon/package/gluon-web-node-role compile
+ make[4] -C /ff/gluon/package/gluon-web-private-wifi compile
+ make[4] -C /ff/gluon/package/gluon-web-wifi-config compile
+ make[4] -C package/kernel/mt76 compile
+ make[4] -C /ff/gluon/packages/routing/batman-adv compile
+ make[4] -C package/kernel/ath10k-ct compile
+ make[4] -C /ff/gluon/packages/routing/batctl compile
+ make[4] -C /ff/gluon/package/gluon-mesh-batman-adv compile
+ make[4] -C /ff/gluon/package/gluon-alfred compile
+ make[3] package/install
+ make[4] -C package/libs/libubox host-compile
+ make[4] -C package/system/opkg host-compile
+ make[4] package/preconfig
+ make[3] target/install
+ make[4] -C target/linux install
+ make[7] -C target/linux/ar71xx/image legacy-images-prepare
+ make[7] -C target/linux/ar71xx/image legacy-images
+ make[3] package/index
+ make[3] diffconfig
+ make[3] checksum
+make[1]: Leaving directory '/ff/gluon/lede'
+################# Tue Feb  6 08:00:49 CET 2018 start building target ar71xx-nand ###########################
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+ make[2] world
+ make[3] package/cleanup
+ make[3] target/compile
+ make[4] -C target/linux compile
+ make[3] package/compile
+ make[4] -C package/libs/toolchain compile
+ make[4] -C package/system/usign host-compile
+ make[4] -C package/libs/ncurses host-compile
+ make[4] -C package/system/fwtool host-compile
+ make[4] -C /ff/gluon/packages/luci/modules/luci-base host-compile
+ make[4] -C package/utils/lua host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/expat host-compile
+ make[4] -C package/utils/bzip2 host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/gperf host-compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/mtd-rw compile
+ make[4] -C /ff/gluon/packages/openwrt/net/siit compile
+ make[4] -C package/kernel/gpio-button-hotplug compile
+ make[4] -C package/kernel/trelay compile
+ make[4] -C package/network/services/dropbear compile
+ make[4] -C package/network/utils/linux-atm compile
+ make[4] -C package/network/utils/resolveip compile
+ make[4] -C package/libs/libmnl compile
+ make[4] -C package/network/utils/wwan compile
+ make[4] -C package/utils/nvram compile
+ make[4] -C package/libs/libnl-tiny compile
+ make[4] -C package/libs/libjson-c compile
+ make[4] -C package/utils/lua compile
+ make[4] -C package/libs/ncurses compile
+ make[4] -C package/libs/lzo compile
+ make[4] -C package/libs/zlib compile
+ make[4] -C package/system/fwtool compile
+ make[4] -C package/system/lede-keyring compile
+ make[4] -C package/boot/rbcfg compile
+ make[4] -C package/libs/gettext compile
+ make[4] -C package/libs/libiconv compile
+ make[4] -C package/utils/bzip2 compile
+ make[4] -C package/libs/argp-standalone compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/lua-cjson host-compile
+ make[4] -C /ff/gluon/package/libgluonutil compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libplatforminfo compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-jsonc compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-nixio compile
+ make[4] -C package/firmware/linux-firmware compile
+ make[4] -C package/firmware/prism54-firmware compile
+ make[4] -C /ff/gluon/package/gluon-neighbour-info compile
+ make[4] -C /ff/gluon/packages/gluon/net/respondd compile
+ make[4] -C /ff/gluon/packages/gluon/utils/micrond compile
+ make[4] -C /ff/gluon/packages/routing/alfred compile
+ make[4] -C package/firmware/b43legacy-firmware compile
+ make[4] -C package/network/utils/iw compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/libuecc compile
+ make[4] -C /ff/gluon/package/gluon-web compile
+ make[4] -C package/network/services/dnsmasq compile
+ make[4] -C package/libs/mbedtls compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libpacketmark compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/nacl compile
+ make[4] -C /ff/gluon/packages/gluon/net/uradvd compile
+ make[4] -C /ff/gluon/packages/gluon/net/sse-multiplex compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/python host-compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/haveged compile
+ make[4] -C /ff/gluon/packages/openwrt/net/ethtool compile
+ make[4] -C package/libs/libnl compile
+ make[4] -C package/libs/libpcap compile
+ make[4] -C package/libs/openssl compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/tcp_wrappers compile
+ make[4] -C package/libs/libubox compile
+ make[4] -C package/utils/util-linux compile
+ make[4] -C package/devel/binutils compile
+ make[4] -C package/libs/elfutils compile
+ make[4] -C /ff/gluon/package/gluon-site compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-hash compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-platform-info compile
+ make[4] -C package/kernel/linux compile
+ make[4] -C package/network/ipv6/odhcp6c compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/ecdsautils compile
+ make[4] -C package/libs/ustream-ssl compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/node host-compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/eudev compile
+ make[4] -C package/system/mtd compile
+ make[4] -C package/system/ubus compile
+ make[4] -C package/system/uci compile
+ make[4] -C package/utils/mtd-utils compile
+ make[4] -C package/utils/jsonfilter compile
+ make[4] -C package/system/usign compile
+ make[4] -C package/devel/perf compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-simple-uci compile
+ make[4] -C /ff/gluon/packages/gluon/admin/pretty-hostname compile
+ make[4] -C package/network/services/hostapd compile
+ make[4] -C package/network/utils/iwinfo compile
+ make[4] -C package/network/services/hostapd compile
+ make[4] -C /ff/gluon/packages/gluon/admin/autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-web-theme compile
+ make[4] -C package/network/services/uhttpd compile
+ make[4] -C package/libs/uclient compile
+ make[4] -C package/network/config/swconfig compile
+ make[4] -C package/network/services/odhcpd compile
+ make[4] -C package/system/opkg compile
+ make[4] -C package/utils/busybox compile
+ make[4] -C package/network/config/netifd compile
+ make[4] -C package/system/ubox compile
+ make[4] -C package/system/fstools compile
+ make[4] -C package/system/procd compile
+ make[4] -C package/boot/uboot-envtools compile
+ make[4] -C package/base-files compile
+ make[4] -C package/network/utils/iptables compile
+ make[4] -C package/network/utils/ebtables compile
+ make[4] -C /ff/gluon/packages/gluon/net/simple-tc compile
+ make[4] -C package/kernel/mac80211 compile
+ make[4] -C /ff/gluon/packages/gluon/net/batman-adv-legacy compile
+ make[4] -C /ff/gluon/packages/openwrt/net/fastd compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/dmx_usb_module compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/exfat-nofuse compile
+ make[4] -C /ff/gluon/packages/openwrt/net/jool compile
+ make[4] -C /ff/gluon/packages/openwrt/net/openvswitch compile
+ make[4] -C /ff/gluon/packages/openwrt/net/usbip compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/xr_usb_serial_common compile
+ make[4] -C package/kernel/button-hotplug compile
+ make[4] -C package/kernel/i2c-gpio-custom compile
+ make[4] -C package/kernel/kmod-sched-cake compile
+ make[4] -C package/kernel/rotary-gpio-custom compile
+ make[4] -C package/kernel/spi-gpio-custom compile
+ make[4] -C package/kernel/w1-gpio-custom compile
+ make[4] -C package/network/services/ppp compile
+ make[4] -C package/network/services/wireguard compile
+ make[4] -C package/network/utils/umbim compile
+ make[4] -C package/network/utils/uqmi compile
+ make[4] -C package/network/utils/xtables-addons compile
+ make[4] -C package/network/config/firewall compile
+ make[4] -C package/network/ipv6/map compile
+ make[4] -C package/network/utils/comgt compile
+ make[4] -C /ff/gluon/package/gluon-core compile
+ make[4] -C /ff/gluon/packages/routing/nat46 compile
+ make[4] -C /ff/gluon/package/gluon-respondd compile
+ make[4] -C /ff/gluon/package/gluon-client-bridge compile
+ make[4] -C /ff/gluon/package/gluon-ebtables compile
+ make[4] -C /ff/gluon/package/gluon-authorized-keys compile
+ make[4] -C /ff/gluon/package/gluon-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-lock-password compile
+ make[4] -C /ff/gluon/package/gluon-setup-mode compile
+ make[4] -C /ff/gluon/package/gluon-node-info compile
+ make[4] -C /ff/gluon/package/gluon-wan-dnsmasq compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-multicast compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-ra-dhcp compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-source-filter compile
+ make[4] -C /ff/gluon/package/gluon-radvd compile
+ make[4] -C /ff/gluon/package/gluon-status-page-api compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-core compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-core compile
+ make[4] -C /ff/gluon/package/gluon-status-page compile
+ make[4] -C /ff/gluon/package/gluon-web-admin compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-contact-info compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-geo-location compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-hostname compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-mesh-vpn compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/package/gluon-web-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-web-network compile
+ make[4] -C /ff/gluon/package/gluon-web-node-role compile
+ make[4] -C /ff/gluon/package/gluon-web-private-wifi compile
+ make[4] -C /ff/gluon/package/gluon-web-wifi-config compile
+ make[4] -C /ff/gluon/package/gluon-web-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/packages/routing/batman-adv compile
+ make[4] -C package/kernel/mt76 compile
+ make[4] -C package/kernel/ath10k-ct compile
+ make[4] -C /ff/gluon/packages/routing/batctl compile
+ make[4] -C /ff/gluon/package/gluon-mesh-batman-adv compile
+ make[4] -C /ff/gluon/package/gluon-alfred compile
+ make[3] package/install
+ make[4] -C package/libs/libubox host-compile
+ make[4] -C package/system/opkg host-compile
+ make[4] package/preconfig
+ make[3] target/install
+ make[4] -C target/linux install
+ make[7] -C target/linux/ar71xx/image legacy-images-prepare
+ make[7] -C target/linux/ar71xx/image legacy-images
+ make[3] package/index
+ make[3] diffconfig
+ make[3] checksum
+make[1]: Leaving directory '/ff/gluon/lede'
+################# Tue Feb  6 08:11:20 CET 2018 start building target brcm2708-bcm2708 ###########################
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+ make[2] world
+ make[3] package/cleanup
+ make[3] tools/install
+ make[4] -C tools/flock compile
+ make[4] -C tools/flock install
+ make[4] -C tools/sed compile
+ make[4] -C tools/sed install
+ make[4] -C tools/tar compile
+ make[4] -C tools/patch compile
+ make[4] -C tools/xz compile
+ make[4] -C tools/patch install
+ make[4] -C tools/tar install
+ make[4] -C tools/xz install
+ make[4] -C tools/pkg-config compile
+ make[4] -C tools/expat compile
+ make[4] -C tools/m4 compile
+ make[4] -C tools/sstrip compile
+ make[4] -C tools/make-ext4fs compile
+ make[4] -C tools/patch-image compile
+ make[4] -C tools/scons compile
+ make[4] -C tools/mtools compile
+ make[4] -C tools/lzma compile
+ make[4] -C tools/squashfs4 compile
+ make[4] -C tools/m4 install
+ make[4] -C tools/pkg-config install
+ make[4] -C tools/expat install
+ make[4] -C tools/sstrip install
+ make[4] -C tools/patch-image install
+ make[4] -C tools/scons install
+ make[4] -C tools/mtools install
+ make[4] -C tools/lzma install
+ make[4] -C tools/squashfs4 install
+ make[4] -C tools/autoconf compile
+ make[4] -C tools/make-ext4fs install
+ make[4] -C tools/libressl compile
+ make[4] -C tools/autoconf install
+ make[4] -C tools/automake compile
+ make[4] -C tools/missing-macros compile
+ make[4] -C tools/missing-macros install
+ make[4] -C tools/automake install
+ make[4] -C tools/libressl install
+ make[4] -C tools/libtool compile
+ make[4] -C tools/dosfstools compile
+ make[4] -C tools/mkimage compile
+ make[4] -C tools/firmware-utils compile
+ make[4] -C tools/cmake compile
+ make[4] -C tools/dosfstools install
+ make[4] -C tools/firmware-utils install
+ make[4] -C tools/libtool install
+ make[4] -C tools/gmp compile
+ make[4] -C tools/flex compile
+ make[4] -C tools/libelf compile
+ make[4] -C tools/mklibs compile
+ make[4] -C tools/e2fsprogs compile
+ make[4] -C tools/mm-macros compile
+ make[4] -C tools/gengetopt compile
+ make[4] -C tools/patchelf compile
+ make[4] -C tools/gmp install
+ make[4] -C tools/libelf install
+ make[4] -C tools/flex install
+ make[4] -C tools/mklibs install
+ make[4] -C tools/mm-macros install
+ make[4] -C tools/gengetopt install
+ make[4] -C tools/patchelf install
+ make[4] -C tools/bison compile
+ make[4] -C tools/mpfr compile
+ make[4] -C tools/e2fsprogs install
+ make[4] -C tools/mtd-utils compile
+ make[4] -C tools/bison install
+ make[4] -C tools/mpfr install
+ make[4] -C tools/findutils compile
+ make[4] -C tools/bc compile
+ make[4] -C tools/mpc compile
+ make[4] -C tools/mtd-utils install
+ make[4] -C tools/bc install
+ make[4] -C tools/mpc install
+ make[4] -C tools/findutils install
+ make[4] -C tools/quilt compile
+ make[4] -C tools/padjffs2 compile
+ make[4] -C tools/padjffs2 install
+ make[4] -C tools/quilt install
+ make[4] -C tools/mkimage install
+ make[4] -C tools/cmake install
+ make[3] target/compile
+ make[4] -C target/linux compile
+ make[3] package/compile
+ make[4] -C package/libs/ncurses host-compile
+ make[4] -C package/system/fwtool host-compile
+ make[4] -C package/libs/toolchain compile
+ make[4] -C package/system/usign host-compile
+ make[4] -C /ff/gluon/packages/luci/modules/luci-base host-compile
+ make[4] -C package/utils/lua host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/expat host-compile
+ make[4] -C package/utils/bzip2 host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/gperf host-compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/mtd-rw compile
+ make[4] -C /ff/gluon/packages/openwrt/net/siit compile
+ make[4] -C package/kernel/gpio-button-hotplug compile
+ make[4] -C package/kernel/trelay compile
+ make[4] -C package/network/services/dropbear compile
+ make[4] -C package/network/utils/linux-atm compile
+ make[4] -C package/network/utils/resolveip compile
+ make[4] -C package/libs/libmnl compile
+ make[4] -C package/network/utils/wwan compile
+ make[4] -C package/libs/libnl-tiny compile
+ make[4] -C package/libs/libjson-c compile
+ make[4] -C package/utils/lua compile
+ make[4] -C package/libs/ncurses compile
+ make[4] -C package/system/fwtool compile
+ make[4] -C package/system/lede-keyring compile
+ make[4] -C package/libs/zlib compile
+ make[4] -C package/libs/gettext compile
+ make[4] -C package/libs/libiconv compile
+ make[4] -C package/utils/bzip2 compile
+ make[4] -C package/libs/argp-standalone compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/lua-cjson host-compile
+ make[4] -C /ff/gluon/package/libgluonutil compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libplatforminfo compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-jsonc compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-nixio compile
+ make[4] -C package/firmware/linux-firmware compile
+ make[4] -C package/firmware/prism54-firmware compile
+ make[4] -C /ff/gluon/package/gluon-neighbour-info compile
+ make[4] -C /ff/gluon/packages/gluon/net/respondd compile
+ make[4] -C /ff/gluon/packages/gluon/utils/micrond compile
+ make[4] -C /ff/gluon/packages/routing/alfred compile
+ make[4] -C package/firmware/b43legacy-firmware compile
+ make[4] -C package/network/utils/iw compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/libuecc compile
+ make[4] -C /ff/gluon/package/gluon-web compile
+ make[4] -C package/network/services/dnsmasq compile
+ make[4] -C package/libs/mbedtls compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libpacketmark compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/nacl compile
+ make[4] -C /ff/gluon/packages/gluon/net/uradvd compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/python host-compile
+ make[4] -C /ff/gluon/packages/gluon/net/sse-multiplex compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/haveged compile
+ make[4] -C /ff/gluon/packages/openwrt/net/ethtool compile
+ make[4] -C package/libs/libnl compile
+ make[4] -C package/libs/libpcap compile
+ make[4] -C package/libs/openssl compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/tcp_wrappers compile
+ make[4] -C package/kernel/brcm2708-gpu-fw compile
+ make[4] -C package/libs/libubox compile
+ make[4] -C package/utils/util-linux compile
+ make[4] -C package/devel/binutils compile
+ make[4] -C package/libs/elfutils compile
+ make[4] -C /ff/gluon/package/gluon-site compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-hash compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-platform-info compile
+ make[4] -C package/kernel/linux compile
+ make[4] -C package/network/ipv6/odhcp6c compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/ecdsautils compile
+ make[4] -C package/libs/ustream-ssl compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/node host-compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/eudev compile
+ make[4] -C package/system/mtd compile
+ make[4] -C package/system/ubus compile
+ make[4] -C package/system/uci compile
+ make[4] -C package/utils/jsonfilter compile
+ make[4] -C package/system/usign compile
+ make[4] -C package/devel/perf compile
+ make[4] -C package/network/services/hostapd compile
+ make[4] -C package/network/utils/iwinfo compile
+ make[4] -C package/network/services/hostapd compile
+ make[4] -C /ff/gluon/packages/gluon/admin/autoupdater compile
+ make[4] -C package/network/services/uhttpd compile
+ make[4] -C package/libs/uclient compile
+ make[4] -C package/network/services/odhcpd compile
+ make[4] -C package/utils/busybox compile
+ make[4] -C package/network/config/netifd compile
+ make[4] -C package/system/ubox compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-simple-uci compile
+ make[4] -C /ff/gluon/packages/gluon/admin/pretty-hostname compile
+ make[4] -C package/system/opkg compile
+ make[4] -C package/system/fstools compile
+ make[4] -C package/system/procd compile
+ make[4] -C /ff/gluon/package/gluon-web-theme compile
+ make[4] -C package/base-files compile
+ make[4] -C package/boot/uboot-envtools compile
+ make[4] -C package/network/utils/iptables compile
+ make[4] -C package/network/utils/ebtables compile
+ make[4] -C package/kernel/mac80211 compile
+ make[4] -C /ff/gluon/packages/gluon/net/batman-adv-legacy compile
+ make[4] -C /ff/gluon/packages/gluon/net/simple-tc compile
+ make[4] -C /ff/gluon/packages/openwrt/net/fastd compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/dmx_usb_module compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/exfat-nofuse compile
+ make[4] -C /ff/gluon/packages/openwrt/net/jool compile
+ make[4] -C /ff/gluon/packages/openwrt/net/openvswitch compile
+ make[4] -C /ff/gluon/packages/openwrt/net/usbip compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/xr_usb_serial_common compile
+ make[4] -C package/network/ipv6/map compile
+ make[4] -C package/kernel/button-hotplug compile
+ make[4] -C package/kernel/i2c-gpio-custom compile
+ make[4] -C package/kernel/kmod-sched-cake compile
+ make[4] -C package/kernel/rotary-gpio-custom compile
+ make[4] -C package/kernel/spi-gpio-custom compile
+ make[4] -C package/kernel/w1-gpio-custom compile
+ make[4] -C package/network/services/ppp compile
+ make[4] -C package/network/services/wireguard compile
+ make[4] -C package/network/utils/comgt compile
+ make[4] -C package/network/utils/umbim compile
+ make[4] -C package/network/utils/uqmi compile
+ make[4] -C package/network/utils/xtables-addons compile
+ make[4] -C package/network/config/firewall compile
+ make[4] -C /ff/gluon/packages/routing/nat46 compile
+ make[4] -C /ff/gluon/package/gluon-core compile
+ make[4] -C /ff/gluon/package/gluon-respondd compile
+ make[4] -C /ff/gluon/package/gluon-client-bridge compile
+ make[4] -C /ff/gluon/package/gluon-ebtables compile
+ make[4] -C /ff/gluon/package/gluon-authorized-keys compile
+ make[4] -C /ff/gluon/package/gluon-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-lock-password compile
+ make[4] -C /ff/gluon/package/gluon-setup-mode compile
+ make[4] -C /ff/gluon/package/gluon-node-info compile
+ make[4] -C /ff/gluon/package/gluon-wan-dnsmasq compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-multicast compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-ra-dhcp compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-source-filter compile
+ make[4] -C /ff/gluon/package/gluon-radvd compile
+ make[4] -C /ff/gluon/package/gluon-status-page-api compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-core compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-core compile
+ make[4] -C /ff/gluon/package/gluon-web-admin compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-contact-info compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-geo-location compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-hostname compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-mesh-vpn compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/package/gluon-status-page compile
+ make[4] -C /ff/gluon/package/gluon-web-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-web-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/package/gluon-web-network compile
+ make[4] -C /ff/gluon/package/gluon-web-node-role compile
+ make[4] -C /ff/gluon/package/gluon-web-private-wifi compile
+ make[4] -C /ff/gluon/package/gluon-web-wifi-config compile
+ make[4] -C /ff/gluon/packages/routing/batman-adv compile
+ make[4] -C /ff/gluon/packages/routing/batctl compile
+ make[4] -C /ff/gluon/package/gluon-mesh-batman-adv compile
+ make[4] -C /ff/gluon/package/gluon-alfred compile
+ make[3] package/install
+ make[4] -C package/libs/libubox host-compile
+ make[4] -C package/system/opkg host-compile
+ make[4] package/preconfig
+ make[3] target/install
+ make[4] -C target/linux install
+ make[3] package/index
+ make[3] diffconfig
+ make[3] checksum
+make[1]: Leaving directory '/ff/gluon/lede'
+################# Tue Feb  6 08:21:14 CET 2018 start building target brcm2708-bcm2709 ###########################
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+ make[2] world
+ make[3] tools/install
+ make[3] package/cleanup
+ make[4] -C tools/flock compile
+ make[4] -C tools/flock install
+ make[4] -C tools/sed compile
+ make[4] -C tools/sed install
+ make[4] -C tools/patch compile
+ make[4] -C tools/xz compile
+ make[4] -C tools/tar compile
+ make[4] -C tools/patch install
+ make[4] -C tools/xz install
+ make[4] -C tools/tar install
+ make[4] -C tools/m4 compile
+ make[4] -C tools/expat compile
+ make[4] -C tools/pkg-config compile
+ make[4] -C tools/sstrip compile
+ make[4] -C tools/make-ext4fs compile
+ make[4] -C tools/patch-image compile
+ make[4] -C tools/scons compile
+ make[4] -C tools/mtools compile
+ make[4] -C tools/lzma compile
+ make[4] -C tools/squashfs4 compile
+ make[4] -C tools/m4 install
+ make[4] -C tools/pkg-config install
+ make[4] -C tools/expat install
+ make[4] -C tools/sstrip install
+ make[4] -C tools/patch-image install
+ make[4] -C tools/scons install
+ make[4] -C tools/lzma install
+ make[4] -C tools/mtools install
+ make[4] -C tools/squashfs4 install
+ make[4] -C tools/autoconf compile
+ make[4] -C tools/make-ext4fs install
+ make[4] -C tools/libressl compile
+ make[4] -C tools/autoconf install
+ make[4] -C tools/missing-macros compile
+ make[4] -C tools/automake compile
+ make[4] -C tools/libressl install
+ make[4] -C tools/missing-macros install
+ make[4] -C tools/mkimage compile
+ make[4] -C tools/firmware-utils compile
+ make[4] -C tools/cmake compile
+ make[4] -C tools/automake install
+ make[4] -C tools/firmware-utils install
+ make[4] -C tools/libtool compile
+ make[4] -C tools/dosfstools compile
+ make[4] -C tools/dosfstools install
+ make[4] -C tools/libtool install
+ make[4] -C tools/gmp compile
+ make[4] -C tools/flex compile
+ make[4] -C tools/libelf compile
+ make[4] -C tools/mklibs compile
+ make[4] -C tools/e2fsprogs compile
+ make[4] -C tools/mkimage install
+ make[4] -C tools/mm-macros compile
+ make[4] -C tools/gengetopt compile
+ make[4] -C tools/patchelf compile
+ make[4] -C tools/gmp install
+ make[4] -C tools/libelf install
+ make[4] -C tools/flex install
+ make[4] -C tools/mklibs install
+ make[4] -C tools/e2fsprogs install
+ make[4] -C tools/mm-macros install
+ make[4] -C tools/cmake install
+ make[4] -C tools/gengetopt install
+ make[4] -C tools/patchelf install
+ make[4] -C tools/mpfr compile
+ make[4] -C tools/mtd-utils compile
+ make[4] -C tools/bison compile
+ make[4] -C tools/mpfr install
+ make[4] -C tools/bison install
+ make[4] -C tools/mtd-utils install
+ make[4] -C tools/bc compile
+ make[4] -C tools/findutils compile
+ make[4] -C tools/mpc compile
+ make[4] -C tools/bc install
+ make[4] -C tools/mpc install
+ make[4] -C tools/findutils install
+ make[4] -C tools/quilt compile
+ make[4] -C tools/padjffs2 compile
+ make[4] -C tools/padjffs2 install
+ make[4] -C tools/quilt install
+ make[3] target/compile
+ make[4] -C target/linux compile
+ make[3] package/compile
+ make[4] -C package/system/fwtool host-compile
+ make[4] -C package/libs/toolchain compile
+ make[4] -C package/libs/ncurses host-compile
+ make[4] -C package/system/usign host-compile
+ make[4] -C /ff/gluon/packages/luci/modules/luci-base host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/expat host-compile
+ make[4] -C package/utils/lua host-compile
+ make[4] -C package/utils/bzip2 host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/gperf host-compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/mtd-rw compile
+ make[4] -C /ff/gluon/packages/openwrt/net/siit compile
+ make[4] -C package/kernel/gpio-button-hotplug compile
+ make[4] -C package/kernel/trelay compile
+ make[4] -C package/libs/libnl-tiny compile
+ make[4] -C package/libs/libjson-c compile
+ make[4] -C package/utils/lua compile
+ make[4] -C package/libs/ncurses compile
+ make[4] -C package/system/fwtool compile
+ make[4] -C package/system/lede-keyring compile
+ make[4] -C package/libs/zlib compile
+ make[4] -C package/libs/gettext compile
+ make[4] -C package/libs/libiconv compile
+ make[4] -C package/utils/bzip2 compile
+ make[4] -C package/libs/argp-standalone compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/lua-cjson host-compile
+ make[4] -C /ff/gluon/package/libgluonutil compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libplatforminfo compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-jsonc compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-nixio compile
+ make[4] -C package/firmware/linux-firmware compile
+ make[4] -C package/firmware/prism54-firmware compile
+ make[4] -C /ff/gluon/package/gluon-neighbour-info compile
+ make[4] -C /ff/gluon/packages/gluon/net/respondd compile
+ make[4] -C /ff/gluon/packages/gluon/utils/micrond compile
+ make[4] -C /ff/gluon/packages/routing/alfred compile
+ make[4] -C package/firmware/b43legacy-firmware compile
+ make[4] -C package/network/utils/iw compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/libuecc compile
+ make[4] -C package/network/services/dnsmasq compile
+ make[4] -C package/libs/mbedtls compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libpacketmark compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/nacl compile
+ make[4] -C /ff/gluon/packages/gluon/net/uradvd compile
+ make[4] -C /ff/gluon/packages/gluon/net/sse-multiplex compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/python host-compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/haveged compile
+ make[4] -C /ff/gluon/packages/openwrt/net/ethtool compile
+ make[4] -C package/libs/libnl compile
+ make[4] -C package/libs/libpcap compile
+ make[4] -C package/libs/openssl compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/tcp_wrappers compile
+ make[4] -C package/kernel/brcm2708-gpu-fw compile
+ make[4] -C package/network/services/dropbear compile
+ make[4] -C package/network/utils/linux-atm compile
+ make[4] -C package/network/utils/resolveip compile
+ make[4] -C package/libs/libmnl compile
+ make[4] -C package/network/utils/wwan compile
+ make[4] -C package/libs/libubox compile
+ make[4] -C package/utils/util-linux compile
+ make[4] -C package/devel/binutils compile
+ make[4] -C package/libs/elfutils compile
+ make[4] -C /ff/gluon/package/gluon-site compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-hash compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-platform-info compile
+ make[4] -C package/kernel/linux compile
+ make[4] -C package/network/ipv6/odhcp6c compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/ecdsautils compile
+ make[4] -C /ff/gluon/package/gluon-web compile
+ make[4] -C package/libs/ustream-ssl compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/node host-compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/eudev compile
+ make[4] -C package/system/mtd compile
+ make[4] -C package/system/ubus compile
+ make[4] -C package/system/uci compile
+ make[4] -C package/utils/jsonfilter compile
+ make[4] -C package/system/usign compile
+ make[4] -C package/devel/perf compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-simple-uci compile
+ make[4] -C /ff/gluon/packages/gluon/admin/pretty-hostname compile
+ make[4] -C package/network/services/hostapd compile
+ make[4] -C package/network/utils/iwinfo compile
+ make[4] -C /ff/gluon/packages/gluon/admin/autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-web-theme compile
+ make[4] -C package/network/services/uhttpd compile
+ make[4] -C package/libs/uclient compile
+ make[4] -C package/network/services/odhcpd compile
+ make[4] -C package/system/opkg compile
+ make[4] -C package/utils/busybox compile
+ make[4] -C package/network/config/netifd compile
+ make[4] -C package/system/ubox compile
+ make[4] -C package/system/fstools compile
+ make[4] -C package/system/procd compile
+ make[4] -C package/boot/uboot-envtools compile
+ make[4] -C package/base-files compile
+ make[4] -C package/network/utils/iptables compile
+ make[4] -C /ff/gluon/packages/gluon/net/batman-adv-legacy compile
+ make[4] -C package/kernel/mac80211 compile
+ make[4] -C package/network/utils/ebtables compile
+ make[4] -C /ff/gluon/packages/gluon/net/simple-tc compile
+ make[4] -C /ff/gluon/packages/openwrt/net/fastd compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/dmx_usb_module compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/exfat-nofuse compile
+ make[4] -C /ff/gluon/packages/openwrt/net/jool compile
+ make[4] -C /ff/gluon/packages/openwrt/net/openvswitch compile
+ make[4] -C /ff/gluon/packages/openwrt/net/usbip compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/xr_usb_serial_common compile
+ make[4] -C package/network/ipv6/map compile
+ make[4] -C package/kernel/button-hotplug compile
+ make[4] -C package/kernel/i2c-gpio-custom compile
+ make[4] -C package/kernel/kmod-sched-cake compile
+ make[4] -C package/kernel/rotary-gpio-custom compile
+ make[4] -C package/kernel/spi-gpio-custom compile
+ make[4] -C package/kernel/w1-gpio-custom compile
+ make[4] -C package/network/services/ppp compile
+ make[4] -C package/network/services/wireguard compile
+ make[4] -C package/network/utils/umbim compile
+ make[4] -C package/network/utils/uqmi compile
+ make[4] -C package/network/utils/xtables-addons compile
+ make[4] -C package/network/config/firewall compile
+ make[4] -C /ff/gluon/packages/routing/nat46 compile
+ make[4] -C package/network/utils/comgt compile
+ make[4] -C /ff/gluon/package/gluon-core compile
+ make[4] -C /ff/gluon/package/gluon-respondd compile
+ make[4] -C /ff/gluon/package/gluon-client-bridge compile
+ make[4] -C /ff/gluon/package/gluon-ebtables compile
+ make[4] -C /ff/gluon/package/gluon-authorized-keys compile
+ make[4] -C /ff/gluon/package/gluon-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-lock-password compile
+ make[4] -C /ff/gluon/package/gluon-setup-mode compile
+ make[4] -C /ff/gluon/package/gluon-node-info compile
+ make[4] -C /ff/gluon/package/gluon-wan-dnsmasq compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-multicast compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-ra-dhcp compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-source-filter compile
+ make[4] -C /ff/gluon/package/gluon-radvd compile
+ make[4] -C /ff/gluon/package/gluon-status-page-api compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-core compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-core compile
+ make[4] -C /ff/gluon/package/gluon-status-page compile
+ make[4] -C /ff/gluon/package/gluon-web-admin compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-contact-info compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-geo-location compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-hostname compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-mesh-vpn compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/package/gluon-web-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-web-network compile
+ make[4] -C /ff/gluon/package/gluon-web-node-role compile
+ make[4] -C /ff/gluon/package/gluon-web-wifi-config compile
+ make[4] -C /ff/gluon/package/gluon-web-private-wifi compile
+ make[4] -C /ff/gluon/packages/routing/batman-adv compile
+ make[4] -C /ff/gluon/package/gluon-web-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/packages/routing/batctl compile
+ make[4] -C /ff/gluon/package/gluon-mesh-batman-adv compile
+ make[4] -C /ff/gluon/package/gluon-alfred compile
+ make[3] package/install
+ make[4] -C package/libs/libubox host-compile
+ make[4] -C package/system/opkg host-compile
+ make[4] package/preconfig
+ make[3] target/install
+ make[4] -C target/linux install
+ make[3] package/index
+ make[3] diffconfig
+ make[3] checksum
+make[1]: Leaving directory '/ff/gluon/lede'
+################# Tue Feb  6 08:31:08 CET 2018 start building target mpc85xx-generic ###########################
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+.config:16:warning: override: TARGET_mpc85xx_generic_TLWDR4900 changes choice state
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+ make[2] world
+ make[3] tools/install
+ make[3] package/cleanup
+ make[4] -C tools/flock compile
+ make[4] -C tools/flock install
+ make[4] -C tools/sed compile
+ make[4] -C tools/sed install
+ make[4] -C tools/patch compile
+ make[4] -C tools/xz compile
+ make[4] -C tools/tar compile
+ make[4] -C tools/xz install
+ make[4] -C tools/tar install
+ make[4] -C tools/patch install
+ make[4] -C tools/sstrip compile
+ make[4] -C tools/expat compile
+ make[4] -C tools/m4 compile
+ make[4] -C tools/pkg-config compile
+ make[4] -C tools/make-ext4fs compile
+ make[4] -C tools/patch-image compile
+ make[4] -C tools/scons compile
+ make[4] -C tools/mtools compile
+ make[4] -C tools/upx compile
+ make[4] -C tools/lzma compile
+ make[4] -C tools/squashfs4 compile
+ make[4] -C tools/m4 install
+ make[4] -C tools/pkg-config install
+ make[4] -C tools/expat install
+ make[4] -C tools/sstrip install
+ make[4] -C tools/make-ext4fs install
+ make[4] -C tools/libressl compile
+ make[4] -C tools/patch-image install
+ make[4] -C tools/scons install
+ make[4] -C tools/mtools install
+ make[4] -C tools/upx install
+ make[4] -C tools/lzma install
+ make[4] -C tools/libressl install
+ make[4] -C tools/squashfs4 install
+ make[4] -C tools/autoconf compile
+ make[4] -C tools/autoconf install
+ make[4] -C tools/mkimage compile
+ make[4] -C tools/cmake compile
+ make[4] -C tools/firmware-utils compile
+ make[4] -C tools/missing-macros compile
+ make[4] -C tools/automake compile
+ make[4] -C tools/firmware-utils install
+ make[4] -C tools/missing-macros install
+ make[4] -C tools/automake install
+ make[4] -C tools/mkimage install
+ make[4] -C tools/cmake install
+ make[4] -C tools/libtool compile
+ make[4] -C tools/dosfstools compile
+ make[4] -C tools/libtool install
+ make[4] -C tools/dosfstools install
+ make[4] -C tools/gmp compile
+ make[4] -C tools/libelf compile
+ make[4] -C tools/e2fsprogs compile
+ make[4] -C tools/flex compile
+ make[4] -C tools/mklibs compile
+ make[4] -C tools/mm-macros compile
+ make[4] -C tools/gengetopt compile
+ make[4] -C tools/patchelf compile
+ make[4] -C tools/gmp install
+ make[4] -C tools/libelf install
+ make[4] -C tools/flex install
+ make[4] -C tools/mklibs install
+ make[4] -C tools/e2fsprogs install
+ make[4] -C tools/mm-macros install
+ make[4] -C tools/gengetopt install
+ make[4] -C tools/patchelf install
+ make[4] -C tools/mpfr compile
+ make[4] -C tools/bison compile
+ make[4] -C tools/mtd-utils compile
+ make[4] -C tools/mtd-utils install
+ make[4] -C tools/bison install
+ make[4] -C tools/mpfr install
+ make[4] -C tools/findutils compile
+ make[4] -C tools/bc compile
+ make[4] -C tools/mpc compile
+ make[4] -C tools/b43-tools compile
+ make[4] -C tools/bc install
+ make[4] -C tools/findutils install
+ make[4] -C tools/mpc install
+ make[4] -C tools/b43-tools install
+ make[4] -C tools/quilt compile
+ make[4] -C tools/padjffs2 compile
+ make[4] -C tools/padjffs2 install
+ make[4] -C tools/quilt install
+ make[3] target/compile
+ make[4] -C target/linux compile
+ make[3] package/compile
+ make[4] -C package/system/fwtool host-compile
+ make[4] -C package/libs/ncurses host-compile
+ make[4] -C package/system/usign host-compile
+ make[4] -C package/libs/toolchain compile
+ make[4] -C /ff/gluon/packages/luci/modules/luci-base host-compile
+ make[4] -C package/utils/lua host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/expat host-compile
+ make[4] -C package/utils/bzip2 host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/gperf host-compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/mtd-rw compile
+ make[4] -C /ff/gluon/packages/openwrt/net/siit compile
+ make[4] -C package/kernel/gpio-button-hotplug compile
+ make[4] -C package/kernel/trelay compile
+ make[4] -C package/libs/libnl-tiny compile
+ make[4] -C package/libs/libjson-c compile
+ make[4] -C package/utils/lua compile
+ make[4] -C package/libs/ncurses compile
+ make[4] -C package/system/fwtool compile
+ make[4] -C package/system/lede-keyring compile
+ make[4] -C package/libs/zlib compile
+ make[4] -C package/libs/gettext compile
+ make[4] -C package/libs/libiconv compile
+ make[4] -C package/utils/bzip2 compile
+ make[4] -C package/libs/argp-standalone compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/lua-cjson host-compile
+ make[4] -C /ff/gluon/package/libgluonutil compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libplatforminfo compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-jsonc compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-nixio compile
+ make[4] -C package/firmware/linux-firmware compile
+ make[4] -C package/firmware/prism54-firmware compile
+ make[4] -C /ff/gluon/package/gluon-neighbour-info compile
+ make[4] -C /ff/gluon/packages/gluon/net/respondd compile
+ make[4] -C /ff/gluon/packages/gluon/utils/micrond compile
+ make[4] -C /ff/gluon/packages/routing/alfred compile
+ make[4] -C package/firmware/b43legacy-firmware compile
+ make[4] -C package/network/utils/iw compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/libuecc compile
+ make[4] -C package/network/services/dnsmasq compile
+ make[4] -C package/libs/mbedtls compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libpacketmark compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/nacl compile
+ make[4] -C /ff/gluon/packages/gluon/net/uradvd compile
+ make[4] -C /ff/gluon/packages/gluon/net/sse-multiplex compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/python host-compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/haveged compile
+ make[4] -C /ff/gluon/packages/openwrt/net/ethtool compile
+ make[4] -C package/libs/libnl compile
+ make[4] -C package/libs/libpcap compile
+ make[4] -C package/libs/openssl compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/tcp_wrappers compile
+ make[4] -C package/network/services/dropbear compile
+ make[4] -C package/network/utils/linux-atm compile
+ make[4] -C package/network/utils/resolveip compile
+ make[4] -C package/libs/libmnl compile
+ make[4] -C package/network/utils/wwan compile
+ make[4] -C package/libs/libubox compile
+ make[4] -C package/utils/util-linux compile
+ make[4] -C package/devel/binutils compile
+ make[4] -C package/libs/elfutils compile
+ make[4] -C /ff/gluon/package/gluon-site compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-hash compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-platform-info compile
+ make[4] -C package/kernel/linux compile
+ make[4] -C package/network/ipv6/odhcp6c compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/ecdsautils compile
+ make[4] -C /ff/gluon/package/gluon-web compile
+ make[4] -C package/libs/ustream-ssl compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/node host-compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/eudev compile
+ make[4] -C package/libs/uclient compile
+ make[4] -C package/system/mtd compile
+ make[4] -C package/system/opkg compile
+ make[4] -C package/system/ubus compile
+ make[4] -C package/system/uci compile
+ make[4] -C package/utils/jsonfilter compile
+ make[4] -C package/system/usign compile
+ make[4] -C package/devel/perf compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-simple-uci compile
+ make[4] -C /ff/gluon/packages/gluon/admin/pretty-hostname compile
+ make[4] -C package/network/services/hostapd compile
+ make[4] -C package/network/utils/iwinfo compile
+ make[4] -C /ff/gluon/packages/gluon/admin/autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-web-theme compile
+ make[4] -C package/network/services/uhttpd compile
+ make[4] -C package/network/config/swconfig compile
+ make[4] -C package/utils/busybox compile
+ make[4] -C package/network/config/netifd compile
+ make[4] -C package/system/ubox compile
+ make[4] -C package/system/fstools compile
+ make[4] -C package/system/procd compile
+ make[4] -C package/boot/uboot-envtools compile
+ make[4] -C package/base-files compile
+ make[4] -C package/network/utils/iptables compile
+ make[4] -C /ff/gluon/packages/gluon/net/batman-adv-legacy compile
+ make[4] -C package/kernel/mac80211 compile
+ make[4] -C package/network/utils/ebtables compile
+ make[4] -C /ff/gluon/packages/gluon/net/simple-tc compile
+ make[4] -C /ff/gluon/packages/openwrt/net/fastd compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/dmx_usb_module compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/exfat-nofuse compile
+ make[4] -C /ff/gluon/packages/openwrt/net/jool compile
+ make[4] -C /ff/gluon/packages/openwrt/net/openvswitch compile
+ make[4] -C /ff/gluon/packages/openwrt/net/usbip compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/xr_usb_serial_common compile
+ make[4] -C package/network/ipv6/map compile
+ make[4] -C package/kernel/button-hotplug compile
+ make[4] -C package/kernel/i2c-gpio-custom compile
+ make[4] -C package/kernel/kmod-sched-cake compile
+ make[4] -C package/kernel/rotary-gpio-custom compile
+ make[4] -C package/kernel/spi-gpio-custom compile
+ make[4] -C package/kernel/w1-gpio-custom compile
+ make[4] -C package/network/services/ppp compile
+ make[4] -C package/network/services/wireguard compile
+ make[4] -C package/network/utils/comgt compile
+ make[4] -C package/network/utils/umbim compile
+ make[4] -C package/network/utils/uqmi compile
+ make[4] -C package/network/utils/xtables-addons compile
+ make[4] -C package/network/config/firewall compile
+ make[4] -C /ff/gluon/packages/routing/nat46 compile
+ make[4] -C /ff/gluon/package/gluon-core compile
+ make[4] -C /ff/gluon/package/gluon-respondd compile
+ make[4] -C /ff/gluon/package/gluon-client-bridge compile
+ make[4] -C /ff/gluon/package/gluon-ebtables compile
+ make[4] -C /ff/gluon/package/gluon-authorized-keys compile
+ make[4] -C /ff/gluon/package/gluon-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-lock-password compile
+ make[4] -C /ff/gluon/package/gluon-setup-mode compile
+ make[4] -C /ff/gluon/package/gluon-node-info compile
+ make[4] -C /ff/gluon/package/gluon-wan-dnsmasq compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-multicast compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-ra-dhcp compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-source-filter compile
+ make[4] -C /ff/gluon/package/gluon-radvd compile
+ make[4] -C /ff/gluon/package/gluon-status-page-api compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-core compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-core compile
+ make[4] -C /ff/gluon/package/gluon-status-page compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-contact-info compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-geo-location compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-hostname compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-mesh-vpn compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/package/gluon-web-admin compile
+ make[4] -C /ff/gluon/package/gluon-web-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-web-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/package/gluon-web-network compile
+ make[4] -C /ff/gluon/package/gluon-web-node-role compile
+ make[4] -C /ff/gluon/package/gluon-web-private-wifi compile
+ make[4] -C /ff/gluon/package/gluon-web-wifi-config compile
+ make[4] -C /ff/gluon/packages/routing/batman-adv compile
+ make[4] -C package/kernel/ath10k-ct compile
+ make[4] -C package/kernel/mt76 compile
+ make[4] -C /ff/gluon/packages/routing/batctl compile
+ make[4] -C /ff/gluon/package/gluon-mesh-batman-adv compile
+ make[4] -C /ff/gluon/package/gluon-alfred compile
+ make[3] package/install
+ make[4] -C package/libs/libubox host-compile
+ make[4] -C package/system/opkg host-compile
+ make[4] package/preconfig
+ make[3] target/install
+ make[4] -C target/linux install
+ make[3] package/index
+ make[3] diffconfig
+ make[3] checksum
+make[1]: Leaving directory '/ff/gluon/lede'
+################# Tue Feb  6 08:41:17 CET 2018 start building target ramips-mt7621 ###########################
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+ make[2] world
+ make[3] tools/install
+ make[3] package/cleanup
+ make[4] -C tools/flock compile
+ make[4] -C tools/flock install
+ make[4] -C tools/sed compile
+ make[4] -C tools/sed install
+ make[4] -C tools/patch compile
+ make[4] -C tools/tar compile
+ make[4] -C tools/xz compile
+ make[4] -C tools/patch install
+ make[4] -C tools/xz install
+ make[4] -C tools/tar install
+ make[4] -C tools/m4 compile
+ make[4] -C tools/pkg-config compile
+ make[4] -C tools/expat compile
+ make[4] -C tools/sstrip compile
+ make[4] -C tools/make-ext4fs compile
+ make[4] -C tools/patch-image compile
+ make[4] -C tools/scons compile
+ make[4] -C tools/mtools compile
+ make[4] -C tools/lzma compile
+ make[4] -C tools/squashfs4 compile
+ make[4] -C tools/m4 install
+ make[4] -C tools/pkg-config install
+ make[4] -C tools/expat install
+ make[4] -C tools/sstrip install
+ make[4] -C tools/patch-image install
+ make[4] -C tools/scons install
+ make[4] -C tools/mtools install
+ make[4] -C tools/lzma install
+ make[4] -C tools/squashfs4 install
+ make[4] -C tools/autoconf compile
+ make[4] -C tools/make-ext4fs install
+ make[4] -C tools/libressl compile
+ make[4] -C tools/autoconf install
+ make[4] -C tools/automake compile
+ make[4] -C tools/missing-macros compile
+ make[4] -C tools/libressl install
+ make[4] -C tools/missing-macros install
+ make[4] -C tools/automake install
+ make[4] -C tools/mkimage compile
+ make[4] -C tools/firmware-utils compile
+ make[4] -C tools/cmake compile
+ make[4] -C tools/libtool compile
+ make[4] -C tools/dosfstools compile
+ make[4] -C tools/libtool install
+ make[4] -C tools/firmware-utils install
+ make[4] -C tools/dosfstools install
+ make[4] -C tools/gmp compile
+ make[4] -C tools/libelf compile
+ make[4] -C tools/flex compile
+ make[4] -C tools/mklibs compile
+ make[4] -C tools/e2fsprogs compile
+ make[4] -C tools/mkimage install
+ make[4] -C tools/mm-macros compile
+ make[4] -C tools/cmake install
+ make[4] -C tools/gengetopt compile
+ make[4] -C tools/patchelf compile
+ make[4] -C tools/gmp install
+ make[4] -C tools/libelf install
+ make[4] -C tools/flex install
+ make[4] -C tools/e2fsprogs install
+ make[4] -C tools/mklibs install
+ make[4] -C tools/mm-macros install
+ make[4] -C tools/gengetopt install
+ make[4] -C tools/patchelf install
+ make[4] -C tools/mpfr compile
+ make[4] -C tools/mtd-utils compile
+ make[4] -C tools/bison compile
+ make[4] -C tools/mtd-utils install
+ make[4] -C tools/mpfr install
+ make[4] -C tools/bison install
+ make[4] -C tools/mpc compile
+ make[4] -C tools/findutils compile
+ make[4] -C tools/b43-tools compile
+ make[4] -C tools/bc compile
+ make[4] -C tools/mpc install
+ make[4] -C tools/bc install
+ make[4] -C tools/findutils install
+ make[4] -C tools/b43-tools install
+ make[4] -C tools/padjffs2 compile
+ make[4] -C tools/quilt compile
+ make[4] -C tools/padjffs2 install
+ make[4] -C tools/quilt install
+ make[3] target/compile
+ make[4] -C target/linux compile
+ make[3] package/compile
+ make[4] -C package/libs/toolchain compile
+ make[4] -C package/libs/ncurses host-compile
+ make[4] -C /ff/gluon/packages/luci/modules/luci-base host-compile
+ make[4] -C package/system/usign host-compile
+ make[4] -C package/system/fwtool host-compile
+ make[4] -C package/utils/lua host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/expat host-compile
+ make[4] -C package/utils/bzip2 host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/gperf host-compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/mtd-rw compile
+ make[4] -C /ff/gluon/packages/openwrt/net/siit compile
+ make[4] -C package/kernel/gpio-button-hotplug compile
+ make[4] -C package/kernel/trelay compile
+ make[4] -C package/network/services/dropbear compile
+ make[4] -C package/network/utils/linux-atm compile
+ make[4] -C package/network/utils/resolveip compile
+ make[4] -C package/libs/libmnl compile
+ make[4] -C package/network/utils/wwan compile
+ make[4] -C package/libs/libnl-tiny compile
+ make[4] -C package/libs/libjson-c compile
+ make[4] -C package/utils/lua compile
+ make[4] -C package/libs/ncurses compile
+ make[4] -C package/libs/lzo compile
+ make[4] -C package/libs/zlib compile
+ make[4] -C package/system/fwtool compile
+ make[4] -C package/system/lede-keyring compile
+ make[4] -C package/libs/gettext compile
+ make[4] -C package/libs/libiconv compile
+ make[4] -C package/utils/bzip2 compile
+ make[4] -C package/libs/argp-standalone compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/lua-cjson host-compile
+ make[4] -C /ff/gluon/package/libgluonutil compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libplatforminfo compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-jsonc compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-nixio compile
+ make[4] -C package/firmware/linux-firmware compile
+ make[4] -C package/firmware/prism54-firmware compile
+ make[4] -C /ff/gluon/package/gluon-neighbour-info compile
+ make[4] -C /ff/gluon/packages/gluon/net/respondd compile
+ make[4] -C /ff/gluon/packages/gluon/utils/micrond compile
+ make[4] -C /ff/gluon/packages/routing/alfred compile
+ make[4] -C package/firmware/b43legacy-firmware compile
+ make[4] -C package/network/utils/iw compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/libuecc compile
+ make[4] -C /ff/gluon/package/gluon-web compile
+ make[4] -C package/network/services/dnsmasq compile
+ make[4] -C package/libs/mbedtls compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libpacketmark compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/nacl compile
+ make[4] -C /ff/gluon/packages/gluon/net/uradvd compile
+ make[4] -C /ff/gluon/packages/gluon/net/sse-multiplex compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/python host-compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/haveged compile
+ make[4] -C /ff/gluon/packages/openwrt/net/ethtool compile
+ make[4] -C package/libs/libnl compile
+ make[4] -C package/libs/libpcap compile
+ make[4] -C package/libs/openssl compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/tcp_wrappers compile
+ make[4] -C package/libs/libubox compile
+ make[4] -C package/utils/util-linux compile
+ make[4] -C package/devel/binutils compile
+ make[4] -C package/libs/elfutils compile
+ make[4] -C /ff/gluon/package/gluon-site compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-platform-info compile
+ make[4] -C package/kernel/linux compile
+ make[4] -C package/network/ipv6/odhcp6c compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/ecdsautils compile
+ make[4] -C package/libs/ustream-ssl compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/node host-compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/eudev compile
+ make[4] -C package/system/mtd compile
+ make[4] -C package/system/ubus compile
+ make[4] -C package/system/uci compile
+ make[4] -C package/utils/mtd-utils compile
+ make[4] -C package/utils/jsonfilter compile
+ make[4] -C package/system/usign compile
+ make[4] -C package/devel/perf compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-hash compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-simple-uci compile
+ make[4] -C /ff/gluon/packages/gluon/admin/pretty-hostname compile
+ make[4] -C package/network/services/hostapd compile
+ make[4] -C package/network/utils/iwinfo compile
+ make[4] -C package/network/services/hostapd compile
+ make[4] -C /ff/gluon/packages/gluon/admin/autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-web-theme compile
+ make[4] -C package/network/services/uhttpd compile
+ make[4] -C package/libs/uclient compile
+ make[4] -C package/network/config/swconfig compile
+ make[4] -C package/network/services/odhcpd compile
+ make[4] -C package/system/opkg compile
+ make[4] -C package/utils/busybox compile
+ make[4] -C package/network/config/netifd compile
+ make[4] -C package/system/ubox compile
+ make[4] -C package/system/fstools compile
+ make[4] -C package/system/procd compile
+ make[4] -C package/boot/uboot-envtools compile
+ make[4] -C package/base-files compile
+ make[4] -C package/network/utils/ebtables compile
+ make[4] -C /ff/gluon/packages/gluon/net/simple-tc compile
+ make[4] -C package/network/utils/iptables compile
+ make[4] -C /ff/gluon/packages/gluon/net/batman-adv-legacy compile
+ make[4] -C package/kernel/mac80211 compile
+ make[4] -C /ff/gluon/packages/openwrt/net/fastd compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/dmx_usb_module compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/exfat-nofuse compile
+ make[4] -C /ff/gluon/packages/openwrt/net/jool compile
+ make[4] -C /ff/gluon/packages/openwrt/net/openvswitch compile
+ make[4] -C /ff/gluon/packages/openwrt/net/usbip compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/xr_usb_serial_common compile
+ make[4] -C package/network/ipv6/map compile
+ make[4] -C package/kernel/button-hotplug compile
+ make[4] -C package/kernel/i2c-gpio-custom compile
+ make[4] -C package/kernel/kmod-sched-cake compile
+ make[4] -C package/kernel/rotary-gpio-custom compile
+ make[4] -C package/kernel/spi-gpio-custom compile
+ make[4] -C package/kernel/w1-gpio-custom compile
+ make[4] -C package/network/services/ppp compile
+ make[4] -C package/network/services/wireguard compile
+ make[4] -C package/network/utils/umbim compile
+ make[4] -C package/network/utils/uqmi compile
+ make[4] -C package/network/utils/xtables-addons compile
+ make[4] -C package/network/config/firewall compile
+ make[4] -C /ff/gluon/packages/routing/nat46 compile
+ make[4] -C package/network/utils/comgt compile
+ make[4] -C /ff/gluon/package/gluon-core compile
+ make[4] -C /ff/gluon/package/gluon-respondd compile
+ make[4] -C /ff/gluon/package/gluon-client-bridge compile
+ make[4] -C /ff/gluon/package/gluon-ebtables compile
+ make[4] -C /ff/gluon/package/gluon-authorized-keys compile
+ make[4] -C /ff/gluon/package/gluon-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-lock-password compile
+ make[4] -C /ff/gluon/package/gluon-setup-mode compile
+ make[4] -C /ff/gluon/package/gluon-node-info compile
+ make[4] -C /ff/gluon/package/gluon-wan-dnsmasq compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-multicast compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-ra-dhcp compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-source-filter compile
+ make[4] -C /ff/gluon/package/gluon-radvd compile
+ make[4] -C /ff/gluon/package/gluon-status-page-api compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-core compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-core compile
+ make[4] -C /ff/gluon/package/gluon-status-page compile
+ make[4] -C /ff/gluon/package/gluon-web-admin compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-contact-info compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-geo-location compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-hostname compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-mesh-vpn compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/package/gluon-web-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-web-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/package/gluon-web-network compile
+ make[4] -C /ff/gluon/package/gluon-web-node-role compile
+ make[4] -C /ff/gluon/package/gluon-web-private-wifi compile
+ make[4] -C /ff/gluon/package/gluon-web-wifi-config compile
+ make[4] -C package/kernel/acx-mac80211 compile
+ make[4] -C package/kernel/ath10k-ct compile
+ make[4] -C /ff/gluon/packages/routing/batman-adv compile
+ make[4] -C package/kernel/mt76 compile
+ make[4] -C /ff/gluon/packages/routing/batctl compile
+ make[4] -C /ff/gluon/package/gluon-mesh-batman-adv compile
+ make[4] -C /ff/gluon/package/gluon-alfred compile
+ make[3] package/install
+ make[4] -C package/libs/libubox host-compile
+ make[4] -C package/system/opkg host-compile
+ make[4] package/preconfig
+ make[3] target/install
+ make[4] -C target/linux install
+ make[3] package/index
+ make[3] diffconfig
+ make[3] checksum
+make[1]: Leaving directory '/ff/gluon/lede'
+################# Tue Feb  6 08:52:18 CET 2018 start building target x86-generic ###########################
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+ make[2] world
+ make[3] package/cleanup
+ make[3] tools/install
+ make[4] -C tools/flock compile
+ make[4] -C tools/flock install
+ make[4] -C tools/sed compile
+ make[4] -C tools/sed install
+ make[4] -C tools/patch compile
+ make[4] -C tools/tar compile
+ make[4] -C tools/xz compile
+ make[4] -C tools/patch install
+ make[4] -C tools/tar install
+ make[4] -C tools/xz install
+ make[4] -C tools/m4 compile
+ make[4] -C tools/pkg-config compile
+ make[4] -C tools/make-ext4fs compile
+ make[4] -C tools/sstrip compile
+ make[4] -C tools/expat compile
+ make[4] -C tools/patch-image compile
+ make[4] -C tools/scons compile
+ make[4] -C tools/lzma compile
+ make[4] -C tools/mtools compile
+ make[4] -C tools/squashfs4 compile
+ make[4] -C tools/m4 install
+ make[4] -C tools/pkg-config install
+ make[4] -C tools/expat install
+ make[4] -C tools/sstrip install
+ make[4] -C tools/patch-image install
+ make[4] -C tools/scons install
+ make[4] -C tools/mtools install
+ make[4] -C tools/lzma install
+ make[4] -C tools/squashfs4 install
+ make[4] -C tools/autoconf compile
+ make[4] -C tools/make-ext4fs install
+ make[4] -C tools/libressl compile
+ make[4] -C tools/autoconf install
+ make[4] -C tools/missing-macros compile
+ make[4] -C tools/automake compile
+ make[4] -C tools/missing-macros install
+ make[4] -C tools/libressl install
+ make[4] -C tools/automake install
+ make[4] -C tools/mkimage compile
+ make[4] -C tools/firmware-utils compile
+ make[4] -C tools/cmake compile
+ make[4] -C tools/libtool compile
+ make[4] -C tools/dosfstools compile
+ make[4] -C tools/firmware-utils install
+ make[4] -C tools/dosfstools install
+ make[4] -C tools/libtool install
+ make[4] -C tools/gmp compile
+ make[4] -C tools/libelf compile
+ make[4] -C tools/flex compile
+ make[4] -C tools/mklibs compile
+ make[4] -C tools/e2fsprogs compile
+ make[4] -C tools/mm-macros compile
+ make[4] -C tools/gengetopt compile
+ make[4] -C tools/patchelf compile
+ make[4] -C tools/gmp install
+ make[4] -C tools/libelf install
+ make[4] -C tools/flex install
+ make[4] -C tools/mklibs install
+ make[4] -C tools/e2fsprogs install
+ make[4] -C tools/mm-macros install
+ make[4] -C tools/gengetopt install
+ make[4] -C tools/patchelf install
+ make[4] -C tools/qemu compile
+ make[4] -C tools/mpfr compile
+ make[4] -C tools/bison compile
+ make[4] -C tools/mtd-utils compile
+ make[4] -C tools/mpfr install
+ make[4] -C tools/bison install
+ make[4] -C tools/mpc compile
+ make[4] -C tools/mtd-utils install
+ make[4] -C tools/mkimage install
+ make[4] -C tools/qemu install
+ make[4] -C tools/b43-tools compile
+ make[4] -C tools/findutils compile
+ make[4] -C tools/cmake install
+ make[4] -C tools/bc compile
+ make[4] -C tools/mpc install
+ make[4] -C tools/b43-tools install
+ make[4] -C tools/findutils install
+ make[4] -C tools/bc install
+ make[4] -C tools/quilt compile
+ make[4] -C tools/padjffs2 compile
+ make[4] -C tools/padjffs2 install
+ make[4] -C tools/quilt install
+ make[3] target/compile
+ make[4] -C target/linux compile
+ make[3] package/compile
+ make[4] -C package/libs/toolchain compile
+ make[4] -C package/system/fwtool host-compile
+ make[4] -C package/libs/ncurses host-compile
+ make[4] -C package/system/usign host-compile
+ make[4] -C package/boot/grub2 host-compile
+ make[4] -C /ff/gluon/packages/luci/modules/luci-base host-compile
+ make[4] -C package/utils/lua host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/expat host-compile
+ make[4] -C package/utils/bzip2 host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/gperf host-compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/mtd-rw compile
+ make[4] -C /ff/gluon/packages/openwrt/net/siit compile
+ make[4] -C package/kernel/gpio-button-hotplug compile
+ make[4] -C package/kernel/gpio-nct5104d compile
+ make[4] -C package/kernel/leds-apu2 compile
+ make[4] -C package/kernel/trelay compile
+ make[4] -C package/network/services/dropbear compile
+ make[4] -C package/network/utils/linux-atm compile
+ make[4] -C package/network/utils/resolveip compile
+ make[4] -C package/libs/libmnl compile
+ make[4] -C package/network/utils/wwan compile
+ make[4] -C package/libs/libnl-tiny compile
+ make[4] -C package/libs/libjson-c compile
+ make[4] -C package/utils/lua compile
+ make[4] -C package/libs/ncurses compile
+ make[4] -C package/system/fwtool compile
+ make[4] -C package/system/lede-keyring compile
+ make[4] -C package/boot/grub2 compile
+ make[4] -C package/libs/zlib compile
+ make[4] -C package/libs/gettext compile
+ make[4] -C package/libs/libiconv compile
+ make[4] -C package/utils/bzip2 compile
+ make[4] -C package/libs/argp-standalone compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/lua-cjson host-compile
+ make[4] -C /ff/gluon/package/libgluonutil compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libplatforminfo compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-jsonc compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-nixio compile
+ make[4] -C package/firmware/linux-firmware compile
+ make[4] -C package/firmware/prism54-firmware compile
+ make[4] -C /ff/gluon/package/gluon-neighbour-info compile
+ make[4] -C /ff/gluon/packages/gluon/net/respondd compile
+ make[4] -C /ff/gluon/packages/gluon/utils/micrond compile
+ make[4] -C /ff/gluon/packages/routing/alfred compile
+ make[4] -C package/firmware/b43legacy-firmware compile
+ make[4] -C package/network/utils/iw compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/libuecc compile
+ make[4] -C /ff/gluon/package/gluon-web compile
+ make[4] -C package/network/services/dnsmasq compile
+ make[4] -C package/libs/mbedtls compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libpacketmark compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/nacl compile
+ make[4] -C /ff/gluon/packages/gluon/net/uradvd compile
+ make[4] -C /ff/gluon/packages/gluon/net/sse-multiplex compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/python host-compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/haveged compile
+ make[4] -C /ff/gluon/packages/openwrt/net/ethtool compile
+ make[4] -C package/libs/libnl compile
+ make[4] -C package/libs/libpcap compile
+ make[4] -C package/libs/openssl compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/tcp_wrappers compile
+ make[4] -C package/libs/libubox compile
+ make[4] -C package/utils/util-linux compile
+ make[4] -C package/devel/binutils compile
+ make[4] -C package/libs/elfutils compile
+ make[4] -C /ff/gluon/package/gluon-site compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-hash compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-platform-info compile
+ make[4] -C package/kernel/linux compile
+ make[4] -C package/network/ipv6/odhcp6c compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/ecdsautils compile
+ make[4] -C package/libs/ustream-ssl compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/node host-compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/eudev compile
+ make[4] -C package/libs/uclient compile
+ make[4] -C package/system/mtd compile
+ make[4] -C package/utils/e2fsprogs compile
+ make[4] -C package/utils/f2fs-tools compile
+ make[4] -C package/system/ubus compile
+ make[4] -C package/system/uci compile
+ make[4] -C package/utils/jsonfilter compile
+ make[4] -C package/system/usign compile
+ make[4] -C package/devel/perf compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-simple-uci compile
+ make[4] -C /ff/gluon/packages/gluon/admin/pretty-hostname compile
+ make[4] -C package/network/services/hostapd compile
+ make[4] -C package/network/utils/iwinfo compile
+ make[4] -C /ff/gluon/packages/gluon/admin/autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-web-theme compile
+ make[4] -C package/network/services/uhttpd compile
+ make[4] -C package/system/opkg compile
+ make[4] -C package/utils/busybox compile
+ make[4] -C package/network/config/netifd compile
+ make[4] -C package/system/ubox compile
+ make[4] -C package/system/fstools compile
+ make[4] -C package/system/procd compile
+ make[4] -C package/boot/uboot-envtools compile
+ make[4] -C package/base-files compile
+ make[4] -C package/network/utils/iptables compile
+ make[4] -C package/network/utils/ebtables compile
+ make[4] -C package/kernel/mac80211 compile
+ make[4] -C /ff/gluon/packages/gluon/net/batman-adv-legacy compile
+ make[4] -C /ff/gluon/packages/gluon/net/simple-tc compile
+ make[4] -C /ff/gluon/packages/openwrt/net/fastd compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/dmx_usb_module compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/exfat-nofuse compile
+ make[4] -C /ff/gluon/packages/openwrt/net/jool compile
+ make[4] -C /ff/gluon/packages/openwrt/net/openvswitch compile
+ make[4] -C /ff/gluon/packages/openwrt/net/usbip compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/xr_usb_serial_common compile
+ make[4] -C package/network/ipv6/map compile
+ make[4] -C package/kernel/button-hotplug compile
+ make[4] -C package/kernel/i2c-gpio-custom compile
+ make[4] -C package/kernel/kmod-sched-cake compile
+ make[4] -C package/kernel/rotary-gpio-custom compile
+ make[4] -C package/kernel/spi-gpio-custom compile
+ make[4] -C package/kernel/w1-gpio-custom compile
+ make[4] -C package/network/services/ppp compile
+ make[4] -C package/network/services/wireguard compile
+ make[4] -C package/network/utils/comgt compile
+ make[4] -C package/network/utils/umbim compile
+ make[4] -C package/network/utils/uqmi compile
+ make[4] -C package/network/utils/xtables-addons compile
+ make[4] -C package/network/config/firewall compile
+ make[4] -C /ff/gluon/packages/routing/nat46 compile
+ make[4] -C /ff/gluon/package/gluon-core compile
+ make[4] -C /ff/gluon/package/gluon-respondd compile
+ make[4] -C /ff/gluon/package/gluon-client-bridge compile
+ make[4] -C /ff/gluon/package/gluon-ebtables compile
+ make[4] -C /ff/gluon/package/gluon-authorized-keys compile
+ make[4] -C /ff/gluon/package/gluon-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-lock-password compile
+ make[4] -C /ff/gluon/package/gluon-setup-mode compile
+ make[4] -C /ff/gluon/package/gluon-node-info compile
+ make[4] -C /ff/gluon/package/gluon-wan-dnsmasq compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-multicast compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-ra-dhcp compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-source-filter compile
+ make[4] -C /ff/gluon/package/gluon-radvd compile
+ make[4] -C /ff/gluon/package/gluon-status-page-api compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-core compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-core compile
+ make[4] -C /ff/gluon/package/gluon-status-page compile
+ make[4] -C /ff/gluon/package/gluon-web-admin compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-contact-info compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-geo-location compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-hostname compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-mesh-vpn compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/package/gluon-web-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-web-network compile
+ make[4] -C /ff/gluon/package/gluon-web-node-role compile
+ make[4] -C /ff/gluon/package/gluon-web-private-wifi compile
+ make[4] -C /ff/gluon/package/gluon-web-wifi-config compile
+ make[4] -C /ff/gluon/package/gluon-web-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/packages/routing/batman-adv compile
+ make[4] -C package/kernel/ath10k-ct compile
+ make[4] -C package/kernel/mt76 compile
+ make[4] -C /ff/gluon/packages/routing/batctl compile
+ make[4] -C /ff/gluon/package/gluon-mesh-batman-adv compile
+ make[4] -C /ff/gluon/package/gluon-alfred compile
+ make[3] package/install
+ make[4] -C package/libs/libubox host-compile
+ make[4] -C package/system/opkg host-compile
+ make[4] package/preconfig
+ make[3] target/install
+ make[4] -C target/linux install
+ make[3] package/index
+ make[3] diffconfig
+ make[3] checksum
+make[1]: Leaving directory '/ff/gluon/lede'
+################# Tue Feb  6 09:05:08 CET 2018 start building target x86-geode ###########################
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+ make[2] world
+ make[3] package/cleanup
+ make[3] tools/install
+ make[4] -C tools/flock compile
+ make[4] -C tools/flock install
+ make[4] -C tools/sed compile
+ make[4] -C tools/sed install
+ make[4] -C tools/xz compile
+ make[4] -C tools/patch compile
+ make[4] -C tools/tar compile
+ make[4] -C tools/patch install
+ make[4] -C tools/tar install
+ make[4] -C tools/xz install
+ make[4] -C tools/m4 compile
+ make[4] -C tools/sstrip compile
+ make[4] -C tools/expat compile
+ make[4] -C tools/pkg-config compile
+ make[4] -C tools/make-ext4fs compile
+ make[4] -C tools/patch-image compile
+ make[4] -C tools/scons compile
+ make[4] -C tools/mtools compile
+ make[4] -C tools/lzma compile
+ make[4] -C tools/squashfs4 compile
+ make[4] -C tools/m4 install
+ make[4] -C tools/pkg-config install
+ make[4] -C tools/expat install
+ make[4] -C tools/sstrip install
+ make[4] -C tools/patch-image install
+ make[4] -C tools/scons install
+ make[4] -C tools/mtools install
+ make[4] -C tools/lzma install
+ make[4] -C tools/squashfs4 install
+ make[4] -C tools/autoconf compile
+ make[4] -C tools/make-ext4fs install
+ make[4] -C tools/libressl compile
+ make[4] -C tools/autoconf install
+ make[4] -C tools/missing-macros compile
+ make[4] -C tools/automake compile
+ make[4] -C tools/missing-macros install
+ make[4] -C tools/libressl install
+ make[4] -C tools/automake install
+ make[4] -C tools/mkimage compile
+ make[4] -C tools/firmware-utils compile
+ make[4] -C tools/cmake compile
+ make[4] -C tools/dosfstools compile
+ make[4] -C tools/libtool compile
+ make[4] -C tools/firmware-utils install
+ make[4] -C tools/dosfstools install
+ make[4] -C tools/libtool install
+ make[4] -C tools/libelf compile
+ make[4] -C tools/flex compile
+ make[4] -C tools/gmp compile
+ make[4] -C tools/mklibs compile
+ make[4] -C tools/e2fsprogs compile
+ make[4] -C tools/mm-macros compile
+ make[4] -C tools/gengetopt compile
+ make[4] -C tools/patchelf compile
+ make[4] -C tools/gmp install
+ make[4] -C tools/libelf install
+ make[4] -C tools/flex install
+ make[4] -C tools/mklibs install
+ make[4] -C tools/e2fsprogs install
+ make[4] -C tools/mkimage install
+ make[4] -C tools/mm-macros install
+ make[4] -C tools/cmake install
+ make[4] -C tools/gengetopt install
+ make[4] -C tools/patchelf install
+ make[4] -C tools/qemu compile
+ make[4] -C tools/mpfr compile
+ make[4] -C tools/bison compile
+ make[4] -C tools/mtd-utils compile
+ make[4] -C tools/qemu install
+ make[4] -C tools/mtd-utils install
+ make[4] -C tools/mpfr install
+ make[4] -C tools/bison install
+ make[4] -C tools/mpc compile
+ make[4] -C tools/findutils compile
+ make[4] -C tools/b43-tools compile
+ make[4] -C tools/bc compile
+ make[4] -C tools/bc install
+ make[4] -C tools/b43-tools install
+ make[4] -C tools/findutils install
+ make[4] -C tools/mpc install
+ make[4] -C tools/padjffs2 compile
+ make[4] -C tools/quilt compile
+ make[4] -C tools/padjffs2 install
+ make[4] -C tools/quilt install
+ make[3] target/compile
+ make[4] -C target/linux compile
+ make[3] package/compile
+ make[4] -C package/libs/toolchain compile
+ make[4] -C package/system/fwtool host-compile
+ make[4] -C package/libs/ncurses host-compile
+ make[4] -C package/boot/grub2 host-compile
+ make[4] -C package/system/usign host-compile
+ make[4] -C /ff/gluon/packages/luci/modules/luci-base host-compile
+ make[4] -C package/utils/lua host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/expat host-compile
+ make[4] -C package/utils/bzip2 host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/gperf host-compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/mtd-rw compile
+ make[4] -C /ff/gluon/packages/openwrt/net/siit compile
+ make[4] -C package/kernel/gpio-button-hotplug compile
+ make[4] -C package/kernel/gpio-nct5104d compile
+ make[4] -C package/kernel/leds-apu2 compile
+ make[4] -C package/kernel/trelay compile
+ make[4] -C package/network/services/dropbear compile
+ make[4] -C package/network/utils/linux-atm compile
+ make[4] -C package/network/utils/resolveip compile
+ make[4] -C package/libs/libmnl compile
+ make[4] -C package/network/utils/wwan compile
+ make[4] -C package/libs/libnl-tiny compile
+ make[4] -C package/libs/libjson-c compile
+ make[4] -C package/utils/lua compile
+ make[4] -C package/libs/ncurses compile
+ make[4] -C package/system/fwtool compile
+ make[4] -C package/system/lede-keyring compile
+ make[4] -C package/boot/grub2 compile
+ make[4] -C package/libs/zlib compile
+ make[4] -C package/libs/gettext compile
+ make[4] -C package/libs/libiconv compile
+ make[4] -C package/utils/bzip2 compile
+ make[4] -C package/libs/argp-standalone compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/lua-cjson host-compile
+ make[4] -C /ff/gluon/package/libgluonutil compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libplatforminfo compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-jsonc compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-nixio compile
+ make[4] -C package/firmware/linux-firmware compile
+ make[4] -C package/firmware/prism54-firmware compile
+ make[4] -C /ff/gluon/package/gluon-neighbour-info compile
+ make[4] -C /ff/gluon/packages/gluon/net/respondd compile
+ make[4] -C /ff/gluon/packages/gluon/utils/micrond compile
+ make[4] -C /ff/gluon/packages/routing/alfred compile
+ make[4] -C package/firmware/b43legacy-firmware compile
+ make[4] -C package/network/utils/iw compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/libuecc compile
+ make[4] -C /ff/gluon/package/gluon-web compile
+ make[4] -C package/network/services/dnsmasq compile
+ make[4] -C package/libs/mbedtls compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libpacketmark compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/nacl compile
+ make[4] -C /ff/gluon/packages/gluon/net/uradvd compile
+ make[4] -C /ff/gluon/packages/gluon/net/sse-multiplex compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/python host-compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/dmidecode compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/confuse compile
+ make[4] -C package/libs/libusb compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/kmod compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/haveged compile
+ make[4] -C /ff/gluon/packages/openwrt/net/ethtool compile
+ make[4] -C package/libs/libnl compile
+ make[4] -C package/libs/libpcap compile
+ make[4] -C package/libs/openssl compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/tcp_wrappers compile
+ make[4] -C package/libs/libubox compile
+ make[4] -C package/utils/util-linux compile
+ make[4] -C package/devel/binutils compile
+ make[4] -C package/libs/elfutils compile
+ make[4] -C /ff/gluon/package/gluon-site compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-hash compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-platform-info compile
+ make[4] -C package/kernel/linux compile
+ make[4] -C package/network/ipv6/odhcp6c compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/ecdsautils compile
+ make[4] -C package/libs/ustream-ssl compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/node host-compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/eudev compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/libftdi1 compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/pciutils compile
+ make[4] -C package/libs/libusb-compat compile
+ make[4] -C package/libs/uclient compile
+ make[4] -C package/system/mtd compile
+ make[4] -C package/utils/e2fsprogs compile
+ make[4] -C package/utils/f2fs-tools compile
+ make[4] -C package/system/ubus compile
+ make[4] -C package/system/uci compile
+ make[4] -C package/utils/jsonfilter compile
+ make[4] -C package/system/usign compile
+ make[4] -C package/devel/perf compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-simple-uci compile
+ make[4] -C /ff/gluon/packages/gluon/admin/pretty-hostname compile
+ make[4] -C package/network/services/hostapd compile
+ make[4] -C package/network/utils/iwinfo compile
+ make[4] -C /ff/gluon/packages/gluon/admin/autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-web-theme compile
+ make[4] -C package/network/services/uhttpd compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/flashrom compile
+ make[4] -C package/system/opkg compile
+ make[4] -C package/utils/busybox compile
+ make[4] -C package/network/config/netifd compile
+ make[4] -C package/system/ubox compile
+ make[4] -C package/system/fstools compile
+ make[4] -C package/system/procd compile
+ make[4] -C package/boot/uboot-envtools compile
+ make[4] -C package/base-files compile
+ make[4] -C /ff/gluon/packages/gluon/net/batman-adv-legacy compile
+ make[4] -C package/network/utils/ebtables compile
+ make[4] -C package/network/utils/iptables compile
+ make[4] -C package/kernel/mac80211 compile
+ make[4] -C /ff/gluon/packages/gluon/net/simple-tc compile
+ make[4] -C /ff/gluon/packages/openwrt/net/fastd compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/dmx_usb_module compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/exfat-nofuse compile
+ make[4] -C /ff/gluon/packages/openwrt/net/jool compile
+ make[4] -C /ff/gluon/packages/openwrt/net/openvswitch compile
+ make[4] -C /ff/gluon/packages/openwrt/net/usbip compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/xr_usb_serial_common compile
+ make[4] -C package/network/ipv6/map compile
+ make[4] -C package/kernel/button-hotplug compile
+ make[4] -C package/kernel/i2c-gpio-custom compile
+ make[4] -C package/kernel/kmod-sched-cake compile
+ make[4] -C package/kernel/rotary-gpio-custom compile
+ make[4] -C package/kernel/spi-gpio-custom compile
+ make[4] -C package/kernel/w1-gpio-custom compile
+ make[4] -C package/network/config/soloscli compile
+ make[4] -C package/network/services/ppp compile
+ make[4] -C package/network/services/wireguard compile
+ make[4] -C package/network/utils/iproute2 compile
+ make[4] -C package/network/utils/umbim compile
+ make[4] -C package/network/utils/uqmi compile
+ make[4] -C package/network/utils/xtables-addons compile
+ make[4] -C package/network/config/firewall compile
+ make[4] -C /ff/gluon/packages/routing/nat46 compile
+ make[4] -C package/network/utils/comgt compile
+ make[4] -C /ff/gluon/package/gluon-core compile
+ make[4] -C /ff/gluon/package/gluon-respondd compile
+ make[4] -C /ff/gluon/package/gluon-client-bridge compile
+ make[4] -C /ff/gluon/package/gluon-ebtables compile
+ make[4] -C /ff/gluon/package/gluon-authorized-keys compile
+ make[4] -C /ff/gluon/package/gluon-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-lock-password compile
+ make[4] -C /ff/gluon/package/gluon-setup-mode compile
+ make[4] -C /ff/gluon/package/gluon-node-info compile
+ make[4] -C /ff/gluon/package/gluon-wan-dnsmasq compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-multicast compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-ra-dhcp compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-source-filter compile
+ make[4] -C /ff/gluon/package/gluon-radvd compile
+ make[4] -C /ff/gluon/package/gluon-status-page-api compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-core compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-core compile
+ make[4] -C /ff/gluon/package/gluon-web-admin compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-contact-info compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-geo-location compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-hostname compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-mesh-vpn compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/package/gluon-status-page compile
+ make[4] -C /ff/gluon/package/gluon-web-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-web-network compile
+ make[4] -C /ff/gluon/package/gluon-web-node-role compile
+ make[4] -C /ff/gluon/package/gluon-web-private-wifi compile
+ make[4] -C /ff/gluon/package/gluon-web-wifi-config compile
+ make[4] -C /ff/gluon/package/gluon-web-mesh-vpn-fastd compile
+ make[4] -C package/kernel/ath10k-ct compile
+ make[4] -C /ff/gluon/packages/routing/batman-adv compile
+ make[4] -C package/kernel/mt76 compile
+ make[4] -C /ff/gluon/packages/routing/batctl compile
+ make[4] -C /ff/gluon/package/gluon-mesh-batman-adv compile
+ make[4] -C /ff/gluon/package/gluon-alfred compile
+ make[3] package/install
+ make[4] -C package/libs/libubox host-compile
+ make[4] -C package/system/opkg host-compile
+ make[4] package/preconfig
+ make[3] target/install
+ make[4] -C target/linux install
+ make[3] package/index
+ make[3] diffconfig
+ make[3] checksum
+make[1]: Leaving directory '/ff/gluon/lede'
+################# Tue Feb  6 09:15:56 CET 2018 start building target x86-64 ###########################
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+ make[2] world
+ make[3] tools/install
+ make[3] package/cleanup
+ make[4] -C tools/flock compile
+ make[4] -C tools/flock install
+ make[4] -C tools/sed compile
+ make[4] -C tools/sed install
+ make[4] -C tools/patch compile
+ make[4] -C tools/xz compile
+ make[4] -C tools/tar compile
+ make[4] -C tools/patch install
+ make[4] -C tools/xz install
+ make[4] -C tools/tar install
+ make[4] -C tools/m4 compile
+ make[4] -C tools/pkg-config compile
+ make[4] -C tools/sstrip compile
+ make[4] -C tools/expat compile
+ make[4] -C tools/make-ext4fs compile
+ make[4] -C tools/patch-image compile
+ make[4] -C tools/scons compile
+ make[4] -C tools/mtools compile
+ make[4] -C tools/lzma compile
+ make[4] -C tools/m4 install
+ make[4] -C tools/squashfs4 compile
+ make[4] -C tools/pkg-config install
+ make[4] -C tools/expat install
+ make[4] -C tools/patch-image install
+ make[4] -C tools/sstrip install
+ make[4] -C tools/scons install
+ make[4] -C tools/mtools install
+ make[4] -C tools/squashfs4 install
+ make[4] -C tools/lzma install
+ make[4] -C tools/autoconf compile
+ make[4] -C tools/make-ext4fs install
+ make[4] -C tools/libressl compile
+ make[4] -C tools/autoconf install
+ make[4] -C tools/automake compile
+ make[4] -C tools/missing-macros compile
+ make[4] -C tools/libressl install
+ make[4] -C tools/missing-macros install
+ make[4] -C tools/automake install
+ make[4] -C tools/mkimage compile
+ make[4] -C tools/cmake compile
+ make[4] -C tools/firmware-utils compile
+ make[4] -C tools/libtool compile
+ make[4] -C tools/dosfstools compile
+ make[4] -C tools/firmware-utils install
+ make[4] -C tools/libtool install
+ make[4] -C tools/dosfstools install
+ make[4] -C tools/libelf compile
+ make[4] -C tools/gmp compile
+ make[4] -C tools/flex compile
+ make[4] -C tools/mklibs compile
+ make[4] -C tools/e2fsprogs compile
+ make[4] -C tools/mm-macros compile
+ make[4] -C tools/cmake install
+ make[4] -C tools/gengetopt compile
+ make[4] -C tools/patchelf compile
+ make[4] -C tools/gmp install
+ make[4] -C tools/libelf install
+ make[4] -C tools/flex install
+ make[4] -C tools/mklibs install
+ make[4] -C tools/e2fsprogs install
+ make[4] -C tools/mkimage install
+ make[4] -C tools/mm-macros install
+ make[4] -C tools/gengetopt install
+ make[4] -C tools/patchelf install
+ make[4] -C tools/mpfr compile
+ make[4] -C tools/bison compile
+ make[4] -C tools/mtd-utils compile
+ make[4] -C tools/qemu compile
+ make[4] -C tools/mtd-utils install
+ make[4] -C tools/bison install
+ make[4] -C tools/mpfr install
+ make[4] -C tools/b43-tools compile
+ make[4] -C tools/bc compile
+ make[4] -C tools/findutils compile
+ make[4] -C tools/mpc compile
+ make[4] -C tools/qemu install
+ make[4] -C tools/bc install
+ make[4] -C tools/mpc install
+ make[4] -C tools/findutils install
+ make[4] -C tools/b43-tools install
+ make[4] -C tools/quilt compile
+ make[4] -C tools/padjffs2 compile
+ make[4] -C tools/padjffs2 install
+ make[4] -C tools/quilt install
+ make[3] target/compile
+ make[4] -C target/linux compile
+ make[3] package/compile
+ make[4] -C package/libs/toolchain compile
+ make[4] -C package/libs/ncurses host-compile
+ make[4] -C package/system/usign host-compile
+ make[4] -C package/system/fwtool host-compile
+ make[4] -C package/boot/grub2 host-compile
+ make[4] -C /ff/gluon/packages/luci/modules/luci-base host-compile
+ make[4] -C package/utils/lua host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/expat host-compile
+ make[4] -C package/utils/bzip2 host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/gperf host-compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/mtd-rw compile
+ make[4] -C /ff/gluon/packages/openwrt/net/siit compile
+ make[4] -C package/kernel/gpio-button-hotplug compile
+ make[4] -C package/kernel/gpio-nct5104d compile
+ make[4] -C package/kernel/leds-apu2 compile
+ make[4] -C package/kernel/trelay compile
+ make[4] -C package/network/services/dropbear compile
+ make[4] -C package/network/utils/linux-atm compile
+ make[4] -C package/network/utils/resolveip compile
+ make[4] -C package/libs/libmnl compile
+ make[4] -C package/network/utils/wwan compile
+ make[4] -C package/libs/libnl-tiny compile
+ make[4] -C package/libs/libjson-c compile
+ make[4] -C package/utils/lua compile
+ make[4] -C package/libs/ncurses compile
+ make[4] -C package/system/fwtool compile
+ make[4] -C package/system/lede-keyring compile
+ make[4] -C package/boot/grub2 compile
+ make[4] -C package/libs/zlib compile
+ make[4] -C package/libs/gettext compile
+ make[4] -C package/libs/libiconv compile
+ make[4] -C package/utils/bzip2 compile
+ make[4] -C package/libs/argp-standalone compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/lua-cjson host-compile
+ make[4] -C /ff/gluon/package/libgluonutil compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libplatforminfo compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-jsonc compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-nixio compile
+ make[4] -C package/firmware/linux-firmware compile
+ make[4] -C package/firmware/prism54-firmware compile
+ make[4] -C /ff/gluon/package/gluon-neighbour-info compile
+ make[4] -C /ff/gluon/packages/gluon/net/respondd compile
+ make[4] -C /ff/gluon/packages/gluon/utils/micrond compile
+ make[4] -C /ff/gluon/packages/routing/alfred compile
+ make[4] -C package/firmware/b43legacy-firmware compile
+ make[4] -C package/network/utils/iw compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/libuecc compile
+ make[4] -C /ff/gluon/package/gluon-web compile
+ make[4] -C package/network/services/dnsmasq compile
+ make[4] -C package/libs/mbedtls compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libpacketmark compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/nacl compile
+ make[4] -C /ff/gluon/packages/gluon/net/uradvd compile
+ make[4] -C /ff/gluon/packages/gluon/net/sse-multiplex compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/python host-compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/haveged compile
+ make[4] -C /ff/gluon/packages/openwrt/net/ethtool compile
+ make[4] -C package/libs/libnl compile
+ make[4] -C package/libs/libpcap compile
+ make[4] -C package/libs/openssl compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/tcp_wrappers compile
+ make[4] -C package/libs/libubox compile
+ make[4] -C package/utils/util-linux compile
+ make[4] -C package/devel/binutils compile
+ make[4] -C package/libs/elfutils compile
+ make[4] -C /ff/gluon/package/gluon-site compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-hash compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-platform-info compile
+ make[4] -C package/kernel/linux compile
+ make[4] -C package/network/ipv6/odhcp6c compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/ecdsautils compile
+ make[4] -C package/libs/ustream-ssl compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/node host-compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/eudev compile
+ make[4] -C package/libs/uclient compile
+ make[4] -C package/system/mtd compile
+ make[4] -C package/utils/e2fsprogs compile
+ make[4] -C package/utils/f2fs-tools compile
+ make[4] -C package/system/ubus compile
+ make[4] -C package/system/uci compile
+ make[4] -C package/utils/jsonfilter compile
+ make[4] -C package/system/usign compile
+ make[4] -C package/devel/perf compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-simple-uci compile
+ make[4] -C /ff/gluon/packages/gluon/admin/pretty-hostname compile
+ make[4] -C package/network/services/hostapd compile
+ make[4] -C package/network/utils/iwinfo compile
+ make[4] -C /ff/gluon/packages/gluon/admin/autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-web-theme compile
+ make[4] -C package/network/services/uhttpd compile
+ make[4] -C package/system/opkg compile
+ make[4] -C package/utils/busybox compile
+ make[4] -C package/network/config/netifd compile
+ make[4] -C package/system/ubox compile
+ make[4] -C package/system/fstools compile
+ make[4] -C package/system/procd compile
+ make[4] -C package/base-files compile
+ make[4] -C package/boot/uboot-envtools compile
+ make[4] -C package/network/utils/ebtables compile
+ make[4] -C package/network/utils/iptables compile
+ make[4] -C /ff/gluon/packages/gluon/net/batman-adv-legacy compile
+ make[4] -C package/kernel/mac80211 compile
+ make[4] -C /ff/gluon/packages/gluon/net/simple-tc compile
+ make[4] -C /ff/gluon/packages/openwrt/net/fastd compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/dmx_usb_module compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/exfat-nofuse compile
+ make[4] -C /ff/gluon/packages/openwrt/net/jool compile
+ make[4] -C /ff/gluon/packages/openwrt/net/openvswitch compile
+ make[4] -C /ff/gluon/packages/openwrt/net/usbip compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/xr_usb_serial_common compile
+ make[4] -C package/network/ipv6/map compile
+ make[4] -C package/kernel/button-hotplug compile
+ make[4] -C package/kernel/i2c-gpio-custom compile
+ make[4] -C package/kernel/kmod-sched-cake compile
+ make[4] -C package/kernel/rotary-gpio-custom compile
+ make[4] -C package/kernel/spi-gpio-custom compile
+ make[4] -C package/kernel/w1-gpio-custom compile
+ make[4] -C package/network/services/ppp compile
+ make[4] -C package/network/services/wireguard compile
+ make[4] -C package/network/utils/umbim compile
+ make[4] -C package/network/utils/uqmi compile
+ make[4] -C package/network/utils/xtables-addons compile
+ make[4] -C package/network/config/firewall compile
+ make[4] -C /ff/gluon/packages/routing/nat46 compile
+ make[4] -C package/network/utils/comgt compile
+ make[4] -C /ff/gluon/package/gluon-core compile
+ make[4] -C /ff/gluon/package/gluon-respondd compile
+ make[4] -C /ff/gluon/package/gluon-client-bridge compile
+ make[4] -C /ff/gluon/package/gluon-ebtables compile
+ make[4] -C /ff/gluon/package/gluon-authorized-keys compile
+ make[4] -C /ff/gluon/package/gluon-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-lock-password compile
+ make[4] -C /ff/gluon/package/gluon-setup-mode compile
+ make[4] -C /ff/gluon/package/gluon-node-info compile
+ make[4] -C /ff/gluon/package/gluon-wan-dnsmasq compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-multicast compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-ra-dhcp compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-source-filter compile
+ make[4] -C /ff/gluon/package/gluon-radvd compile
+ make[4] -C /ff/gluon/package/gluon-status-page-api compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-core compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-core compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/package/gluon-web-admin compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-contact-info compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-geo-location compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-hostname compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-mesh-vpn compile
+ make[4] -C /ff/gluon/package/gluon-status-page compile
+ make[4] -C /ff/gluon/package/gluon-web-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-web-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/package/gluon-web-network compile
+ make[4] -C /ff/gluon/package/gluon-web-node-role compile
+ make[4] -C /ff/gluon/package/gluon-web-private-wifi compile
+ make[4] -C /ff/gluon/package/gluon-web-wifi-config compile
+ make[4] -C package/kernel/ath10k-ct compile
+ make[4] -C package/kernel/mt76 compile
+ make[4] -C /ff/gluon/packages/routing/batman-adv compile
+ make[4] -C /ff/gluon/packages/routing/batctl compile
+ make[4] -C /ff/gluon/package/gluon-mesh-batman-adv compile
+ make[4] -C /ff/gluon/package/gluon-alfred compile
+ make[3] package/install
+ make[4] -C package/libs/libubox host-compile
+ make[4] -C package/system/opkg host-compile
+ make[4] package/preconfig
+ make[3] target/install
+ make[4] -C target/linux install
+ make[3] package/index
+ make[3] diffconfig
+ make[3] checksum
+make[1]: Leaving directory '/ff/gluon/lede'
+alle Targets wurden erfolgreich erstellt im ordner output/
+finished: Tue Feb  6 09:28:19 CET 2018
+Dauer: 99 Minuten
+schwadorf@build:/ff$ schwadorf@build:/ff$ cd /ff/gluon
+schwadorf@build:/ff/gluon$ make manifest GLUON_BRANCH=experimental DEFAULT_GLUON_RELEASE=stable-2.9.11
+schwadorf@build:/ff/gluon$ contrib/sign.sh /ff/sign_key_cs output/images/sysupgrade/experimental.manifest
+schwadorf@build:/ff/gluon$ cat output/images/sysupgrade/experimental.manifest
+BRANCH=experimental
+DATE=2018-02-06 12:24:44+01:00
+PRIORITY=0
+
+---
+488f184082dbd0c849634f4c02ba8d136d0d3e7571c30f134bd3f7d808dcc20e53569f86c9174156e6458228404759550c65b414994a2e5a4e728c4c9987440f
+schwadorf@build:/ff/gluon$ cat ../build_all.sh 
+#!/bin/bash
+cd /ff/gluon
+start=$(date +%s)
+#OPTIONS="BROKEN=1 DEFAULT_GLUON_RELEASE=stable-22.9.11~exp$(date  '+%Y%m%d%H%M')"
+OPTIONS="DEFAULT_GLUON_RELEASE=stable-22.9.11"
+CORES=5
+
+for TARGET in ar71xx-generic ar71xx-tiny ar71xx-nand brcm2708-bcm2708 brcm2708-bcm2709 mpc85xx-generic ramips-mt7621 x86-generic x86-geode x86-64; do
+  echo "################# $(date) start building target $TARGET ###########################"
+  make -j$CORES GLUON_TARGET=$TARGET $OPTIONS || exit 1 
+done && echo "alle Targets wurden erfolgreich erstellt im ordner output/"
+echo -n "finished: "; date
+echo "Dauer: $((($(date +%s)-start)/60)) Minuten"
+schwadorf@build:/ff/gluon$ cat ../build_all.sh output/images/sysupgrade/experimental.manifestontrib/sign.sh /ff/sign_key_csmake manifest GLUON_BRANCH=experimental DEFAULT_GLUON_RELEASE=stable-2.9.112.9.11
+schwadorf@build:/ff/gluon$ contrib/sign.sh /ff/sign_key_cs output/images/sysupgrade/experimental.manifest
+schwadorf@build:/ff/gluon$ cat output/images/sysupgrade/experimental.manifest
+BRANCH=experimental
+DATE=2018-02-06 12:25:14+01:00
+PRIORITY=0
+
+8devices-carambola2-board stable-22.9.11 a0930e61ed164fdc4c6d4307772e5d5e9d561bc0a48e3fab264d9ab80bc7b0cb gluon-su-me-stable-22.9.11-8devices-carambola2-board-sysupgrade.bin
+8devices-carambola2-board stable-22.9.11 4357d756a38e7de6f406c9f7dbaf9bc18df7adb7bae0d2737867d550d54c6cf3d6f2afe76829cb3702b4d4302e125b15efe25d87a30d5707b57ee959c8d5d071 gluon-su-me-stable-22.9.11-8devices-carambola2-board-sysupgrade.bin
+alfa-network-hornet-ub stable-22.9.11 818f9ae00f8e7f7d680f58cf5360788764bdac02fce08c7526dbadfdbb09ba65 gluon-su-me-stable-22.9.11-alfa-network-hornet-ub-sysupgrade.bin
+alfa-network-hornet-ub stable-22.9.11 31244a63f41e2a72fdcaa9f6df3ec9de463651132c20881d2e71372b1b9d70afb1eabed3f02646c4cafb54f039f5e61c667d64958eb1349eea3da6578231d7f5 gluon-su-me-stable-22.9.11-alfa-network-hornet-ub-sysupgrade.bin
+alfa-network-ap121 stable-22.9.11 818f9ae00f8e7f7d680f58cf5360788764bdac02fce08c7526dbadfdbb09ba65 gluon-su-me-stable-22.9.11-alfa-network-ap121-sysupgrade.bin
+alfa-network-ap121 stable-22.9.11 31244a63f41e2a72fdcaa9f6df3ec9de463651132c20881d2e71372b1b9d70afb1eabed3f02646c4cafb54f039f5e61c667d64958eb1349eea3da6578231d7f5 gluon-su-me-stable-22.9.11-alfa-network-ap121-sysupgrade.bin
+alfa-network-ap121u stable-22.9.11 818f9ae00f8e7f7d680f58cf5360788764bdac02fce08c7526dbadfdbb09ba65 gluon-su-me-stable-22.9.11-alfa-network-ap121u-sysupgrade.bin
+alfa-network-ap121u stable-22.9.11 31244a63f41e2a72fdcaa9f6df3ec9de463651132c20881d2e71372b1b9d70afb1eabed3f02646c4cafb54f039f5e61c667d64958eb1349eea3da6578231d7f5 gluon-su-me-stable-22.9.11-alfa-network-ap121u-sysupgrade.bin
+alfa-network-tube2h stable-22.9.11 e428c23e397b242cb343aa7d2f113f3777aa618d88345a2a68933ad797b570cb gluon-su-me-stable-22.9.11-alfa-network-tube2h-sysupgrade.bin
+alfa-network-tube2h stable-22.9.11 3cac72ddff297722234ceeee8d3bdcf6d35ff075351e491357edd10f7774191d811a61fa77779aadbabe353133cea7c76088bcb8c1a9873987b7794684e4a289 gluon-su-me-stable-22.9.11-alfa-network-tube2h-sysupgrade.bin
+alfa-network-n2-n5 stable-22.9.11 d8fb470c67c2cb29330606ac6720236c565cf11b2ec37803a4aa5a8eb77bb808 gluon-su-me-stable-22.9.11-alfa-network-n2-n5-sysupgrade.bin
+alfa-network-n2-n5 stable-22.9.11 42778dc83d4795779ca8ea92bf8909b8720f7bfb0cc9185488a6b5cd13e4da51c72fd9de89379a2b21751b4b17fb032c0e3207ed9a477b590708111b11f750fc gluon-su-me-stable-22.9.11-alfa-network-n2-n5-sysupgrade.bin
+allnet-all0315n stable-22.9.11 6c1dc2399ee50f2d21cb609d9e46127fb58047804eaa7531e0fc19211a08dff9 gluon-su-me-stable-22.9.11-allnet-all0315n-sysupgrade.bin
+allnet-all0315n stable-22.9.11 532a4f5ad8a8b43cdb498a44b9f7b0c7f22dad82ad0933e80aad7abcd1a7a6d57c5daaa4fc11b9f7fd21b06d1e463296fd941f58811842d481c1baa29ddd651b gluon-su-me-stable-22.9.11-allnet-all0315n-sysupgrade.bin
+buffalo-wzr-hp-g300nh stable-22.9.11 a3958f4ac9195e9496de9acfc308072a75efda08ab1047c07901f8e3a5a97cb5 gluon-su-me-stable-22.9.11-buffalo-wzr-hp-g300nh-sysupgrade.bin
+buffalo-wzr-hp-g300nh stable-22.9.11 b182355f31555c912edc7e33bdf91a34ba8eb9e0e69c41d02f3594581cf4ab70a3bf4b635cde5ab82ee50a898e7f319196bb1117f2b7d0a790dd7298f5116f76 gluon-su-me-stable-22.9.11-buffalo-wzr-hp-g300nh-sysupgrade.bin
+buffalo-wzr-hp-g300nh2 stable-22.9.11 2fcf187f9d6a0f49f77eb370520da655a656345b5fc9547675a08d56d99bdfec gluon-su-me-stable-22.9.11-buffalo-wzr-hp-g300nh2-sysupgrade.bin
+buffalo-wzr-hp-g300nh2 stable-22.9.11 ee829a9072f4175430432b66668a0be76ed716020e762a6872c9572725760be636adf3f72ec97b44a29bc6544347f1fb7ecff4126c21aa17228ca010da16ec8a gluon-su-me-stable-22.9.11-buffalo-wzr-hp-g300nh2-sysupgrade.bin
+buffalo-wzr-hp-g450h stable-22.9.11 7dbf0fca2d1de2b9c65123f32f2e100c9ff32c3d2b2c733542651a2935e1f98e gluon-su-me-stable-22.9.11-buffalo-wzr-hp-g450h-sysupgrade.bin
+buffalo-wzr-hp-g450h stable-22.9.11 e24d751ad44df05e78e3b14bc14a2e64950834bda6a0aa386b8bd78d56e297c57d3d7b1c1fe93d0262c32082e800b981bb0c7d3d604bc58d9ba1ed18db0b76e7 gluon-su-me-stable-22.9.11-buffalo-wzr-hp-g450h-sysupgrade.bin
+buffalo-wzr-hp-ag300h-wzr-600dhp stable-22.9.11 7909c5c5e445488dc2f0c0d5a6d78bd8f748ed50b34ca810d681ac659a729b71 gluon-su-me-stable-22.9.11-buffalo-wzr-hp-ag300h-wzr-600dhp-sysupgrade.bin
+buffalo-wzr-hp-ag300h-wzr-600dhp stable-22.9.11 c92a350d9392867155dc9081e334a4b0609af95464a6b73344a294e4b1360ef1668af3b15736aa58785a06fb78700c3567cb11a6ee4c8a299a425dbc7e1feb3c gluon-su-me-stable-22.9.11-buffalo-wzr-hp-ag300h-wzr-600dhp-sysupgrade.bin
+d-link-dir-505-rev-a1 stable-22.9.11 1279dc62c857e05479ba393f7fc0e9bd49cfc17d82564e1ac35e602c7452ffc9 gluon-su-me-stable-22.9.11-d-link-dir-505-rev-a1-sysupgrade.bin
+d-link-dir-505-rev-a1 stable-22.9.11 b72977f1019208fe430f714b11a0280d1ccd463fac31fe788daef04414a5a6de894fed1f39da23e5feedfbe390ec24ad7033e84e6162f1507bea9496a4cfd500 gluon-su-me-stable-22.9.11-d-link-dir-505-rev-a1-sysupgrade.bin
+d-link-dir-505-rev-a2 stable-22.9.11 1279dc62c857e05479ba393f7fc0e9bd49cfc17d82564e1ac35e602c7452ffc9 gluon-su-me-stable-22.9.11-d-link-dir-505-rev-a2-sysupgrade.bin
+d-link-dir-505-rev-a2 stable-22.9.11 b72977f1019208fe430f714b11a0280d1ccd463fac31fe788daef04414a5a6de894fed1f39da23e5feedfbe390ec24ad7033e84e6162f1507bea9496a4cfd500 gluon-su-me-stable-22.9.11-d-link-dir-505-rev-a2-sysupgrade.bin
+d-link-dir-825-rev-b1 stable-22.9.11 81ec2761336e7f1ff7ebd9518f5743d8147d64368d7303bd27b64ec81750b90c gluon-su-me-stable-22.9.11-d-link-dir-825-rev-b1-sysupgrade.bin
+d-link-dir-825-rev-b1 stable-22.9.11 78c4be4eca80c25c4132a8131dcbf3b678bdd2c18109f41bcce59585949fd3957e15a36771e8c8259ca9209da2532f51ebba6ec2ad7eb7173120549e1c748913 gluon-su-me-stable-22.9.11-d-link-dir-825-rev-b1-sysupgrade.bin
+gl-inet-6408a-v1 stable-22.9.11 fab3f1cc07facd00e4131cba8f3accdfb02ea1175578cc8c0939b5a6ac716b75 gluon-su-me-stable-22.9.11-gl-inet-6408a-v1-sysupgrade.bin
+gl-inet-6408a-v1 stable-22.9.11 0fced378e9b74bb30143a73e8dda522bc8a72824ff160c137efc351e4856adb030d3803d183980e9035dc56119f4081ad59fb7e26f25d1e6b09a2976e45017df gluon-su-me-stable-22.9.11-gl-inet-6408a-v1-sysupgrade.bin
+gl-inet-6416a-v1 stable-22.9.11 bf27507d686c30ec786e743a6580c1cbbb8058dcaefabe67ae06b5b0c1a0c689 gluon-su-me-stable-22.9.11-gl-inet-6416a-v1-sysupgrade.bin
+gl-inet-6416a-v1 stable-22.9.11 2662567da9d7a6c4c3b14b9cfd0848af0d4f09f2f202987dd77cc088dace4898e4763575ef7023bf60ad232f7a9810909a4e1bad4f33670f75c2328a68eec77c gluon-su-me-stable-22.9.11-gl-inet-6416a-v1-sysupgrade.bin
+gl-ar150 stable-22.9.11 cbd3d0f3901327b4c77f6ad2791cbae4d40fd90ffe1bd56d9c0acc23b4a5ed0a gluon-su-me-stable-22.9.11-gl-ar150-sysupgrade.bin
+gl-ar150 stable-22.9.11 3b1711273e8305af31662a36016adb5e1e63815d2b2c32b8fcaf69662bcbce7d95bb93ee39b891f889137487a1727702485e6c63c55daef68a825f6520a37f26 gluon-su-me-stable-22.9.11-gl-ar150-sysupgrade.bin
+gl-ar300m stable-22.9.11 8e4e63b81284968f8d76b91e3534cb304d30b15b536e4ccdb9b1213a2ca4c305 gluon-su-me-stable-22.9.11-gl-ar300m-sysupgrade.bin
+gl-ar300m stable-22.9.11 04a8469a079194a14f05185a476ca6bd9a8dc1dddfbc1ed29007a13419bd920ff2c03d44b17ae9045270f27c94eafb8cdfbd0f3d1ec7adb7eed2dac7865113e5 gluon-su-me-stable-22.9.11-gl-ar300m-sysupgrade.bin
+linksys-wrt160nl stable-22.9.11 acc062e19487196d7aeeee063eb7df4b89980779a6b90ada160206f130aeaafb gluon-su-me-stable-22.9.11-linksys-wrt160nl-sysupgrade.bin
+linksys-wrt160nl stable-22.9.11 2f3099f5c919b31d799facf9bd6529bcf7355ff5e65877f87206f00aec7d162438ef392931492f6c31ee8ed75d9180f367a273b6be9179ef9efee3b6373d990a gluon-su-me-stable-22.9.11-linksys-wrt160nl-sysupgrade.bin
+netgear-wndr3700 stable-22.9.11 2ff86528dbe980c416b0aacd8f5db47edb3ba77295568e357b0b18fc777b9895 gluon-su-me-stable-22.9.11-netgear-wndr3700-sysupgrade.bin
+netgear-wndr3700 stable-22.9.11 afb1b618217de37bc851f6826fdc6853874431fa5e2f75ca5f54c3b47b0f3fb9d3c067aa95605a85a8bdef50408cf5d90d7a3ee25a590439454515909f2ad881 gluon-su-me-stable-22.9.11-netgear-wndr3700-sysupgrade.bin
+netgear-wndr3700v2 stable-22.9.11 b017118b986902348d271862c17625fd24b040d60112652255642e3f211d0b36 gluon-su-me-stable-22.9.11-netgear-wndr3700v2-sysupgrade.bin
+netgear-wndr3700v2 stable-22.9.11 13ec8dbdcfe65f5c3fe01958cb8528656239457e637e14de4720935a0a62b5af5dc8ad75b71f589d61c540dc18102e1c0ee61e681cbb4ae7629bbefa4f4f5c51 gluon-su-me-stable-22.9.11-netgear-wndr3700v2-sysupgrade.bin
+netgear-wndr3800 stable-22.9.11 b017118b986902348d271862c17625fd24b040d60112652255642e3f211d0b36 gluon-su-me-stable-22.9.11-netgear-wndr3800-sysupgrade.bin
+netgear-wndr3800 stable-22.9.11 13ec8dbdcfe65f5c3fe01958cb8528656239457e637e14de4720935a0a62b5af5dc8ad75b71f589d61c540dc18102e1c0ee61e681cbb4ae7629bbefa4f4f5c51 gluon-su-me-stable-22.9.11-netgear-wndr3800-sysupgrade.bin
+netgear-wndrmacv2 stable-22.9.11 b017118b986902348d271862c17625fd24b040d60112652255642e3f211d0b36 gluon-su-me-stable-22.9.11-netgear-wndrmacv2-sysupgrade.bin
+netgear-wndrmacv2 stable-22.9.11 13ec8dbdcfe65f5c3fe01958cb8528656239457e637e14de4720935a0a62b5af5dc8ad75b71f589d61c540dc18102e1c0ee61e681cbb4ae7629bbefa4f4f5c51 gluon-su-me-stable-22.9.11-netgear-wndrmacv2-sysupgrade.bin
+onion-omega stable-22.9.11 e09ad4b1b3b885060b40a6af0c835d571ab078d4069419c2ad67e80a8ddbb87e gluon-su-me-stable-22.9.11-onion-omega-sysupgrade.bin
+onion-omega stable-22.9.11 fb45d77ba0a65b5c49bb021588537bdd52ab79b43cdf4d55fc5079f89e442a0c678547d04fa9f2514680b47e34340d250b8c4185e282257b261220d26b2a08f2 gluon-su-me-stable-22.9.11-onion-omega-sysupgrade.bin
+openmesh-mr1750 stable-22.9.11 8d36a24ac937a8b46fb5f8a0e2bd987fb599fee1c592edb53c4352468507eb41 gluon-su-me-stable-22.9.11-openmesh-mr1750-sysupgrade.bin
+openmesh-mr1750 stable-22.9.11 ad677b1464dc60db6d221d431e8c363e5e67125eba4cacfff37b9257dc5b288b2c3db698e524c25bcbe7f2802f3eafd7e0c0e6ec7f3455c805dfe3f4738fa8ce gluon-su-me-stable-22.9.11-openmesh-mr1750-sysupgrade.bin
+openmesh-mr1750v2 stable-22.9.11 8d36a24ac937a8b46fb5f8a0e2bd987fb599fee1c592edb53c4352468507eb41 gluon-su-me-stable-22.9.11-openmesh-mr1750v2-sysupgrade.bin
+openmesh-mr1750v2 stable-22.9.11 ad677b1464dc60db6d221d431e8c363e5e67125eba4cacfff37b9257dc5b288b2c3db698e524c25bcbe7f2802f3eafd7e0c0e6ec7f3455c805dfe3f4738fa8ce gluon-su-me-stable-22.9.11-openmesh-mr1750v2-sysupgrade.bin
+openmesh-mr600 stable-22.9.11 8cb56b875f1ea9d7f55a443cd50cd8e202f712025a23f037bde9789ddee21c03 gluon-su-me-stable-22.9.11-openmesh-mr600-sysupgrade.bin
+openmesh-mr600 stable-22.9.11 290c73035cb28af59414e825de783feab2bd53608c2fff84ca6243315f280b418bb4f5d1e1a9adeaf7574c45ca61daee7acd6d9cf593cc4b15ca3e5f098c7bdc gluon-su-me-stable-22.9.11-openmesh-mr600-sysupgrade.bin
+openmesh-mr600v2 stable-22.9.11 8cb56b875f1ea9d7f55a443cd50cd8e202f712025a23f037bde9789ddee21c03 gluon-su-me-stable-22.9.11-openmesh-mr600v2-sysupgrade.bin
+openmesh-mr600v2 stable-22.9.11 290c73035cb28af59414e825de783feab2bd53608c2fff84ca6243315f280b418bb4f5d1e1a9adeaf7574c45ca61daee7acd6d9cf593cc4b15ca3e5f098c7bdc gluon-su-me-stable-22.9.11-openmesh-mr600v2-sysupgrade.bin
+openmesh-mr900 stable-22.9.11 fd62128239d52262bc85672bb50f1753bcc970184d400ad4d1c2a9ad959ec8b7 gluon-su-me-stable-22.9.11-openmesh-mr900-sysupgrade.bin
+openmesh-mr900 stable-22.9.11 fa4fa0d788c24a2fb230e7e3563891e2860bd46bb0135a9ce3e6a777f9266817cd3a49ac2d2036045a58577b81c9203ca065bbcfa494a4435580705726042734 gluon-su-me-stable-22.9.11-openmesh-mr900-sysupgrade.bin
+openmesh-mr900v2 stable-22.9.11 fd62128239d52262bc85672bb50f1753bcc970184d400ad4d1c2a9ad959ec8b7 gluon-su-me-stable-22.9.11-openmesh-mr900v2-sysupgrade.bin
+openmesh-mr900v2 stable-22.9.11 fa4fa0d788c24a2fb230e7e3563891e2860bd46bb0135a9ce3e6a777f9266817cd3a49ac2d2036045a58577b81c9203ca065bbcfa494a4435580705726042734 gluon-su-me-stable-22.9.11-openmesh-mr900v2-sysupgrade.bin
+openmesh-om2p stable-22.9.11 21be1bcb1ab2099d567213cb9360eb4d3c07b9eed096b4c2a5b4cfd679d46bb9 gluon-su-me-stable-22.9.11-openmesh-om2p-sysupgrade.bin
+openmesh-om2p stable-22.9.11 1fb2c51e5648012c268d890223d95d05b2d7af615306cc09759deb498eb37cf79e0bb89c5e4a6a9d9c38ddb5d79c0fe4828773be5d4dc7632895b5ffe5ffa8b7 gluon-su-me-stable-22.9.11-openmesh-om2p-sysupgrade.bin
+openmesh-om2pv2 stable-22.9.11 21be1bcb1ab2099d567213cb9360eb4d3c07b9eed096b4c2a5b4cfd679d46bb9 gluon-su-me-stable-22.9.11-openmesh-om2pv2-sysupgrade.bin
+openmesh-om2pv2 stable-22.9.11 1fb2c51e5648012c268d890223d95d05b2d7af615306cc09759deb498eb37cf79e0bb89c5e4a6a9d9c38ddb5d79c0fe4828773be5d4dc7632895b5ffe5ffa8b7 gluon-su-me-stable-22.9.11-openmesh-om2pv2-sysupgrade.bin
+openmesh-om2p-hs stable-22.9.11 21be1bcb1ab2099d567213cb9360eb4d3c07b9eed096b4c2a5b4cfd679d46bb9 gluon-su-me-stable-22.9.11-openmesh-om2p-hs-sysupgrade.bin
+openmesh-om2p-hs stable-22.9.11 1fb2c51e5648012c268d890223d95d05b2d7af615306cc09759deb498eb37cf79e0bb89c5e4a6a9d9c38ddb5d79c0fe4828773be5d4dc7632895b5ffe5ffa8b7 gluon-su-me-stable-22.9.11-openmesh-om2p-hs-sysupgrade.bin
+openmesh-om2p-hsv2 stable-22.9.11 21be1bcb1ab2099d567213cb9360eb4d3c07b9eed096b4c2a5b4cfd679d46bb9 gluon-su-me-stable-22.9.11-openmesh-om2p-hsv2-sysupgrade.bin
+openmesh-om2p-hsv2 stable-22.9.11 1fb2c51e5648012c268d890223d95d05b2d7af615306cc09759deb498eb37cf79e0bb89c5e4a6a9d9c38ddb5d79c0fe4828773be5d4dc7632895b5ffe5ffa8b7 gluon-su-me-stable-22.9.11-openmesh-om2p-hsv2-sysupgrade.bin
+openmesh-om2p-hsv3 stable-22.9.11 21be1bcb1ab2099d567213cb9360eb4d3c07b9eed096b4c2a5b4cfd679d46bb9 gluon-su-me-stable-22.9.11-openmesh-om2p-hsv3-sysupgrade.bin
+openmesh-om2p-hsv3 stable-22.9.11 1fb2c51e5648012c268d890223d95d05b2d7af615306cc09759deb498eb37cf79e0bb89c5e4a6a9d9c38ddb5d79c0fe4828773be5d4dc7632895b5ffe5ffa8b7 gluon-su-me-stable-22.9.11-openmesh-om2p-hsv3-sysupgrade.bin
+openmesh-om2p-lc stable-22.9.11 21be1bcb1ab2099d567213cb9360eb4d3c07b9eed096b4c2a5b4cfd679d46bb9 gluon-su-me-stable-22.9.11-openmesh-om2p-lc-sysupgrade.bin
+openmesh-om2p-lc stable-22.9.11 1fb2c51e5648012c268d890223d95d05b2d7af615306cc09759deb498eb37cf79e0bb89c5e4a6a9d9c38ddb5d79c0fe4828773be5d4dc7632895b5ffe5ffa8b7 gluon-su-me-stable-22.9.11-openmesh-om2p-lc-sysupgrade.bin
+openmesh-om5p stable-22.9.11 70dadeef7bda61731c77b0811b7676176c13934dd0c87e6573f578fc591716af gluon-su-me-stable-22.9.11-openmesh-om5p-sysupgrade.bin
+openmesh-om5p stable-22.9.11 7133989615988bee00d85181927c2ac5d1a0d447e0af40f3f17e2966507e3f8cc99af7ab8abcad76451f5edd52075300611915b888931e06309505d68dee7f46 gluon-su-me-stable-22.9.11-openmesh-om5p-sysupgrade.bin
+openmesh-om5p-an stable-22.9.11 70dadeef7bda61731c77b0811b7676176c13934dd0c87e6573f578fc591716af gluon-su-me-stable-22.9.11-openmesh-om5p-an-sysupgrade.bin
+openmesh-om5p-an stable-22.9.11 7133989615988bee00d85181927c2ac5d1a0d447e0af40f3f17e2966507e3f8cc99af7ab8abcad76451f5edd52075300611915b888931e06309505d68dee7f46 gluon-su-me-stable-22.9.11-openmesh-om5p-an-sysupgrade.bin
+openmesh-om5p-ac stable-22.9.11 962b1b09cec7569d5b5d7d99b6bde9701f60694f73df46bff621a51891690999 gluon-su-me-stable-22.9.11-openmesh-om5p-ac-sysupgrade.bin
+openmesh-om5p-ac stable-22.9.11 a0af629fe84637a525159d9aca9853e971ae8340c84d9cce84d8f65d227e2b28f6233c306f6570270357fb5aee02a9a2a4120afc461bdb90d462e74a597f169f gluon-su-me-stable-22.9.11-openmesh-om5p-ac-sysupgrade.bin
+openmesh-om5p-acv2 stable-22.9.11 962b1b09cec7569d5b5d7d99b6bde9701f60694f73df46bff621a51891690999 gluon-su-me-stable-22.9.11-openmesh-om5p-acv2-sysupgrade.bin
+openmesh-om5p-acv2 stable-22.9.11 a0af629fe84637a525159d9aca9853e971ae8340c84d9cce84d8f65d227e2b28f6233c306f6570270357fb5aee02a9a2a4120afc461bdb90d462e74a597f169f gluon-su-me-stable-22.9.11-openmesh-om5p-acv2-sysupgrade.bin
+tp-link-cpe210-v1.0 stable-22.9.11 3ddb3287a5b64eff8bb2e19d0e00e3e28604fa09e2f603e4a2a1a2e7336d01da gluon-su-me-stable-22.9.11-tp-link-cpe210-v1.0-sysupgrade.bin
+tp-link-cpe210-v1.0 stable-22.9.11 6e62ad63f9467e811ef54090532549a18839716f2a1ba2234dcc3ef4bfff6d904568d3e56eda7b80f2a974556b2eac403033c1e18e325d9f1bbde3e96468e7c4 gluon-su-me-stable-22.9.11-tp-link-cpe210-v1.0-sysupgrade.bin
+tp-link-cpe210-v1.1 stable-22.9.11 3ddb3287a5b64eff8bb2e19d0e00e3e28604fa09e2f603e4a2a1a2e7336d01da gluon-su-me-stable-22.9.11-tp-link-cpe210-v1.1-sysupgrade.bin
+tp-link-cpe210-v1.1 stable-22.9.11 6e62ad63f9467e811ef54090532549a18839716f2a1ba2234dcc3ef4bfff6d904568d3e56eda7b80f2a974556b2eac403033c1e18e325d9f1bbde3e96468e7c4 gluon-su-me-stable-22.9.11-tp-link-cpe210-v1.1-sysupgrade.bin
+tp-link-cpe220-v1.1 stable-22.9.11 3ddb3287a5b64eff8bb2e19d0e00e3e28604fa09e2f603e4a2a1a2e7336d01da gluon-su-me-stable-22.9.11-tp-link-cpe220-v1.1-sysupgrade.bin
+tp-link-cpe220-v1.1 stable-22.9.11 6e62ad63f9467e811ef54090532549a18839716f2a1ba2234dcc3ef4bfff6d904568d3e56eda7b80f2a974556b2eac403033c1e18e325d9f1bbde3e96468e7c4 gluon-su-me-stable-22.9.11-tp-link-cpe220-v1.1-sysupgrade.bin
+tp-link-cpe510-v1.0 stable-22.9.11 e08656ccd332d7934ed51a13d523865024670cef32f044b77af2d4affe354d95 gluon-su-me-stable-22.9.11-tp-link-cpe510-v1.0-sysupgrade.bin
+tp-link-cpe510-v1.0 stable-22.9.11 0da8d98eff007d2a0c729f0d6909d6676afb2fe6de9f6e00f481d920e4f9735df3b170ad1d1ea72289f7b39f19358ed56a14885195f79029b77352e839c68ee5 gluon-su-me-stable-22.9.11-tp-link-cpe510-v1.0-sysupgrade.bin
+tp-link-cpe510-v1.1 stable-22.9.11 e08656ccd332d7934ed51a13d523865024670cef32f044b77af2d4affe354d95 gluon-su-me-stable-22.9.11-tp-link-cpe510-v1.1-sysupgrade.bin
+tp-link-cpe510-v1.1 stable-22.9.11 0da8d98eff007d2a0c729f0d6909d6676afb2fe6de9f6e00f481d920e4f9735df3b170ad1d1ea72289f7b39f19358ed56a14885195f79029b77352e839c68ee5 gluon-su-me-stable-22.9.11-tp-link-cpe510-v1.1-sysupgrade.bin
+tp-link-cpe520-v1.1 stable-22.9.11 e08656ccd332d7934ed51a13d523865024670cef32f044b77af2d4affe354d95 gluon-su-me-stable-22.9.11-tp-link-cpe520-v1.1-sysupgrade.bin
+tp-link-cpe520-v1.1 stable-22.9.11 0da8d98eff007d2a0c729f0d6909d6676afb2fe6de9f6e00f481d920e4f9735df3b170ad1d1ea72289f7b39f19358ed56a14885195f79029b77352e839c68ee5 gluon-su-me-stable-22.9.11-tp-link-cpe520-v1.1-sysupgrade.bin
+tp-link-wbs210-v1.20 stable-22.9.11 7352f7a1b80b14be31825de8d9ae021615bb2679fa2bd1fc20ab0e27581277f0 gluon-su-me-stable-22.9.11-tp-link-wbs210-v1.20-sysupgrade.bin
+tp-link-wbs210-v1.20 stable-22.9.11 3d6df84fba6c5f4343713a82dac65f2162c5d24d9ba27703549ab49fa87759bac046c5cb3941486045f5412ad7dee4eef35d99f0e79e6dc2c827055b64eb71bc gluon-su-me-stable-22.9.11-tp-link-wbs210-v1.20-sysupgrade.bin
+tp-link-wbs510-v1.20 stable-22.9.11 919fe0c55f69d72410a7f9cb9ac42cae7f357a1532f7b89e0cc64562419b5e85 gluon-su-me-stable-22.9.11-tp-link-wbs510-v1.20-sysupgrade.bin
+tp-link-wbs510-v1.20 stable-22.9.11 f100d40ee47910330a60b0352b6266ded986b75cde0249b67b3434ad476402349ed253b4591d96bcf6d812f832f0ab30486582c46fb375b7745437f982f1ea12 gluon-su-me-stable-22.9.11-tp-link-wbs510-v1.20-sysupgrade.bin
+tp-link-tl-wr710n-v1 stable-22.9.11 702da107a033dceecdd1dd7c5f1e1331940acd24a04f01986821974319203d82 gluon-su-me-stable-22.9.11-tp-link-tl-wr710n-v1-sysupgrade.bin
+tp-link-tl-wr710n-v1 stable-22.9.11 94d4b09500417685458023f30800cc8fd3d76d7f98451b17af445e96cff49184ef8ab56bdc24f258d1be5aca509640a29d54c8a5aaaded7b7767a5c07825fbb1 gluon-su-me-stable-22.9.11-tp-link-tl-wr710n-v1-sysupgrade.bin
+tp-link-tl-wr710n-v2.1 stable-22.9.11 f4670cf64658cc32f1df77ff59c71ad59cfa2423a03ad21c238d219de2e51ede gluon-su-me-stable-22.9.11-tp-link-tl-wr710n-v2.1-sysupgrade.bin
+tp-link-tl-wr710n-v2.1 stable-22.9.11 7fe57791b389d64509f6067bc15c1ec72ba4ae0aa9687ad849bcd81aed12223d48517da9628c3a19fcbd156dd3428a3a2829c44e5fb6b93d17dcd7f029299730 gluon-su-me-stable-22.9.11-tp-link-tl-wr710n-v2.1-sysupgrade.bin
+tp-link-tl-wr842n-nd-v1 stable-22.9.11 0d8f18bf985ed8d6234dfd6881150ac6eab6491bf466ff1b4a7d0d6e7de766e4 gluon-su-me-stable-22.9.11-tp-link-tl-wr842n-nd-v1-sysupgrade.bin
+tp-link-tl-wr842n-nd-v1 stable-22.9.11 067d2542f73a59a8e64c0e2254b2c8bb7917548100bc859ef5e815421a8cc7b8b076c1677257c056b61cea9d1cf27fb4386b894cf1b19cf4be3a4a013982c041 gluon-su-me-stable-22.9.11-tp-link-tl-wr842n-nd-v1-sysupgrade.bin
+tp-link-tl-wr842n-nd-v2 stable-22.9.11 90a21704fcf78fa82174137d32ba2a7677359de0df391d6d31d3adf88dcb092d gluon-su-me-stable-22.9.11-tp-link-tl-wr842n-nd-v2-sysupgrade.bin
+tp-link-tl-wr842n-nd-v2 stable-22.9.11 19afadc2593af7f20f37bfe146c779e919dec519ee7fd2073760ff1ff6ff83d4da9401cbee3ce029eb94235dd4e9d883e6645843ded0960675102c1fa79c1dcc gluon-su-me-stable-22.9.11-tp-link-tl-wr842n-nd-v2-sysupgrade.bin
+tp-link-tl-wr842n-nd-v3 stable-22.9.11 e1c3a1cb4be7d8ceaa44eeaab81fb0f59a3b4370da6e9b392321bc8aa190727b gluon-su-me-stable-22.9.11-tp-link-tl-wr842n-nd-v3-sysupgrade.bin
+tp-link-tl-wr842n-nd-v3 stable-22.9.11 cba132f7dda8e8fb80fae79bce3ef37c1b7ad0ffe13612a1718e47a76552136d8af1078af98e0bfcd36be229f2036c35a995a733280f54ed4c28d46756922e05 gluon-su-me-stable-22.9.11-tp-link-tl-wr842n-nd-v3-sysupgrade.bin
+tp-link-tl-wr1043n-nd-v1 stable-22.9.11 0813b626d27b0592345bab725e5e50efbd4c3ddb05c44c8be01db7f843dddd64 gluon-su-me-stable-22.9.11-tp-link-tl-wr1043n-nd-v1-sysupgrade.bin
+tp-link-tl-wr1043n-nd-v1 stable-22.9.11 99866a43796fe3c5b176c86c73e0b19ddd07a03577126cdb02d966b6a9dd889699d8eeaae8367ee167fb09c579f8493bfa0fb078ecfad2dcbda00b6a0b07652c gluon-su-me-stable-22.9.11-tp-link-tl-wr1043n-nd-v1-sysupgrade.bin
+tp-link-tl-wr1043n-nd-v2 stable-22.9.11 2bf945573bf37ad9c6f8731798704370d1bad0bc54f7288cefca74dbdfc21332 gluon-su-me-stable-22.9.11-tp-link-tl-wr1043n-nd-v2-sysupgrade.bin
+tp-link-tl-wr1043n-nd-v2 stable-22.9.11 3076ab46281d9c802c3a184176b1c156bc764009a1068d463dda0acfa628c87bfc80b4e6b9fc31a685c0d69c4f6f03fda6ac6508b07c77105ec258b4016dbc7c gluon-su-me-stable-22.9.11-tp-link-tl-wr1043n-nd-v2-sysupgrade.bin
+tp-link-tl-wr1043n-nd-v3 stable-22.9.11 2cc5fdb1257a3a2b5abc3fc376af078115e73c0550ca94dedddc92ba9754ae97 gluon-su-me-stable-22.9.11-tp-link-tl-wr1043n-nd-v3-sysupgrade.bin
+tp-link-tl-wr1043n-nd-v3 stable-22.9.11 ab335f07f23dd6c623f9239b5c4dc35bd40e15649c7cd1598b2197cf1bf15f6ba0bddce25cf8364a23278a77c9f5583f3dad05123fb9914da76c3147122e8f02 gluon-su-me-stable-22.9.11-tp-link-tl-wr1043n-nd-v3-sysupgrade.bin
+tp-link-tl-wr1043n-nd-v4 stable-22.9.11 359ac120b7b2f6916e2bd778ce7742b7b6a03254606f9f4de4881afd08d3edbd gluon-su-me-stable-22.9.11-tp-link-tl-wr1043n-nd-v4-sysupgrade.bin
+tp-link-tl-wr1043n-nd-v4 stable-22.9.11 29e230f362001fa12a05761083079ec8b1e76c23300f494d499bea56f9e1c1286276733343258c40158a97d650051e5ec7fe21b9372439c4a52aecf269893c67 gluon-su-me-stable-22.9.11-tp-link-tl-wr1043n-nd-v4-sysupgrade.bin
+tp-link-tl-wr1043n-v5 stable-22.9.11 5fa1f19c2d5744a3a566348aa3f153b3ce7d08b57f62a573a426616c2ac4307e gluon-su-me-stable-22.9.11-tp-link-tl-wr1043n-v5-sysupgrade.bin
+tp-link-tl-wr1043n-v5 stable-22.9.11 78a20d441dc6233326fc2859fe6f2dd1ae10be4f99dbf621276b5537763b75515a0b43723775a117bbcb18c5ffff4a01f16da771aebcaeaef06869e222be359c gluon-su-me-stable-22.9.11-tp-link-tl-wr1043n-v5-sysupgrade.bin
+tp-link-tl-wdr3500-v1 stable-22.9.11 c0375a0d2e01061037622c4cf2cc7cd66a09797e93998023f29d8c4748b6e8fd gluon-su-me-stable-22.9.11-tp-link-tl-wdr3500-v1-sysupgrade.bin
+tp-link-tl-wdr3500-v1 stable-22.9.11 d427a00cdc2ace52ab8af7f08e240739169d42787d0bcdca74bbfcb23bf274863c9562f3cd9ad08e83f4e6b21344e46db665584d00263a41d73dac9735313bb4 gluon-su-me-stable-22.9.11-tp-link-tl-wdr3500-v1-sysupgrade.bin
+tp-link-tl-wdr3600-v1 stable-22.9.11 3fa58262fd32f3592458431edd4dd56c452336030522ec8e8e7bc3579520c4ff gluon-su-me-stable-22.9.11-tp-link-tl-wdr3600-v1-sysupgrade.bin
+tp-link-tl-wdr3600-v1 stable-22.9.11 00933c827d63950218aa39cd5ec38ab81d13cdbf3258b9f8afc676cb82361bcc95ae4845fddce007dfb6f966a4bd0571af0f14d555102d2816fbb93b20b1f818 gluon-su-me-stable-22.9.11-tp-link-tl-wdr3600-v1-sysupgrade.bin
+tp-link-tl-wdr4300-v1 stable-22.9.11 07c33c15e2600f3ab9bb496fc19e196551f7278e938d91fd0fabe8694d599c0b gluon-su-me-stable-22.9.11-tp-link-tl-wdr4300-v1-sysupgrade.bin
+tp-link-tl-wdr4300-v1 stable-22.9.11 126433a7c58e348d4096e54dcb997b5e7353c8bce2c0fcb938b0f0e68dd4c8bfc4ea34011547ea0677f75b15ba507b30c87dacdfef0bfabdeaea4147931d707f gluon-su-me-stable-22.9.11-tp-link-tl-wdr4300-v1-sysupgrade.bin
+tp-link-tl-wr2543n-nd-v1 stable-22.9.11 b00be065a25ea6bc084a7d285b6c709f0613c3f0f6a8bab3f19b45b8c01f22c7 gluon-su-me-stable-22.9.11-tp-link-tl-wr2543n-nd-v1-sysupgrade.bin
+tp-link-tl-wr2543n-nd-v1 stable-22.9.11 e54217a70782b973c12e7810ede8ea2f601efa1f706e3bee97b8d6f3ce3b4a579d1bd825850d85056a2787e4eb64f8115251b32257cbc27e0b35d7cbb19893d9 gluon-su-me-stable-22.9.11-tp-link-tl-wr2543n-nd-v1-sysupgrade.bin
+tp-link-archer-c5-v1 stable-22.9.11 dc4e8c35785cfcb3b27ff31f8a1850d68ef538b2bc26f7afe958dfeb7b584d82 gluon-su-me-stable-22.9.11-tp-link-archer-c5-v1-sysupgrade.bin
+tp-link-archer-c5-v1 stable-22.9.11 f7d11f7a66ef34f13957b3262bd8a2fda15679e7eae341ab3a717187e1f4ea8356523e7c151fcf1f457b0ba275fbbe2a1decb6836f7abb9f563760bc7dfe6f69 gluon-su-me-stable-22.9.11-tp-link-archer-c5-v1-sysupgrade.bin
+tp-link-archer-c7-v2 stable-22.9.11 ef7fc491af6019211e9703ca8a11da0c06131c50eef7396811ed049022a4f5af gluon-su-me-stable-22.9.11-tp-link-archer-c7-v2-sysupgrade.bin
+tp-link-archer-c7-v2 stable-22.9.11 f87d6e4dcc20f9b17bb5c20b74389088ee7ed82408a39d5c9d0654cabcfa12e10497ed9c0fee5af05bdfa0a3160a43ec28bdd011ed463b64c0b4e54a297a75fc gluon-su-me-stable-22.9.11-tp-link-archer-c7-v2-sysupgrade.bin
+tp-link-re450 stable-22.9.11 9a940118d63ec966ada196a0d4c97fd6a3740d47bfbe5857020eb4bfbfe279c1 gluon-su-me-stable-22.9.11-tp-link-re450-sysupgrade.bin
+tp-link-re450 stable-22.9.11 663fbd32430f2ae2c2c65fcaa83a87ea156653c86478bc0f20910c3febb4f0df324fd97e80601b4156fd5d1e75e54f0e6d5c6ad748adf8c59dd750f083824e18 gluon-su-me-stable-22.9.11-tp-link-re450-sysupgrade.bin
+ubiquiti-airgateway stable-22.9.11 62eedeec22246be96f34f98bbf28fcaed2580d466ccedb4a96febb7efff88017 gluon-su-me-stable-22.9.11-ubiquiti-airgateway-sysupgrade.bin
+ubiquiti-airgateway stable-22.9.11 9a44d850da19f7035016f6c146fc5d34be9317a05ecd70ea92d33070c8210a87e90106964f6898c6cc4da1c3feff7152870723858e8e8fc27de8194b36875b01 gluon-su-me-stable-22.9.11-ubiquiti-airgateway-sysupgrade.bin
+ubiquiti-airgateway-lr stable-22.9.11 62eedeec22246be96f34f98bbf28fcaed2580d466ccedb4a96febb7efff88017 gluon-su-me-stable-22.9.11-ubiquiti-airgateway-lr-sysupgrade.bin
+ubiquiti-airgateway-lr stable-22.9.11 9a44d850da19f7035016f6c146fc5d34be9317a05ecd70ea92d33070c8210a87e90106964f6898c6cc4da1c3feff7152870723858e8e8fc27de8194b36875b01 gluon-su-me-stable-22.9.11-ubiquiti-airgateway-lr-sysupgrade.bin
+ubiquiti-airgateway-pro stable-22.9.11 eefb3b1c270140887171f47c3542e7e6a45531af7710acc4fca41b5a8eb7c188 gluon-su-me-stable-22.9.11-ubiquiti-airgateway-pro-sysupgrade.bin
+ubiquiti-airgateway-pro stable-22.9.11 e6b8c450d821eec01035c0255d2955502c4efd119fe687f89033f8281a210ed1c85ffcff7ca4196a397d49cbcdcffaac15fcf8570c6af15b1a5feb37c85e8630 gluon-su-me-stable-22.9.11-ubiquiti-airgateway-pro-sysupgrade.bin
+ubiquiti-airrouter stable-22.9.11 e42af140d87b26621561749725c4ba47fda5cefbe233195102be531bdf404637 gluon-su-me-stable-22.9.11-ubiquiti-airrouter-sysupgrade.bin
+ubiquiti-airrouter stable-22.9.11 0fae66d55bc2dcf7c668c50024fa20de51981e8d81416bb232cd0801281ab285bde1fc87c94de4c0f48d3d1a0429a93ce8eae16a044cc524f8a83644e63ae547 gluon-su-me-stable-22.9.11-ubiquiti-airrouter-sysupgrade.bin
+ubiquiti-bullet-m stable-22.9.11 9385dbfa078720f4421615f8742046338bae9222a75fde68f77f4d6ede6ed877 gluon-su-me-stable-22.9.11-ubiquiti-bullet-m-sysupgrade.bin
+ubiquiti-bullet-m stable-22.9.11 529cbf9de8e72bd8378b9d15d30c39b2fdaa624e3ca8887c4e222be5cdab554cbeb4341ef9ae28684493785713faab81a6e05ed2fd47093d2ec0b20d2512c9eb gluon-su-me-stable-22.9.11-ubiquiti-bullet-m-sysupgrade.bin
+ubiquiti-nanostation-loco-m2 stable-22.9.11 9385dbfa078720f4421615f8742046338bae9222a75fde68f77f4d6ede6ed877 gluon-su-me-stable-22.9.11-ubiquiti-nanostation-loco-m2-sysupgrade.bin
+ubiquiti-nanostation-loco-m2 stable-22.9.11 529cbf9de8e72bd8378b9d15d30c39b2fdaa624e3ca8887c4e222be5cdab554cbeb4341ef9ae28684493785713faab81a6e05ed2fd47093d2ec0b20d2512c9eb gluon-su-me-stable-22.9.11-ubiquiti-nanostation-loco-m2-sysupgrade.bin
+ubiquiti-nanostation-loco-m5 stable-22.9.11 9385dbfa078720f4421615f8742046338bae9222a75fde68f77f4d6ede6ed877 gluon-su-me-stable-22.9.11-ubiquiti-nanostation-loco-m5-sysupgrade.bin
+ubiquiti-nanostation-loco-m5 stable-22.9.11 529cbf9de8e72bd8378b9d15d30c39b2fdaa624e3ca8887c4e222be5cdab554cbeb4341ef9ae28684493785713faab81a6e05ed2fd47093d2ec0b20d2512c9eb gluon-su-me-stable-22.9.11-ubiquiti-nanostation-loco-m5-sysupgrade.bin
+ubiquiti-rocket-m2 stable-22.9.11 9385dbfa078720f4421615f8742046338bae9222a75fde68f77f4d6ede6ed877 gluon-su-me-stable-22.9.11-ubiquiti-rocket-m2-sysupgrade.bin
+ubiquiti-rocket-m2 stable-22.9.11 529cbf9de8e72bd8378b9d15d30c39b2fdaa624e3ca8887c4e222be5cdab554cbeb4341ef9ae28684493785713faab81a6e05ed2fd47093d2ec0b20d2512c9eb gluon-su-me-stable-22.9.11-ubiquiti-rocket-m2-sysupgrade.bin
+ubiquiti-rocket-m5 stable-22.9.11 9385dbfa078720f4421615f8742046338bae9222a75fde68f77f4d6ede6ed877 gluon-su-me-stable-22.9.11-ubiquiti-rocket-m5-sysupgrade.bin
+ubiquiti-rocket-m5 stable-22.9.11 529cbf9de8e72bd8378b9d15d30c39b2fdaa624e3ca8887c4e222be5cdab554cbeb4341ef9ae28684493785713faab81a6e05ed2fd47093d2ec0b20d2512c9eb gluon-su-me-stable-22.9.11-ubiquiti-rocket-m5-sysupgrade.bin
+ubiquiti-bullet-m2 stable-22.9.11 9385dbfa078720f4421615f8742046338bae9222a75fde68f77f4d6ede6ed877 gluon-su-me-stable-22.9.11-ubiquiti-bullet-m2-sysupgrade.bin
+ubiquiti-bullet-m2 stable-22.9.11 529cbf9de8e72bd8378b9d15d30c39b2fdaa624e3ca8887c4e222be5cdab554cbeb4341ef9ae28684493785713faab81a6e05ed2fd47093d2ec0b20d2512c9eb gluon-su-me-stable-22.9.11-ubiquiti-bullet-m2-sysupgrade.bin
+ubiquiti-bullet-m5 stable-22.9.11 9385dbfa078720f4421615f8742046338bae9222a75fde68f77f4d6ede6ed877 gluon-su-me-stable-22.9.11-ubiquiti-bullet-m5-sysupgrade.bin
+ubiquiti-bullet-m5 stable-22.9.11 529cbf9de8e72bd8378b9d15d30c39b2fdaa624e3ca8887c4e222be5cdab554cbeb4341ef9ae28684493785713faab81a6e05ed2fd47093d2ec0b20d2512c9eb gluon-su-me-stable-22.9.11-ubiquiti-bullet-m5-sysupgrade.bin
+ubiquiti-picostation-m2 stable-22.9.11 9385dbfa078720f4421615f8742046338bae9222a75fde68f77f4d6ede6ed877 gluon-su-me-stable-22.9.11-ubiquiti-picostation-m2-sysupgrade.bin
+ubiquiti-picostation-m2 stable-22.9.11 529cbf9de8e72bd8378b9d15d30c39b2fdaa624e3ca8887c4e222be5cdab554cbeb4341ef9ae28684493785713faab81a6e05ed2fd47093d2ec0b20d2512c9eb gluon-su-me-stable-22.9.11-ubiquiti-picostation-m2-sysupgrade.bin
+ubiquiti-nanostation-m stable-22.9.11 5bd4bce4a096e80ed3e3260987ac0f6929372fc5745ae140af52452ca24f1a19 gluon-su-me-stable-22.9.11-ubiquiti-nanostation-m-sysupgrade.bin
+ubiquiti-nanostation-m stable-22.9.11 136c65d5cee42fb83e775a0eecad9be4cd143cf99a0840b1f3037f67b4bf863f898da2df382ebc3847054817c2901b859feda1e2e0c4762d6fb5e3812f2f4300 gluon-su-me-stable-22.9.11-ubiquiti-nanostation-m-sysupgrade.bin
+ubiquiti-nanostation-m2 stable-22.9.11 5bd4bce4a096e80ed3e3260987ac0f6929372fc5745ae140af52452ca24f1a19 gluon-su-me-stable-22.9.11-ubiquiti-nanostation-m2-sysupgrade.bin
+ubiquiti-nanostation-m2 stable-22.9.11 136c65d5cee42fb83e775a0eecad9be4cd143cf99a0840b1f3037f67b4bf863f898da2df382ebc3847054817c2901b859feda1e2e0c4762d6fb5e3812f2f4300 gluon-su-me-stable-22.9.11-ubiquiti-nanostation-m2-sysupgrade.bin
+ubiquiti-nanostation-m5 stable-22.9.11 5bd4bce4a096e80ed3e3260987ac0f6929372fc5745ae140af52452ca24f1a19 gluon-su-me-stable-22.9.11-ubiquiti-nanostation-m5-sysupgrade.bin
+ubiquiti-nanostation-m5 stable-22.9.11 136c65d5cee42fb83e775a0eecad9be4cd143cf99a0840b1f3037f67b4bf863f898da2df382ebc3847054817c2901b859feda1e2e0c4762d6fb5e3812f2f4300 gluon-su-me-stable-22.9.11-ubiquiti-nanostation-m5-sysupgrade.bin
+ubiquiti-loco-m-xw stable-22.9.11 770e3fbb7bf74caa64848736dfd679ca5f9eb508d76c2bd7ec960d411803744d gluon-su-me-stable-22.9.11-ubiquiti-loco-m-xw-sysupgrade.bin
+ubiquiti-loco-m-xw stable-22.9.11 694496527cfd33143e3ba4cd3ecb2f5e897bcf30fa69696ff30069cf9525a198836b35da194988ee99cf6709ee32c072489ab74e63f98a2183b4ac2d08e206b8 gluon-su-me-stable-22.9.11-ubiquiti-loco-m-xw-sysupgrade.bin
+ubiquiti-nanostation-loco-m2-xw stable-22.9.11 770e3fbb7bf74caa64848736dfd679ca5f9eb508d76c2bd7ec960d411803744d gluon-su-me-stable-22.9.11-ubiquiti-nanostation-loco-m2-xw-sysupgrade.bin
+ubiquiti-nanostation-loco-m2-xw stable-22.9.11 694496527cfd33143e3ba4cd3ecb2f5e897bcf30fa69696ff30069cf9525a198836b35da194988ee99cf6709ee32c072489ab74e63f98a2183b4ac2d08e206b8 gluon-su-me-stable-22.9.11-ubiquiti-nanostation-loco-m2-xw-sysupgrade.bin
+ubiquiti-nanostation-loco-m5-xw stable-22.9.11 770e3fbb7bf74caa64848736dfd679ca5f9eb508d76c2bd7ec960d411803744d gluon-su-me-stable-22.9.11-ubiquiti-nanostation-loco-m5-xw-sysupgrade.bin
+ubiquiti-nanostation-loco-m5-xw stable-22.9.11 694496527cfd33143e3ba4cd3ecb2f5e897bcf30fa69696ff30069cf9525a198836b35da194988ee99cf6709ee32c072489ab74e63f98a2183b4ac2d08e206b8 gluon-su-me-stable-22.9.11-ubiquiti-nanostation-loco-m5-xw-sysupgrade.bin
+ubiquiti-nanostation-m-xw stable-22.9.11 5b3e2644c3e24b258d2fb166faac76645202a2b532c2d226fcdca90d34c267f2 gluon-su-me-stable-22.9.11-ubiquiti-nanostation-m-xw-sysupgrade.bin
+ubiquiti-nanostation-m-xw stable-22.9.11 59195208546efb498e9df291be945fb3e74a25afa77135cffb3c15ea040937835e2992272de19bf9bd8b06d4c88d618eda4e33d4554ffe1ae5a06e9369f3bf20 gluon-su-me-stable-22.9.11-ubiquiti-nanostation-m-xw-sysupgrade.bin
+ubiquiti-nanostation-m2-xw stable-22.9.11 5b3e2644c3e24b258d2fb166faac76645202a2b532c2d226fcdca90d34c267f2 gluon-su-me-stable-22.9.11-ubiquiti-nanostation-m2-xw-sysupgrade.bin
+ubiquiti-nanostation-m2-xw stable-22.9.11 59195208546efb498e9df291be945fb3e74a25afa77135cffb3c15ea040937835e2992272de19bf9bd8b06d4c88d618eda4e33d4554ffe1ae5a06e9369f3bf20 gluon-su-me-stable-22.9.11-ubiquiti-nanostation-m2-xw-sysupgrade.bin
+ubiquiti-nanostation-m5-xw stable-22.9.11 5b3e2644c3e24b258d2fb166faac76645202a2b532c2d226fcdca90d34c267f2 gluon-su-me-stable-22.9.11-ubiquiti-nanostation-m5-xw-sysupgrade.bin
+ubiquiti-nanostation-m5-xw stable-22.9.11 59195208546efb498e9df291be945fb3e74a25afa77135cffb3c15ea040937835e2992272de19bf9bd8b06d4c88d618eda4e33d4554ffe1ae5a06e9369f3bf20 gluon-su-me-stable-22.9.11-ubiquiti-nanostation-m5-xw-sysupgrade.bin
+ubiquiti-rocket-m-xw stable-22.9.11 c94359925d548b965d6d409dbf28e85931c4896746b1ee7fd2b485d4e7eb4c60 gluon-su-me-stable-22.9.11-ubiquiti-rocket-m-xw-sysupgrade.bin
+ubiquiti-rocket-m-xw stable-22.9.11 794fcec3e486aac0c35b5120872d33a72594139a2071eaf70e02b2bcc84e2fcf09c14da785aabf078ead03d17a5ab9c00e7b76dd7cfb9668ba11dab46c05df47 gluon-su-me-stable-22.9.11-ubiquiti-rocket-m-xw-sysupgrade.bin
+ubiquiti-rocket-m2-xw stable-22.9.11 c94359925d548b965d6d409dbf28e85931c4896746b1ee7fd2b485d4e7eb4c60 gluon-su-me-stable-22.9.11-ubiquiti-rocket-m2-xw-sysupgrade.bin
+ubiquiti-rocket-m2-xw stable-22.9.11 794fcec3e486aac0c35b5120872d33a72594139a2071eaf70e02b2bcc84e2fcf09c14da785aabf078ead03d17a5ab9c00e7b76dd7cfb9668ba11dab46c05df47 gluon-su-me-stable-22.9.11-ubiquiti-rocket-m2-xw-sysupgrade.bin
+ubiquiti-rocket-m5-xw stable-22.9.11 c94359925d548b965d6d409dbf28e85931c4896746b1ee7fd2b485d4e7eb4c60 gluon-su-me-stable-22.9.11-ubiquiti-rocket-m5-xw-sysupgrade.bin
+ubiquiti-rocket-m5-xw stable-22.9.11 794fcec3e486aac0c35b5120872d33a72594139a2071eaf70e02b2bcc84e2fcf09c14da785aabf078ead03d17a5ab9c00e7b76dd7cfb9668ba11dab46c05df47 gluon-su-me-stable-22.9.11-ubiquiti-rocket-m5-xw-sysupgrade.bin
+ubiquiti-rocket-m-ti stable-22.9.11 b4c523a7f1f21f9fe4deb3f7d415f0e36daddd81563f8a6e97e981b45e2ef2cf gluon-su-me-stable-22.9.11-ubiquiti-rocket-m-ti-sysupgrade.bin
+ubiquiti-rocket-m-ti stable-22.9.11 a15d6b3d7cb24ae6ffd2c407ae177da10c94365958b6234de53ba93473f1359069a44d48117001c5ad53694052218aae3ef2c25eb1ff3bd02e8d82abc875de98 gluon-su-me-stable-22.9.11-ubiquiti-rocket-m-ti-sysupgrade.bin
+ubiquiti-rocket-m2-ti stable-22.9.11 b4c523a7f1f21f9fe4deb3f7d415f0e36daddd81563f8a6e97e981b45e2ef2cf gluon-su-me-stable-22.9.11-ubiquiti-rocket-m2-ti-sysupgrade.bin
+ubiquiti-rocket-m2-ti stable-22.9.11 a15d6b3d7cb24ae6ffd2c407ae177da10c94365958b6234de53ba93473f1359069a44d48117001c5ad53694052218aae3ef2c25eb1ff3bd02e8d82abc875de98 gluon-su-me-stable-22.9.11-ubiquiti-rocket-m2-ti-sysupgrade.bin
+ubiquiti-rocket-m5-ti stable-22.9.11 b4c523a7f1f21f9fe4deb3f7d415f0e36daddd81563f8a6e97e981b45e2ef2cf gluon-su-me-stable-22.9.11-ubiquiti-rocket-m5-ti-sysupgrade.bin
+ubiquiti-rocket-m5-ti stable-22.9.11 a15d6b3d7cb24ae6ffd2c407ae177da10c94365958b6234de53ba93473f1359069a44d48117001c5ad53694052218aae3ef2c25eb1ff3bd02e8d82abc875de98 gluon-su-me-stable-22.9.11-ubiquiti-rocket-m5-ti-sysupgrade.bin
+ubiquiti-unifi stable-22.9.11 816d36dc49a24b58d3c6eea88eecf99fb3bfbaf54990976812e75ad8840fb72d gluon-su-me-stable-22.9.11-ubiquiti-unifi-sysupgrade.bin
+ubiquiti-unifi stable-22.9.11 c2c030639e3844bf54f30830db86ca302723808c6e07181f18a6538db19433d57134d1924b2c371b87330732c31fd165a27295c5d0da25986bbf693240d69c00 gluon-su-me-stable-22.9.11-ubiquiti-unifi-sysupgrade.bin
+ubiquiti-unifi-ap stable-22.9.11 816d36dc49a24b58d3c6eea88eecf99fb3bfbaf54990976812e75ad8840fb72d gluon-su-me-stable-22.9.11-ubiquiti-unifi-ap-sysupgrade.bin
+ubiquiti-unifi-ap stable-22.9.11 c2c030639e3844bf54f30830db86ca302723808c6e07181f18a6538db19433d57134d1924b2c371b87330732c31fd165a27295c5d0da25986bbf693240d69c00 gluon-su-me-stable-22.9.11-ubiquiti-unifi-ap-sysupgrade.bin
+ubiquiti-unifi-ap-lr stable-22.9.11 816d36dc49a24b58d3c6eea88eecf99fb3bfbaf54990976812e75ad8840fb72d gluon-su-me-stable-22.9.11-ubiquiti-unifi-ap-lr-sysupgrade.bin
+ubiquiti-unifi-ap-lr stable-22.9.11 c2c030639e3844bf54f30830db86ca302723808c6e07181f18a6538db19433d57134d1924b2c371b87330732c31fd165a27295c5d0da25986bbf693240d69c00 gluon-su-me-stable-22.9.11-ubiquiti-unifi-ap-lr-sysupgrade.bin
+ubiquiti-unifi-ap-pro stable-22.9.11 4e23eed138f7f30255f2bb479ba392f7722a3b172b9fbd44c9e296fb39c1e6ad gluon-su-me-stable-22.9.11-ubiquiti-unifi-ap-pro-sysupgrade.bin
+ubiquiti-unifi-ap-pro stable-22.9.11 848b764c1a01b353e489ab4b3938147f9013f58c671943588690e90959619d6b0f8ca158a597fe4a1e56fe1656276a31faa50a4eaf1d6a5f44a18bed93b527b3 gluon-su-me-stable-22.9.11-ubiquiti-unifi-ap-pro-sysupgrade.bin
+ubiquiti-unifiap-outdoor stable-22.9.11 4b3faa457b88f5e6f003e0f3f5198bae006e5ad9ee58461e1efb58ce42ca7d0c gluon-su-me-stable-22.9.11-ubiquiti-unifiap-outdoor-sysupgrade.bin
+ubiquiti-unifiap-outdoor stable-22.9.11 1321f882c501df0bcf26323d7986c7d9462eef2da7ee33e82da6c0b1f19cd9789375f415c5d95040d78aeaad4ea3f0f03b7218ad837e9fd64125bab4abbc43ab gluon-su-me-stable-22.9.11-ubiquiti-unifiap-outdoor-sysupgrade.bin
+ubiquiti-unifiap-outdoor+ stable-22.9.11 2bf8ba74cf034baab010b6d1419b6b09a156bd8020506c7c4f9b798c3596a8cc gluon-su-me-stable-22.9.11-ubiquiti-unifiap-outdoor+-sysupgrade.bin
+ubiquiti-unifiap-outdoor+ stable-22.9.11 4a34196506b8f7b244dcadeeac15b23c88c182d645c7d27db00224c5a7489cfdbc3e69e28acede71b81e2bca4510325a1ebc9d5f55e89852fe15e1da2ed723ad gluon-su-me-stable-22.9.11-ubiquiti-unifiap-outdoor+-sysupgrade.bin
+ubiquiti-unifi-ac-lite stable-22.9.11 33f20421bbf35811c93a600edb13718e5852094889b305dfd7087bae46d6fba5 gluon-su-me-stable-22.9.11-ubiquiti-unifi-ac-lite-sysupgrade.bin
+ubiquiti-unifi-ac-lite stable-22.9.11 9228550060f83a24205bc777dc21747c58e4dece881e29f74d6b52085bb4abd6b2d5d1a6819f4c74368ed67caa55f8ce211840c8466cbd41e0c7107b899eca85 gluon-su-me-stable-22.9.11-ubiquiti-unifi-ac-lite-sysupgrade.bin
+ubiquiti-unifi-ac-pro stable-22.9.11 4e448686c2ac716c48841bdafc0972d5ae599f9f004d22c9bba6eab80d0746ba gluon-su-me-stable-22.9.11-ubiquiti-unifi-ac-pro-sysupgrade.bin
+ubiquiti-unifi-ac-pro stable-22.9.11 477ff29168b4e767ceef5b14e72847059a51a5bf21f9862f9ce294ac0aac54de89f341fba37366e70a31e5225ad3d5d512f67988a50497b73cd1bff7d8ece32f gluon-su-me-stable-22.9.11-ubiquiti-unifi-ac-pro-sysupgrade.bin
+wd-my-net-n600 stable-22.9.11 c30e678957d70d91d485ed455ef5064fffa02ea490b6a6f635ac18adc5ef4d75 gluon-su-me-stable-22.9.11-wd-my-net-n600-sysupgrade.bin
+wd-my-net-n600 stable-22.9.11 d4a63d2f8d88b837f567a2142dc0978e9a0dc512cfa11f66fa45a99d303dc512dd6c43b36e8441e4b3abf983c06c013c9aff1b201905d5e2cff2178e06696467 gluon-su-me-stable-22.9.11-wd-my-net-n600-sysupgrade.bin
+wd-my-net-n750 stable-22.9.11 797bb5d7d435e3d521887460827ca01e1ec92bd280983bfacf3fe8a5688055c0 gluon-su-me-stable-22.9.11-wd-my-net-n750-sysupgrade.bin
+wd-my-net-n750 stable-22.9.11 06c827e57f19a27ff48a53e185d7aa57ea022ec81e67dd2eb9ef1d6c567e138fe7617fdc2801a59aaf7bf59afba1e585d173a5fb1d03258f384991300c8cdb15 gluon-su-me-stable-22.9.11-wd-my-net-n750-sysupgrade.bin
+d-link-dir-615-rev-c1 stable-22.9.11 4169d62e5a69d48cc7e0b11f784055a5f9bfc0d8200f2f646d9c892c9a0003e2 gluon-su-me-stable-22.9.11-d-link-dir-615-rev-c1-sysupgrade.bin
+d-link-dir-615-rev-c1 stable-22.9.11 e7808706bc6c2073718f9183384746f2dba5ce8c436616972741a7b39f2062b5a9d9d1fd78a35455aaa32662c18dccbc2d5adfb00b325c60971e55de4f7871d7 gluon-su-me-stable-22.9.11-d-link-dir-615-rev-c1-sysupgrade.bin
+tp-link-tl-wa701n-nd-v1 stable-22.9.11 3cfdc622cd2d550da60e2c189ad80484b77c2d6fba4b451448e6b35cdd42d235 gluon-su-me-stable-22.9.11-tp-link-tl-wa701n-nd-v1-sysupgrade.bin
+tp-link-tl-wa701n-nd-v1 stable-22.9.11 cf61ab8da38f9e5728ccf7f358eaa9cac852231531cf1f36049372277aa42f48b440d5bbaa6054a52d5b80af81cf1a4f3b7fc332f943629290d36111fb2adc7b gluon-su-me-stable-22.9.11-tp-link-tl-wa701n-nd-v1-sysupgrade.bin
+tp-link-tl-wa701n-nd-v2 stable-22.9.11 9e05803d98c036538b27b13a9bf0d65ffde96d1c5fc763e6d3f3b1518b023bf5 gluon-su-me-stable-22.9.11-tp-link-tl-wa701n-nd-v2-sysupgrade.bin
+tp-link-tl-wa701n-nd-v2 stable-22.9.11 2722ac60b3d2d0b755e7a16a6b2494be9115a1dfb8308cd63faca5dacb46fcdcc3b821bd297a68ac1db40646259c8063df02791012667512439033e380dcf00b gluon-su-me-stable-22.9.11-tp-link-tl-wa701n-nd-v2-sysupgrade.bin
+tp-link-tl-wa7210n-v2 stable-22.9.11 a5dc9a8b1b056e5cac4b8ed17666e5e9a97562745a7cfa4d90b511adb2d3eb3d gluon-su-me-stable-22.9.11-tp-link-tl-wa7210n-v2-sysupgrade.bin
+tp-link-tl-wa7210n-v2 stable-22.9.11 49f98dc1dd07f99d2b8ef7bfa8e37eb32fafbd4b2962517ca7e2b0faff3ad5e120f7bdf149460f271497dcb22e60050047483cd963708ad8d45c05605cfbe3b1 gluon-su-me-stable-22.9.11-tp-link-tl-wa7210n-v2-sysupgrade.bin
+tp-link-tl-wa7510n-v1 stable-22.9.11 e3fc1653935ca6048431162f4c15de4dfe4baf93f7536855277f744dd805b1f0 gluon-su-me-stable-22.9.11-tp-link-tl-wa7510n-v1-sysupgrade.bin
+tp-link-tl-wa7510n-v1 stable-22.9.11 ec39c1ee6e2f80a379a85ebbb94bd8db747e2c9a784ece9cf183a30b350fba989386e31227d592f1a5309c34e7231180a0b3456e71680efa032bba797ad52ed0 gluon-su-me-stable-22.9.11-tp-link-tl-wa7510n-v1-sysupgrade.bin
+tp-link-tl-wr703n-v1 stable-22.9.11 3685ff1d3a8454a50d3637e3c8e74f68effdc7fa9a17adba3edda26a470813de gluon-su-me-stable-22.9.11-tp-link-tl-wr703n-v1-sysupgrade.bin
+tp-link-tl-wr703n-v1 stable-22.9.11 3529a275cbde467422b1fb1461f9dc9f325fc5487c72917ee84ca1b02dbc71c7dc77d06b6bb0c38384e943d6407540c484164b5028d3426e1c659d7d2dc89735 gluon-su-me-stable-22.9.11-tp-link-tl-wr703n-v1-sysupgrade.bin
+tp-link-tl-wr710n-v2 stable-22.9.11 23c80b4ca41a22667f27deb9a8043c8ac4f059512cb9784899530991228187f3 gluon-su-me-stable-22.9.11-tp-link-tl-wr710n-v2-sysupgrade.bin
+tp-link-tl-wr710n-v2 stable-22.9.11 9158a7a438eed0223e35350e59bb900cd3936753bd067534d9fce3bde1aee25107901730485cc53544876585337febba67b2c0b2e773639e2e62b100fcc17a3b gluon-su-me-stable-22.9.11-tp-link-tl-wr710n-v2-sysupgrade.bin
+tp-link-tl-wr740n-nd-v1 stable-22.9.11 4050308272fd6bf68b7eeeb482747a939d1e5c3e043fa14bbf6cb2fef64bf454 gluon-su-me-stable-22.9.11-tp-link-tl-wr740n-nd-v1-sysupgrade.bin
+tp-link-tl-wr740n-nd-v1 stable-22.9.11 520a4e2a8d32d1747d360b9a03033469278b66bfccf3b6e3caebd7812a0ba78f0563f217a39e09707733451205d43449f6050dd11d2df86d4363adb531663030 gluon-su-me-stable-22.9.11-tp-link-tl-wr740n-nd-v1-sysupgrade.bin
+tp-link-tl-wr740n-nd-v3 stable-22.9.11 d99eb629fb45cceff272ffbbf8b8f5b81afb274550889f3bce953dd13b4a0df6 gluon-su-me-stable-22.9.11-tp-link-tl-wr740n-nd-v3-sysupgrade.bin
+tp-link-tl-wr740n-nd-v3 stable-22.9.11 10bdce838da282c1f86f527a04fccabb579bce3682b44e9596719bf81ce85c4122a69ea9f51bef1253484578c685e7d2e66da993a50230d5cd20dd9042b1acfe gluon-su-me-stable-22.9.11-tp-link-tl-wr740n-nd-v3-sysupgrade.bin
+tp-link-tl-wr740n-nd-v4 stable-22.9.11 69b1c89b26bf4b964736ee43862c1bdd76ec03fddd1d15d0f22e2b1a756fa8cb gluon-su-me-stable-22.9.11-tp-link-tl-wr740n-nd-v4-sysupgrade.bin
+tp-link-tl-wr740n-nd-v4 stable-22.9.11 56c658c8a31420a45e77a4b507bed11e62edb2521ab7d27bb2d68a05d25cd991f93cc61fcd6b788d054c875b4a2a5a5e4aa0ddda7f03bfaa6b4d9ed55ad71fce gluon-su-me-stable-22.9.11-tp-link-tl-wr740n-nd-v4-sysupgrade.bin
+tp-link-tl-wr740n-nd-v5 stable-22.9.11 31df86c42ca09da11ca02149f56316c229337ba05a1c869ea5d38ca993048bcd gluon-su-me-stable-22.9.11-tp-link-tl-wr740n-nd-v5-sysupgrade.bin
+tp-link-tl-wr740n-nd-v5 stable-22.9.11 658df5780353055cfae86e71081ce5635edc848ba092497ff220325888bf8e8769b8d650d2e2891d0a468f6ed77fcac64d5aab9b9fda17f4f0004ff8215840fd gluon-su-me-stable-22.9.11-tp-link-tl-wr740n-nd-v5-sysupgrade.bin
+tp-link-tl-wr741n-nd-v1 stable-22.9.11 4ce322c22eae0c1e104d30a8c49873c4733dbf14fe25ec4899da18da73d145f5 gluon-su-me-stable-22.9.11-tp-link-tl-wr741n-nd-v1-sysupgrade.bin
+tp-link-tl-wr741n-nd-v1 stable-22.9.11 3171c5db7b62eb97599be9b94111ccc7aa56042b26cb3db246e67b73ae1337f3fe09215df57047852541de8fd5b99a462d36e4317c55162d0aa94d16d50374ce gluon-su-me-stable-22.9.11-tp-link-tl-wr741n-nd-v1-sysupgrade.bin
+tp-link-tl-wr741n-nd-v2 stable-22.9.11 4ce322c22eae0c1e104d30a8c49873c4733dbf14fe25ec4899da18da73d145f5 gluon-su-me-stable-22.9.11-tp-link-tl-wr741n-nd-v2-sysupgrade.bin
+tp-link-tl-wr741n-nd-v2 stable-22.9.11 3171c5db7b62eb97599be9b94111ccc7aa56042b26cb3db246e67b73ae1337f3fe09215df57047852541de8fd5b99a462d36e4317c55162d0aa94d16d50374ce gluon-su-me-stable-22.9.11-tp-link-tl-wr741n-nd-v2-sysupgrade.bin
+tp-link-tl-wr741n-nd-v4 stable-22.9.11 30fdd110fe6e4479bbab4780888b681a18bcb896ee7eb5558978042ac6a5831a gluon-su-me-stable-22.9.11-tp-link-tl-wr741n-nd-v4-sysupgrade.bin
+tp-link-tl-wr741n-nd-v4 stable-22.9.11 22a9cc5d7690b470badbeab51a65ffb1c46264439bddcf3169f5439e5d1ea595a99adf11fe3448b4d6251b634a5f83e03e41f68be7f1c420dc77314fe43950f7 gluon-su-me-stable-22.9.11-tp-link-tl-wr741n-nd-v4-sysupgrade.bin
+tp-link-tl-wr741n-nd-v5 stable-22.9.11 31df86c42ca09da11ca02149f56316c229337ba05a1c869ea5d38ca993048bcd gluon-su-me-stable-22.9.11-tp-link-tl-wr741n-nd-v5-sysupgrade.bin
+tp-link-tl-wr741n-nd-v5 stable-22.9.11 658df5780353055cfae86e71081ce5635edc848ba092497ff220325888bf8e8769b8d650d2e2891d0a468f6ed77fcac64d5aab9b9fda17f4f0004ff8215840fd gluon-su-me-stable-22.9.11-tp-link-tl-wr741n-nd-v5-sysupgrade.bin
+tp-link-tl-wr743n-nd-v1 stable-22.9.11 653ea6c4ef6f2b5e673a6a3ad3514ac3078d43fd35e11ec265f864f3e4a9dcd3 gluon-su-me-stable-22.9.11-tp-link-tl-wr743n-nd-v1-sysupgrade.bin
+tp-link-tl-wr743n-nd-v1 stable-22.9.11 81d9013ffeba639c7fe37c497ab8167f684e24aba174250fba3ebf8112ecc4ff386c8908256d066ca145c3febf1fe88a6264cfb36e02e897c12ba85c5016929e gluon-su-me-stable-22.9.11-tp-link-tl-wr743n-nd-v1-sysupgrade.bin
+tp-link-tl-wr743n-nd-v2 stable-22.9.11 3bfa3c2ebf0031b8c0e305138db2a0475bc2268f26e393c2785eb06e847f7013 gluon-su-me-stable-22.9.11-tp-link-tl-wr743n-nd-v2-sysupgrade.bin
+tp-link-tl-wr743n-nd-v2 stable-22.9.11 31444d59bdd5c8f5e5c628ebd412460bc5a4f0724be4c1b6d9eedb101f5433527932e3efa020b3983569351a5bc81259ac4a899d4e59297286c537329f910d86 gluon-su-me-stable-22.9.11-tp-link-tl-wr743n-nd-v2-sysupgrade.bin
+tp-link-tl-wa801n-nd-v1 stable-22.9.11 47fa070a4f741c797d1ca08160eb32f0b42583fa81c6be9afdeaa0a62fa58d6c gluon-su-me-stable-22.9.11-tp-link-tl-wa801n-nd-v1-sysupgrade.bin
+tp-link-tl-wa801n-nd-v1 stable-22.9.11 fa21073874818a5d4eabc3a5c4787cea534c9d342beb314b77e00ef74730abbf60f25784101be187103ff51f1d5abc988eae714aff087fdd81a811265156bfba gluon-su-me-stable-22.9.11-tp-link-tl-wa801n-nd-v1-sysupgrade.bin
+tp-link-tl-wa801n-nd-v2 stable-22.9.11 2e03707fa28dcde77f02a074a0c139e7a8d0c0c3338856503d70ebf5948a5a56 gluon-su-me-stable-22.9.11-tp-link-tl-wa801n-nd-v2-sysupgrade.bin
+tp-link-tl-wa801n-nd-v2 stable-22.9.11 a14a765fad41a5c889583163754b582f5a5e6ccb3b1e53c0c95a7e2742403e1ac4f808edb1267335afb35894689f93c87bbc9ac17de0ec614eaf34d2a5ff3ab4 gluon-su-me-stable-22.9.11-tp-link-tl-wa801n-nd-v2-sysupgrade.bin
+tp-link-tl-wa801n-nd-v3 stable-22.9.11 02b50b951f9bc2afb04e651af31b3b8b509538c57e8297b3f43d81821205e212 gluon-su-me-stable-22.9.11-tp-link-tl-wa801n-nd-v3-sysupgrade.bin
+tp-link-tl-wa801n-nd-v3 stable-22.9.11 d2aa7e146b9fe724fc72d7339ecd6b2892a476a18e16a496507e4b7c4b6f822373623bf4577db21d9436ddc11ea2f470ab6327de102432616313c46839a56c83 gluon-su-me-stable-22.9.11-tp-link-tl-wa801n-nd-v3-sysupgrade.bin
+tp-link-tl-wr841n-nd-v3 stable-22.9.11 e2e006bb91dc413c07275f8dfd2389c5d67316c05121053fdd16b224e0d6276e gluon-su-me-stable-22.9.11-tp-link-tl-wr841n-nd-v3-sysupgrade.bin
+tp-link-tl-wr841n-nd-v3 stable-22.9.11 84163d73246b826b674de9c73e7552bc88549a9afccfea00d33b43120406e55c6ccc981b917a7696b2500e8b38a83879f938f6111a0dc4b0d09d3dfa4a2f41e9 gluon-su-me-stable-22.9.11-tp-link-tl-wr841n-nd-v3-sysupgrade.bin
+tp-link-tl-wr841n-nd-v5 stable-22.9.11 3ef12cba23953d2330329f3666aa0cc14e4cef5943766927a9d9ae1dd5fbe0d0 gluon-su-me-stable-22.9.11-tp-link-tl-wr841n-nd-v5-sysupgrade.bin
+tp-link-tl-wr841n-nd-v5 stable-22.9.11 28b035397333f54cc1f5e6c814a2761333f7b5d1659859fbd29b2db285e65d412a8ace4c198177f38d264b7dc2d48126782fc1be0a94b53f64505723b884d5fe gluon-su-me-stable-22.9.11-tp-link-tl-wr841n-nd-v5-sysupgrade.bin
+tp-link-tl-wr841n-nd-v7 stable-22.9.11 8492def93c7cc1fa65628df2625740e3b332f62ad865852a6a0b1937b7dc0f31 gluon-su-me-stable-22.9.11-tp-link-tl-wr841n-nd-v7-sysupgrade.bin
+tp-link-tl-wr841n-nd-v7 stable-22.9.11 1244780d5102f7b7ded275d26f3a3ad95f96737df62aeb9efe0740f310919049dbef6af976f2d11ae52c8b2fcd2b31dd745345285f66b21fce5cf7b5d780b403 gluon-su-me-stable-22.9.11-tp-link-tl-wr841n-nd-v7-sysupgrade.bin
+tp-link-tl-wr841n-nd-v8 stable-22.9.11 3ac5d918c97e9a199d647f0841cc5c85e437085a2735802397fdc0273d49a87a gluon-su-me-stable-22.9.11-tp-link-tl-wr841n-nd-v8-sysupgrade.bin
+tp-link-tl-wr841n-nd-v8 stable-22.9.11 68b78d6c6f426551df167c04ca4375d08cf56361d530c6f00d303c9136fb94034af480c0315676a51fa4c039cab975e359a7261cb915679739b14154f11dca94 gluon-su-me-stable-22.9.11-tp-link-tl-wr841n-nd-v8-sysupgrade.bin
+tp-link-tl-wr841n-nd-v9 stable-22.9.11 c150b07b85aa19126d6cf5329b0172e72e3be4a8489cf136a3ae468f90b5b3b2 gluon-su-me-stable-22.9.11-tp-link-tl-wr841n-nd-v9-sysupgrade.bin
+tp-link-tl-wr841n-nd-v9 stable-22.9.11 2bcc7246d36e5fd215fa6859753b6fcaed300569531eaefef820edbdd48064586880f694f8df52e61a76a4de2234e469ca8df8328d1a49e654452e44d3332add gluon-su-me-stable-22.9.11-tp-link-tl-wr841n-nd-v9-sysupgrade.bin
+tp-link-tl-wr841n-nd-v10 stable-22.9.11 997d220168c2280f1ca52db3623f0a1ee9432c69579d105d18b3e493ae1ba584 gluon-su-me-stable-22.9.11-tp-link-tl-wr841n-nd-v10-sysupgrade.bin
+tp-link-tl-wr841n-nd-v10 stable-22.9.11 a23649af743a3d0bb9203636b10dcba5df37532fa9e8cca293d307216ac0fbf8a4cd86137112144952e47ae60a3e924e8eac23319d549502b36fcd5d94f02332 gluon-su-me-stable-22.9.11-tp-link-tl-wr841n-nd-v10-sysupgrade.bin
+tp-link-tl-wr841n-nd-v11 stable-22.9.11 ac54c5e539bc2c8e19f7f122b6a37668f31327d8d6567c12b5059038afca176c gluon-su-me-stable-22.9.11-tp-link-tl-wr841n-nd-v11-sysupgrade.bin
+tp-link-tl-wr841n-nd-v11 stable-22.9.11 65806a8b31b314d5dfb9618285fa91046c2eaaef59ac8d446a1a6e095f7f95e2fe917ab9a8bc8592c7a2cf986af14453a58b28659655f87cb5eafeade7d978f6 gluon-su-me-stable-22.9.11-tp-link-tl-wr841n-nd-v11-sysupgrade.bin
+tp-link-tl-wr841n-nd-v12 stable-22.9.11 fd7370d06797850202868f1823115ca1c970f4595cb5b392638c265bffb1a1d7 gluon-su-me-stable-22.9.11-tp-link-tl-wr841n-nd-v12-sysupgrade.bin
+tp-link-tl-wr841n-nd-v12 stable-22.9.11 6d02a4598dd458612e57e1783c0c39c15ae0f9d56adba01c59de64fdba4febac58cd621cf018a04f04014bf62a650c15259108793d13f8eee4ddb7a596f7c677 gluon-su-me-stable-22.9.11-tp-link-tl-wr841n-nd-v12-sysupgrade.bin
+tp-link-tl-wr843n-nd-v1 stable-22.9.11 085f5046ff468df0062e2b968864c2093f71f8b82c475b742a9b3149a490d797 gluon-su-me-stable-22.9.11-tp-link-tl-wr843n-nd-v1-sysupgrade.bin
+tp-link-tl-wr843n-nd-v1 stable-22.9.11 5a93ffd7f9cb32348bc87675eb63e1321bc38fcf704a66ce0764e9762e37f7a3057dc71501c8ed4d6ff1c03668b86c4257ef84da39baa99825d95e0f7a65df28 gluon-su-me-stable-22.9.11-tp-link-tl-wr843n-nd-v1-sysupgrade.bin
+tp-link-tl-wr941n-nd-v2 stable-22.9.11 22954e80ef341ee6760eb87e232ebd57700b210a84e7c26a15d2a11928613c85 gluon-su-me-stable-22.9.11-tp-link-tl-wr941n-nd-v2-sysupgrade.bin
+tp-link-tl-wr941n-nd-v2 stable-22.9.11 8ef4a8484588c5ddb9d09cb339e2c78035a06f01c2b357576ec73e353c03871448fb2f1d81559ed9ac4e4760edd60f69c7a78bc59937773bd7df18767c229864 gluon-su-me-stable-22.9.11-tp-link-tl-wr941n-nd-v2-sysupgrade.bin
+tp-link-tl-wr941n-nd-v3 stable-22.9.11 22954e80ef341ee6760eb87e232ebd57700b210a84e7c26a15d2a11928613c85 gluon-su-me-stable-22.9.11-tp-link-tl-wr941n-nd-v3-sysupgrade.bin
+tp-link-tl-wr941n-nd-v3 stable-22.9.11 8ef4a8484588c5ddb9d09cb339e2c78035a06f01c2b357576ec73e353c03871448fb2f1d81559ed9ac4e4760edd60f69c7a78bc59937773bd7df18767c229864 gluon-su-me-stable-22.9.11-tp-link-tl-wr941n-nd-v3-sysupgrade.bin
+tp-link-tl-wr941n-nd-v4 stable-22.9.11 5b665d977ffa57262645abca6a89f1ed31706ee898d9c9d69d9b4ed624141c1a gluon-su-me-stable-22.9.11-tp-link-tl-wr941n-nd-v4-sysupgrade.bin
+tp-link-tl-wr941n-nd-v4 stable-22.9.11 46880433eb9ae4662e449f8ed01f6dfe4f2aa302f58af17b3adeaa7c4fd6326f73f597a26013b5220bc0c2e6d77c60a64a898972e2c1e0e58f891fa0b534b3c5 gluon-su-me-stable-22.9.11-tp-link-tl-wr941n-nd-v4-sysupgrade.bin
+tp-link-tl-wr940n-v1 stable-22.9.11 5b665d977ffa57262645abca6a89f1ed31706ee898d9c9d69d9b4ed624141c1a gluon-su-me-stable-22.9.11-tp-link-tl-wr940n-v1-sysupgrade.bin
+tp-link-tl-wr940n-v1 stable-22.9.11 46880433eb9ae4662e449f8ed01f6dfe4f2aa302f58af17b3adeaa7c4fd6326f73f597a26013b5220bc0c2e6d77c60a64a898972e2c1e0e58f891fa0b534b3c5 gluon-su-me-stable-22.9.11-tp-link-tl-wr940n-v1-sysupgrade.bin
+tp-link-tl-wr941n-nd-v5 stable-22.9.11 2815221ea0440d9e213b84bd7110d015e58e1349a1284577a662bc610814385d gluon-su-me-stable-22.9.11-tp-link-tl-wr941n-nd-v5-sysupgrade.bin
+tp-link-tl-wr941n-nd-v5 stable-22.9.11 7dccfa394beaa1522ca240292b3a901ff9888e309deb4c99ecd6d9b123c8b28cd11c350214d1b38f512d7bac1497a7635bb4c559dcb08d773389ab9e80917f49 gluon-su-me-stable-22.9.11-tp-link-tl-wr941n-nd-v5-sysupgrade.bin
+tp-link-tl-wr940n-v2 stable-22.9.11 2815221ea0440d9e213b84bd7110d015e58e1349a1284577a662bc610814385d gluon-su-me-stable-22.9.11-tp-link-tl-wr940n-v2-sysupgrade.bin
+tp-link-tl-wr940n-v2 stable-22.9.11 7dccfa394beaa1522ca240292b3a901ff9888e309deb4c99ecd6d9b123c8b28cd11c350214d1b38f512d7bac1497a7635bb4c559dcb08d773389ab9e80917f49 gluon-su-me-stable-22.9.11-tp-link-tl-wr940n-v2-sysupgrade.bin
+tp-link-tl-wr941n-nd-v6 stable-22.9.11 c9f92190a0e866dba5512b49cd34316310b17dbedfa56da989479837c13ee13d gluon-su-me-stable-22.9.11-tp-link-tl-wr941n-nd-v6-sysupgrade.bin
+tp-link-tl-wr941n-nd-v6 stable-22.9.11 5546d59c02bedc72a05801b3cbc8582fb35de9979420ecc25e2ce3f0436cc2b066efa208e902d5430de6af320a7e6149002a243d3b782b03cf47b6eaaee234bb gluon-su-me-stable-22.9.11-tp-link-tl-wr941n-nd-v6-sysupgrade.bin
+tp-link-tl-wr940n-v3 stable-22.9.11 c9f92190a0e866dba5512b49cd34316310b17dbedfa56da989479837c13ee13d gluon-su-me-stable-22.9.11-tp-link-tl-wr940n-v3-sysupgrade.bin
+tp-link-tl-wr940n-v3 stable-22.9.11 5546d59c02bedc72a05801b3cbc8582fb35de9979420ecc25e2ce3f0436cc2b066efa208e902d5430de6af320a7e6149002a243d3b782b03cf47b6eaaee234bb gluon-su-me-stable-22.9.11-tp-link-tl-wr940n-v3-sysupgrade.bin
+tp-link-tl-wr940n-v4 stable-22.9.11 0ab23626dbdfbb90ef97261aef32489e387d984c961d9160a537eb45821e479f gluon-su-me-stable-22.9.11-tp-link-tl-wr940n-v4-sysupgrade.bin
+tp-link-tl-wr940n-v4 stable-22.9.11 5cf3a4a069ddbb396d51972ff8003f9471228d0ee2197f153c0f699e25e78022a0a37b94e82d72cbde29f64d21ea37d866a84f4c10db92737899c4c962259665 gluon-su-me-stable-22.9.11-tp-link-tl-wr940n-v4-sysupgrade.bin
+tp-link-tl-wa730re-v1 stable-22.9.11 739170759897ecd1b5074f7c32da17b79906a9eb745c8f3592d76a6e3b64876f gluon-su-me-stable-22.9.11-tp-link-tl-wa730re-v1-sysupgrade.bin
+tp-link-tl-wa730re-v1 stable-22.9.11 d8105e9a8d396b33589123d202d43a32f6677c1318c4209aa7ee97fa008866762a31e1366ffa72e2b0464e63a81cc0e38a0a332cb21f34b51f9713ef602251e7 gluon-su-me-stable-22.9.11-tp-link-tl-wa730re-v1-sysupgrade.bin
+tp-link-tl-wa750re-v1 stable-22.9.11 040b5f6fbf61dc2d37f79ff557c2d376f1014c7fc2b3b388c12182847a7d9282 gluon-su-me-stable-22.9.11-tp-link-tl-wa750re-v1-sysupgrade.bin
+tp-link-tl-wa750re-v1 stable-22.9.11 03aac3c486809f664559226b4b40fda1c2922b359afbe27ed9915bedf8b87f74a667bc841982bdf4a7b477e893c13e2a14a8a88d8cb63b07eb83498e49a37b1e gluon-su-me-stable-22.9.11-tp-link-tl-wa750re-v1-sysupgrade.bin
+tp-link-tl-wa830re-v1 stable-22.9.11 c03f6740a41c07c23923456f42d0afc96c7752abc49845f8292029ddad9fb104 gluon-su-me-stable-22.9.11-tp-link-tl-wa830re-v1-sysupgrade.bin
+tp-link-tl-wa830re-v1 stable-22.9.11 4acef87b9683c8c318ae7af44a92f79f016751871c8c4a5e88e5d2002b2c3c3d6baab617d23c7e067e3ce0fff7218550b773b30705d06ce0bc2bc2ffa217e4a0 gluon-su-me-stable-22.9.11-tp-link-tl-wa830re-v1-sysupgrade.bin
+tp-link-tl-wa830re-v2 stable-22.9.11 a515ae4815f46a4cfd847ccdaa84790940f2577bca0baec5b403ca3e52ca9b3c gluon-su-me-stable-22.9.11-tp-link-tl-wa830re-v2-sysupgrade.bin
+tp-link-tl-wa830re-v2 stable-22.9.11 25aa52c62f6ee0d938aa8b019bc7c480e30bb510df919255fedaf7ccef647813899b4dd06e4f75e147c2f35fc051007e62e6d31967a0764a56b5582a78757082 gluon-su-me-stable-22.9.11-tp-link-tl-wa830re-v2-sysupgrade.bin
+tp-link-tl-wa850re-v1 stable-22.9.11 875b1a57336c90bae48bbd4a80a195a10d3a0e20ea3851c7a39daa461f601827 gluon-su-me-stable-22.9.11-tp-link-tl-wa850re-v1-sysupgrade.bin
+tp-link-tl-wa850re-v1 stable-22.9.11 96bbe517830eb2baadc408e95720d3090055e56210be89069a66ac9d28b1d5d52a85b7515f061f3243ae46c2fedbb4c6bfe92e6a8be5443bdae5b6bbd91f3409 gluon-su-me-stable-22.9.11-tp-link-tl-wa850re-v1-sysupgrade.bin
+tp-link-tl-wa860re-v1 stable-22.9.11 b9b6009431ecf9817183113a1a5a7345ef51bea6a9eecae22c8c93bb0ff209df gluon-su-me-stable-22.9.11-tp-link-tl-wa860re-v1-sysupgrade.bin
+tp-link-tl-wa860re-v1 stable-22.9.11 644e857be20246cefc5fc5d52d9d9ce49b5eb5cad4481a931b3bc5038c0007fbf125bcdd15e0b8f61dc4a42434e500a3cc0252c07da8b7c3393a11c486406db9 gluon-su-me-stable-22.9.11-tp-link-tl-wa860re-v1-sysupgrade.bin
+tp-link-tl-wa901n-nd-v1 stable-22.9.11 3c5301a28b782a23598ef1b9b35589bc06544c019463214e2fce4f30a5b0160b gluon-su-me-stable-22.9.11-tp-link-tl-wa901n-nd-v1-sysupgrade.bin
+tp-link-tl-wa901n-nd-v1 stable-22.9.11 06aec4bc1e677b6a8c35869cccb92dab0b7b6ce5a2df545528ee9323fa789f856e9535c6b71536827e82a5b1ccd8f227634905972093f6eb446c10f7d5f0987c gluon-su-me-stable-22.9.11-tp-link-tl-wa901n-nd-v1-sysupgrade.bin
+tp-link-tl-wa901n-nd-v2 stable-22.9.11 b3a6d453120e9822ea5a94b5f412841ba769c9c74bae124cab0a25d7aea92701 gluon-su-me-stable-22.9.11-tp-link-tl-wa901n-nd-v2-sysupgrade.bin
+tp-link-tl-wa901n-nd-v2 stable-22.9.11 9a777c32e61624bffcbb4adfb523e9fa9c3fa9ce4f043eab59f36ca1225a69d09ad899c975bca650bcf327575615ba20c7971d9363674b3ebd04d954c11a382d gluon-su-me-stable-22.9.11-tp-link-tl-wa901n-nd-v2-sysupgrade.bin
+tp-link-tl-wa901n-nd-v3 stable-22.9.11 c28789c5aacd442e14b4c1e90166257ac9022e1637ab3d3020ac68d40c371603 gluon-su-me-stable-22.9.11-tp-link-tl-wa901n-nd-v3-sysupgrade.bin
+tp-link-tl-wa901n-nd-v3 stable-22.9.11 ac49765fa23bb9aa4787c046b598e35ff87bac59f87b67b96372e0944f86428f9351289aa538f09c8129e50cf8a37b19476e1546177b079fa4ae51f92391675e gluon-su-me-stable-22.9.11-tp-link-tl-wa901n-nd-v3-sysupgrade.bin
+tp-link-tl-wa901n-nd-v4 stable-22.9.11 63f79aabe164a5c9d1b09722867746de13e2159091f249f96985293e28c28dd9 gluon-su-me-stable-22.9.11-tp-link-tl-wa901n-nd-v4-sysupgrade.bin
+tp-link-tl-wa901n-nd-v4 stable-22.9.11 4a5d2de758694be5fbce30069fa9adbd7bf89c4f9903d8ebdaf92a441a29975e26a201039091dc5da317b95cf8d18689d81f62373f6fa7d03e2273bf39555aaf gluon-su-me-stable-22.9.11-tp-link-tl-wa901n-nd-v4-sysupgrade.bin
+tp-link-tl-mr13u-v1 stable-22.9.11 c725997b4f5f502cfb9c928db9c15ef9bbf8321b06e8c0c0ace253e3ef3ee9ba gluon-su-me-stable-22.9.11-tp-link-tl-mr13u-v1-sysupgrade.bin
+tp-link-tl-mr13u-v1 stable-22.9.11 12ce7033860d0d6fbbb581567a4613ddf54e49ac414822188e169ee80f3fdb8512f7b283dedbc7d45f8ac961df7409916d325f19cd925f74ef4cbf4ddc811475 gluon-su-me-stable-22.9.11-tp-link-tl-mr13u-v1-sysupgrade.bin
+tp-link-tl-mr3020-v1 stable-22.9.11 f5d57f88a05d718c7e454504259189f82868a8521a6f153661b05c3e5d6b6623 gluon-su-me-stable-22.9.11-tp-link-tl-mr3020-v1-sysupgrade.bin
+tp-link-tl-mr3020-v1 stable-22.9.11 3a1a1af462fa818b3ae43655ad457341a43d5e9349aebc82624e99c13078bf4e4c5ee5ccddeda814647effaf72467620c6c7ef96c52c65be6b36f36a15b52c2c gluon-su-me-stable-22.9.11-tp-link-tl-mr3020-v1-sysupgrade.bin
+tp-link-tl-mr3040-v1 stable-22.9.11 6f1129c14704c7c837653682eb1697f1f05661ffaea7f0ebd1c06e16d1f838cb gluon-su-me-stable-22.9.11-tp-link-tl-mr3040-v1-sysupgrade.bin
+tp-link-tl-mr3040-v1 stable-22.9.11 bddcf32c7b064c5138f13c0cc1498a23a05fae9e3e3a85d9c35585c20ef6cf34a8d4e2db36671438d51731a01957239e8b27ca44c00065bec403d7bce0d3c9bf gluon-su-me-stable-22.9.11-tp-link-tl-mr3040-v1-sysupgrade.bin
+tp-link-tl-mr3040-v2 stable-22.9.11 1314334f024707d9c0b05c0529e2d1ca35febcbe36c6ae0b176dc895ff63b3ea gluon-su-me-stable-22.9.11-tp-link-tl-mr3040-v2-sysupgrade.bin
+tp-link-tl-mr3040-v2 stable-22.9.11 b495e80abc9573889a1951867734ed1414b40db8f4e6cd61f6b33e1f96a146e454a802cb04887a6a5827fa9126c0adde21a3d26ed0ea600131c9d403813460ff gluon-su-me-stable-22.9.11-tp-link-tl-mr3040-v2-sysupgrade.bin
+tp-link-tl-mr3220-v1 stable-22.9.11 a46a00febe6ce5a7de8926d46ffe756a11efa51b7bb2d8e63681830e4a1debf9 gluon-su-me-stable-22.9.11-tp-link-tl-mr3220-v1-sysupgrade.bin
+tp-link-tl-mr3220-v1 stable-22.9.11 ca912688bd4d3a180180f4ff282877be9dffa8c85247725c289a41c1cfa411ffc86a346ade083e89efaa045c0fff9b04721b1fdebb51e5f920d355578b621a79 gluon-su-me-stable-22.9.11-tp-link-tl-mr3220-v1-sysupgrade.bin
+tp-link-tl-mr3220-v2 stable-22.9.11 a0bfebfd220822abf7077cca5a9b7fb2b6b23f278c2003c9fa7dc25b72d5979d gluon-su-me-stable-22.9.11-tp-link-tl-mr3220-v2-sysupgrade.bin
+tp-link-tl-mr3220-v2 stable-22.9.11 1afcb946456d2ee5b4d66c20826102ef1010d16114c2b5af74f02034ae4fd06ff76be29d34da47f8b47f7d7748f8a69461b4a30bb6d672c5426ddfa91d6bccc4 gluon-su-me-stable-22.9.11-tp-link-tl-mr3220-v2-sysupgrade.bin
+tp-link-tl-mr3420-v1 stable-22.9.11 c23d8de80226499122c766e1fa63284384723baa51859c1b82da968bf9601dea gluon-su-me-stable-22.9.11-tp-link-tl-mr3420-v1-sysupgrade.bin
+tp-link-tl-mr3420-v1 stable-22.9.11 8e082c8ec60b9f79017b7e994bc9de624ef6732eb24760a69124a2f25e0ee3395ccb31c3c8dbeeefe522af0dfe49f5188700929e5a689ecac120e075886011e5 gluon-su-me-stable-22.9.11-tp-link-tl-mr3420-v1-sysupgrade.bin
+tp-link-tl-mr3420-v2 stable-22.9.11 aae8b25dc3cfc5068ad2f1cfe4b0d748bc13d8a16e83a4fbf3dcd8c4e43aba39 gluon-su-me-stable-22.9.11-tp-link-tl-mr3420-v2-sysupgrade.bin
+tp-link-tl-mr3420-v2 stable-22.9.11 8ecd8f8cf7cbcfd47bb162d3a1518390676d7388561fbc260c1a586f9af3831fd70aa252532c1a60b3166061bdcbe4a1fea529c2e27ab4060cf777b95d4ee22c gluon-su-me-stable-22.9.11-tp-link-tl-mr3420-v2-sysupgrade.bin
+netgear-wndr3700v4 stable-22.9.11 b69aa50ac8eec54a74e827e33f01a251decadadbc42fbebb40f68d8e8b53efe0 gluon-su-me-stable-22.9.11-netgear-wndr3700v4-sysupgrade.tar
+netgear-wndr3700v4 stable-22.9.11 e8170e342d3c496cd222b8dbe0188874531f0d57c688501737842a84b1d4fa111fcd71f9d882c9aa4fa8831dfbba1710e4d2beb0b07d988330a68198fd11a165 gluon-su-me-stable-22.9.11-netgear-wndr3700v4-sysupgrade.tar
+netgear-wndr4300 stable-22.9.11 81d7491af1477eeabb30f260c116d25cf7fb61b1230c50ae64dd61d0cdf1d97f gluon-su-me-stable-22.9.11-netgear-wndr4300-sysupgrade.tar
+netgear-wndr4300 stable-22.9.11 2cd795cdfa3c314529b48e47ab22baa5377d5480b30cd8b8be85c72371e2bfca73a1fd3da433a8f00947a78741348b112bc7cb4fd9f6d8ae803331612520c15c gluon-su-me-stable-22.9.11-netgear-wndr4300-sysupgrade.tar
+raspberry-pi stable-22.9.11 034f3c246cda785aef6376eb389f440c4d3c427db0828903c37caa36fc7bdcd2 gluon-su-me-stable-22.9.11-raspberry-pi-sysupgrade.img.gz
+raspberry-pi stable-22.9.11 2775de026d4cc86368bfb3ed41d94fcbb5edeacfd9d2ae42385dd72d75a9dc785d30f7970a61d992af287f785a2cfc1b88f7be61200177ec60743ecf1fe883ff gluon-su-me-stable-22.9.11-raspberry-pi-sysupgrade.img.gz
+raspberry-pi-2 stable-22.9.11 7e4683560d714b3d66e0f978cb3f32c293c7502e91311bd28913cd47a5c052e8 gluon-su-me-stable-22.9.11-raspberry-pi-2-sysupgrade.img.gz
+raspberry-pi-2 stable-22.9.11 2e06aac1e0a31c7fc81831fc6ccf1b54c1d6a3587136a4f219fb374a3339c4b03f15b8f3ac0dc9b0d1107fd09dacdfbc0f424fdd56f73d9fd508f0d37db6d75e gluon-su-me-stable-22.9.11-raspberry-pi-2-sysupgrade.img.gz
+tp-link-tl-wdr4900-v1 stable-22.9.11 b665da9d69913fdd208ee421140c0af6bbc3701dee396e5ae663c1fb4b159622 gluon-su-me-stable-22.9.11-tp-link-tl-wdr4900-v1-sysupgrade.bin
+tp-link-tl-wdr4900-v1 stable-22.9.11 19cca17e429a8c39df1fa9b51e195aad6729db42da7d7c835121e8c301d0e438e8f22acbd4c41cd698c7a60e46d341cd112cc1d8cbcfa5ac0c5b14c5dc3606f2 gluon-su-me-stable-22.9.11-tp-link-tl-wdr4900-v1-sysupgrade.bin
+ubnt-erx stable-22.9.11 f2b3cbd126fcfa981bb1a6dce98a2212abac858b7880e5c8593938f655dcbbfa gluon-su-me-stable-22.9.11-ubnt-erx-sysupgrade.tar
+ubnt-erx stable-22.9.11 e7fae84bb3424437509f6b5de7b631e5a99710a57b6ce31954a0e142dc227afc0d681ebc008cdc9999fd46cd063b46bfd65db5784de20cefa6d59fb3041fbcf3 gluon-su-me-stable-22.9.11-ubnt-erx-sysupgrade.tar
+ubnt-erx-sfp stable-22.9.11 d62eeca830a5f3c138ad56f33c4707c7f6eef90ce63e72f0f4273aae17e70ede gluon-su-me-stable-22.9.11-ubnt-erx-sfp-sysupgrade.tar
+ubnt-erx-sfp stable-22.9.11 2f3025b9cff7524eecd95abe3edad9cc208413df00c56ce9274fd4ceb1434d29a30d64d0d54c27e8b712c9ac40fba91b40d518eed439af8ac39888e5576fca1b gluon-su-me-stable-22.9.11-ubnt-erx-sfp-sysupgrade.tar
+x86-generic stable-22.9.11 bd6d16e7f726dfe0f56985e87c7961773b94a88d4ef99e96de10bc9254d96074 gluon-su-me-stable-22.9.11-x86-generic-sysupgrade.img.gz
+x86-generic stable-22.9.11 f01b87ea4aa3d30d717a6d3a8819a8844a4de1b4c3dd5401e1899183acbf0e7e17b9fef948f05c3529449e0eaa0ae4c509717c6232b766d2da00b62d3ae78cb3 gluon-su-me-stable-22.9.11-x86-generic-sysupgrade.img.gz
+x86-kvm stable-22.9.11 bd6d16e7f726dfe0f56985e87c7961773b94a88d4ef99e96de10bc9254d96074 gluon-su-me-stable-22.9.11-x86-generic-sysupgrade.img.gz
+x86-kvm stable-22.9.11 f01b87ea4aa3d30d717a6d3a8819a8844a4de1b4c3dd5401e1899183acbf0e7e17b9fef948f05c3529449e0eaa0ae4c509717c6232b766d2da00b62d3ae78cb3 gluon-su-me-stable-22.9.11-x86-generic-sysupgrade.img.gz
+x86-xen_domu stable-22.9.11 bd6d16e7f726dfe0f56985e87c7961773b94a88d4ef99e96de10bc9254d96074 gluon-su-me-stable-22.9.11-x86-generic-sysupgrade.img.gz
+x86-xen_domu stable-22.9.11 f01b87ea4aa3d30d717a6d3a8819a8844a4de1b4c3dd5401e1899183acbf0e7e17b9fef948f05c3529449e0eaa0ae4c509717c6232b766d2da00b62d3ae78cb3 gluon-su-me-stable-22.9.11-x86-generic-sysupgrade.img.gz
+x86-geode stable-22.9.11 3ddf316800317990e3c55e4c306a793f0b24b9801dc7791da9976e328de02ad4 gluon-su-me-stable-22.9.11-x86-geode-sysupgrade.img.gz
+x86-geode stable-22.9.11 d67465ae121b2c81551a36cb60e88674d9c9ca8a18e2b869dc13852012c646c3225f4d030cae4c46f0e1683e2a4754def4268885dc278f43b7f1a23d3d80a0f4 gluon-su-me-stable-22.9.11-x86-geode-sysupgrade.img.gz
+x86-64 stable-22.9.11 da9517e36816b0378570e7d06abe7b1629ee83660c04b0d29c10becc76d96761 gluon-su-me-stable-22.9.11-x86-64-sysupgrade.img.gz
+x86-64 stable-22.9.11 cc5756effe5f3ccf6a6d5c5ad37815d28e351d9e91d4ad554eac7f413c7200c30d83ec84f10e6fd94984192ed15852b8340036c963d3299472537e2e7d14f22e gluon-su-me-stable-22.9.11-x86-64-sysupgrade.img.gz
+---
+1c5aac7e271a45219ddc90ed6bfa699137c59f9a434cd7c15cf87247986e6e0a026e538e94a510adf8aaf5dad74b19a894166421943a735e376051a4f10d2409
+schwadorf@build:/ff/gluon$ rsync -azzh /ff/gluon/output/ root@172.16.8.5:/lib/gluon/status-page/www/update/experimental
+root@172.16.8.5's password: 
+Permission denied, please try again.root@172.16.8.5's password: 
+schwadorf@build:/ff/gluon$ rsync -azh /ff/gluon/output/ web_ff01@images.freifunk-meckenheim.de:/httpdocs/experimental
+^Crsync error: received SIGINT, SIGTERM, or SIGHUP (code 20) at rsync.c(638) [sender=3.1.1]
+schwadorf@build:/ff/gluon$ rsync -azh /ff/gluon/output/ web_ff01@images.freifunk-meckenheim.de:/httpdocs/experimental
+web_ff01@images.freifunk-meckenheim.de's password: 
+
+schwadorf@build:/ff/gluon$ 
+schwadorf@build:/ff/gluon$ mv /ff/gluon/output /ff/archiv/stable-22.9.11-experimental
+schwadorf@build:/ff/gluon$ exit
+logout
