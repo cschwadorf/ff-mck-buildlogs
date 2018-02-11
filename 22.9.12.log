@@ -1,0 +1,2984 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2018.02.11 10:28:30 =~=~=~=~=~=~=~=~=~=~=~=
+Using username "schwadorf".
+Authenticating with public key "Freifunk"
+Passphrase for key "Freifunk": 
+Welcome to Ubuntu 16.04.3 LTS (GNU/Linux 4.4.0-112-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+6 packages can be updated.
+0 updates are security updates.
+
+
+Last login: Sun Feb 11 10:27:14 2018 from 172.16.1.7schwadorf@build:~$ cd /ff/gluon
+schwadorf@build:/ff/gluon$ guit pull
+remote: Counting objects: 18, done.
+remote: Compressing objects:  11% (1/9)   remote: Compressing objects:  22% (2/9)   remote: Compressing objects:  33% (3/9)   remote: Compressing objects:  44% (4/9)   remote: Compressing objects:  55% (5/9)   remote: Compressing objects:  66% (6/9)   remote: Compressing objects:  77% (7/9)   remote: Compressing objects:  88% (8/9)   remote: Compressing objects: 100% (9/9)   remote: Compressing objects: 100% (9/9), done.
+remote: Total 18 (delta 8), reused 13 (delta 7), pack-reused 0
+Unpacking objects:   5% (1/18)   Unpacking objects:  11% (2/18)   Unpacking objects:  16% (3/18)   Unpacking objects:  22% (4/18)   Unpacking objects:  27% (5/18)   Unpacking objects:  33% (6/18)   Unpacking objects:  38% (7/18)   Unpacking objects:  44% (8/18)   Unpacking objects:  50% (9/18)   Unpacking objects:  55% (10/18)   Unpacking objects:  61% (11/18)   Unpacking objects:  66% (12/18)   Unpacking objects:  72% (13/18)   Unpacking objects:  77% (14/18)   Unpacking objects:  83% (15/18)   Unpacking objects:  88% (16/18)   Unpacking objects:  94% (17/18)   Unpacking objects: 100% (18/18)   Unpacking objects: 100% (18/18), done.
+From https://github.com/freifunk-gluon/gluon
+   42763d2..f69fbf7  master     -> origin/master
+Already up-to-date.
+schwadorf@build:/ff/gluon$ git branch -a
+  master
+* v2017.1.x
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/debug-oom
+  remotes/origin/debug-oom2
+  remotes/origin/domains-wip
+  remotes/origin/master
+  remotes/origin/next
+  remotes/origin/radv-filterd
+  remotes/origin/v2014.3.x
+  remotes/origin/v2014.4.x
+  remotes/origin/v2015.1.x
+  remotes/origin/v2016.1.x
+  remotes/origin/v2016.2.x
+  remotes/origin/v2017.1.x
+schwadorf@build:/ff/gluon$ git checkout v2017.1.x
+Already on 'v2017.1.x'
+Your branch is up-to-date with 'origin/v2017.1.x'.
+schwadorf@build:/ff/gluon$ cd site
+schwadorf@build:/ff/gluon/site$ git pull
+Already up-to-date.
+schwadorf@build:/ff/gluon/site$ git branch -a
+* 2017.x
+  master
+  remotes/origin/2016.x
+  remotes/origin/2017.x
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+schwadorf@build:/ff/gluon/site$ git checkout 2017.x
+Already on '2017.x'
+Your branch is up-to-date with 'origin/2017.x'.
+schwadorf@build:/ff/gluon/site$ cd /ff
+schwadorf@build:/ff$ FF_RELEASE="stable-22.9.12"; export FF_RELEASE
+schwadorf@build:/ff$ bash build_all.sh 
+################# Sun Feb 11 10:29:20 CET 2018 start building target ar71xx-generic ###########################
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+ make[2] clean
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+ make[2] world
+ make[3] tools/install
+ make[3] package/cleanup
+ make[4] -C tools/flock compile
+ make[4] -C tools/flock install
+ make[4] -C tools/sed compile
+ make[4] -C tools/sed install
+ make[4] -C tools/patch compile
+ make[4] -C tools/xz compile
+ make[4] -C tools/tar compile
+ make[4] -C tools/patch install
+ make[4] -C tools/xz install
+ make[4] -C tools/tar install
+ make[4] -C tools/pkg-config compile
+ make[4] -C tools/m4 compile
+ make[4] -C tools/expat compile
+ make[4] -C tools/sstrip compile
+ make[4] -C tools/make-ext4fs compile
+ make[4] -C tools/patch-image compile
+ make[4] -C tools/scons compile
+ make[4] -C tools/mtools compile
+ make[4] -C tools/lzma-old compile
+ make[4] -C tools/squashfs4 compile
+ make[4] -C tools/lzma compile
+ make[4] -C tools/m4 install
+ make[4] -C tools/pkg-config install
+ make[4] -C tools/expat install
+ make[4] -C tools/sstrip install
+ make[4] -C tools/make-ext4fs install
+ make[4] -C tools/patch-image install
+ make[4] -C tools/scons install
+ make[4] -C tools/lzma-old install
+ make[4] -C tools/mtools install
+ make[4] -C tools/lzma install
+ make[4] -C tools/squashfs4 install
+ make[4] -C tools/libressl compile
+ make[4] -C tools/autoconf compile
+ make[4] -C tools/squashfs compile
+ make[4] -C tools/autoconf install
+ make[4] -C tools/squashfs install
+ make[4] -C tools/libressl install
+ make[4] -C tools/automake compile
+ make[4] -C tools/missing-macros compile
+ make[4] -C tools/missing-macros install
+ make[4] -C tools/firmware-utils compile
+ make[4] -C tools/mkimage compile
+ make[4] -C tools/cmake compile
+ make[4] -C tools/automake install
+ make[4] -C tools/firmware-utils install
+ make[4] -C tools/libtool compile
+ make[4] -C tools/dosfstools compile
+ make[4] -C tools/dosfstools install
+ make[4] -C tools/libtool install
+ make[4] -C tools/libelf compile
+ make[4] -C tools/gmp compile
+ make[4] -C tools/flex compile
+ make[4] -C tools/mklibs compile
+ make[4] -C tools/e2fsprogs compile
+ make[4] -C tools/mm-macros compile
+ make[4] -C tools/gengetopt compile
+ make[4] -C tools/patchelf compile
+ make[4] -C tools/gmp install
+ make[4] -C tools/libelf install
+ make[4] -C tools/flex install
+ make[4] -C tools/mklibs install
+ make[4] -C tools/mm-macros install
+ make[4] -C tools/gengetopt install
+ make[4] -C tools/patchelf install
+ make[4] -C tools/mpfr compile
+ make[4] -C tools/bison compile
+ make[4] -C tools/e2fsprogs install
+ make[4] -C tools/bison install
+ make[4] -C tools/mpfr install
+ make[4] -C tools/mtd-utils compile
+ make[4] -C tools/findutils compile
+ make[4] -C tools/bc compile
+ make[4] -C tools/b43-tools compile
+ make[4] -C tools/mpc compile
+ make[4] -C tools/mtd-utils install
+ make[4] -C tools/mkimage install
+ make[4] -C tools/bc install
+ make[4] -C tools/b43-tools install
+ make[4] -C tools/findutils install
+ make[4] -C tools/cmake install
+ make[4] -C tools/mpc install
+ make[4] -C tools/quilt compile
+ make[4] -C tools/padjffs2 compile
+ make[4] -C tools/padjffs2 install
+ make[4] -C tools/quilt install
+ make[3] target/compile
+ make[4] -C target/linux compile
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[3] package/compile
+ make[4] -C package/libs/toolchain compile
+ make[4] -C package/system/usign host-compile
+ make[4] -C package/system/fwtool host-compile
+ make[4] -C package/libs/ncurses host-compile
+ make[4] -C /ff/gluon/packages/luci/modules/luci-base host-compile
+ make[4] -C package/utils/lua host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/expat host-compile
+ make[4] -C package/utils/bzip2 host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/gperf host-compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/mtd-rw compile
+ make[4] -C /ff/gluon/packages/openwrt/net/siit compile
+ make[4] -C package/kernel/gpio-button-hotplug compile
+ make[4] -C package/kernel/trelay compile
+ make[4] -C package/libs/libusb compile
+ make[4] -C package/network/services/dropbear compile
+ make[4] -C package/network/utils/linux-atm compile
+ make[4] -C package/network/utils/resolveip compile
+ make[4] -C package/libs/libmnl compile
+ make[4] -C package/network/utils/wwan compile
+ make[4] -C package/utils/nvram compile
+ make[4] -C package/utils/usbreset compile
+ make[4] -C package/libs/libnl-tiny compile
+ make[4] -C package/libs/libjson-c compile
+ make[4] -C package/utils/lua compile
+ make[4] -C package/libs/ncurses compile
+ make[4] -C package/system/fwtool compile
+ make[4] -C package/system/lede-keyring compile
+ make[4] -C package/boot/rbcfg compile
+ make[4] -C package/libs/zlib compile
+ make[4] -C package/libs/gettext compile
+ make[4] -C package/libs/libiconv compile
+ make[4] -C package/utils/bzip2 compile
+ make[4] -C package/libs/argp-standalone compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/lua-cjson host-compile
+ make[4] -C /ff/gluon/package/libgluonutil compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libplatforminfo compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-jsonc compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-nixio compile
+ make[4] -C package/firmware/linux-firmware compile
+ make[4] -C package/firmware/prism54-firmware compile
+ make[4] -C /ff/gluon/package/gluon-neighbour-info compile
+ make[4] -C /ff/gluon/packages/gluon/net/respondd compile
+ make[4] -C /ff/gluon/packages/gluon/utils/micrond compile
+ make[4] -C /ff/gluon/packages/routing/alfred compile
+ make[4] -C package/firmware/b43legacy-firmware compile
+ make[4] -C package/network/utils/iw compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/libuecc compile
+ make[4] -C /ff/gluon/package/gluon-web compile
+ make[4] -C package/network/services/dnsmasq compile
+ make[4] -C package/libs/mbedtls compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libpacketmark compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/nacl compile
+ make[4] -C /ff/gluon/packages/gluon/net/uradvd compile
+ make[4] -C /ff/gluon/packages/gluon/net/sse-multiplex compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/python host-compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/haveged compile
+ make[4] -C /ff/gluon/packages/openwrt/net/ethtool compile
+ make[4] -C package/libs/libnl compile
+ make[4] -C package/libs/libpcap compile
+ make[4] -C package/libs/openssl compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/tcp_wrappers compile
+ make[4] -C package/firmware/ath10k-firmware compile
+ make[4] -C package/kernel/om-watchdog compile
+ make[4] -C package/libs/libubox compile
+ make[4] -C package/utils/util-linux compile
+ make[4] -C package/devel/binutils compile
+ make[4] -C package/libs/elfutils compile
+ make[4] -C /ff/gluon/package/gluon-site compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-hash compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-platform-info compile
+ make[4] -C package/kernel/linux compile
+ make[4] -C package/network/ipv6/odhcp6c compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/ecdsautils compile
+ make[4] -C package/libs/ustream-ssl compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/node host-compile
+ make[4] -C package/libs/uclient compile
+ make[4] -C package/system/mtd compile
+ make[4] -C package/system/opkg compile
+ make[4] -C package/utils/usbmode compile
+ make[4] -C package/system/ubus compile
+ make[4] -C package/system/uci compile
+ make[4] -C package/utils/jsonfilter compile
+ make[4] -C package/system/usign compile
+ make[4] -C package/network/services/hostapd compile
+ make[4] -C package/network/utils/iwinfo compile
+ make[4] -C /ff/gluon/packages/gluon/admin/autoupdater compile
+ make[4] -C package/network/services/uhttpd compile
+ make[4] -C package/network/config/swconfig compile
+ make[4] -C package/network/services/odhcpd compile
+ make[4] -C package/network/utils/rssileds compile
+ make[4] -C package/utils/busybox compile
+ make[4] -C package/network/services/hostapd compile
+ make[4] -C package/network/config/netifd compile
+ make[4] -C package/system/ubox compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-simple-uci compile
+ make[4] -C /ff/gluon/packages/gluon/admin/pretty-hostname compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/eudev compile
+ make[4] -C package/system/fstools compile
+ make[4] -C package/system/procd compile
+ make[4] -C package/boot/uboot-envtools compile
+ make[4] -C /ff/gluon/package/gluon-web-theme compile
+ make[4] -C package/base-files compile
+ make[4] -C package/devel/perf compile
+ make[4] -C package/network/utils/iptables compile
+ make[4] -C /ff/gluon/packages/gluon/net/simple-tc compile
+ make[4] -C /ff/gluon/packages/gluon/net/batman-adv-legacy compile
+ make[4] -C package/kernel/mac80211 compile
+ make[4] -C package/network/utils/ebtables compile
+ make[4] -C /ff/gluon/packages/openwrt/net/fastd compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/dmx_usb_module compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/exfat-nofuse compile
+ make[4] -C /ff/gluon/packages/openwrt/net/jool compile
+ make[4] -C /ff/gluon/packages/openwrt/net/openvswitch compile
+ make[4] -C /ff/gluon/packages/openwrt/net/usbip compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/xr_usb_serial_common compile
+ make[4] -C package/network/ipv6/map compile
+ make[4] -C package/kernel/button-hotplug compile
+ make[4] -C package/kernel/i2c-gpio-custom compile
+ make[4] -C package/kernel/kmod-sched-cake compile
+ make[4] -C package/kernel/rotary-gpio-custom compile
+ make[4] -C package/kernel/spi-gpio-custom compile
+ make[4] -C package/kernel/w1-gpio-custom compile
+ make[4] -C package/network/services/ppp compile
+ make[4] -C package/network/services/wireguard compile
+ make[4] -C package/network/utils/umbim compile
+ make[4] -C package/network/utils/uqmi compile
+ make[4] -C package/network/utils/xtables-addons compile
+ make[4] -C package/network/config/firewall compile
+ make[4] -C /ff/gluon/packages/routing/nat46 compile
+ make[4] -C package/network/utils/comgt compile
+ make[4] -C /ff/gluon/package/gluon-core compile
+ make[4] -C /ff/gluon/package/gluon-respondd compile
+ make[4] -C /ff/gluon/package/gluon-client-bridge compile
+ make[4] -C /ff/gluon/package/gluon-ebtables compile
+ make[4] -C /ff/gluon/package/gluon-authorized-keys compile
+ make[4] -C /ff/gluon/package/gluon-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-lock-password compile
+ make[4] -C /ff/gluon/package/gluon-setup-mode compile
+ make[4] -C /ff/gluon/package/gluon-node-info compile
+ make[4] -C /ff/gluon/package/gluon-wan-dnsmasq compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-multicast compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-ra-dhcp compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-source-filter compile
+ make[4] -C /ff/gluon/package/gluon-radvd compile
+ make[4] -C /ff/gluon/package/gluon-status-page-api compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-core compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-core compile
+ make[4] -C /ff/gluon/package/gluon-status-page compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-contact-info compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-geo-location compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-hostname compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-mesh-vpn compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/package/gluon-web-admin compile
+ make[4] -C /ff/gluon/package/gluon-web-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-web-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/package/gluon-web-network compile
+ make[4] -C /ff/gluon/package/gluon-web-node-role compile
+ make[4] -C /ff/gluon/package/gluon-web-private-wifi compile
+ make[4] -C /ff/gluon/package/gluon-web-wifi-config compile
+ make[4] -C /ff/gluon/packages/routing/batman-adv compile
+ make[4] -C package/kernel/mt76 compile
+ make[4] -C package/kernel/ath10k-ct compile
+ make[4] -C /ff/gluon/packages/routing/batctl compile
+ make[4] -C /ff/gluon/package/gluon-mesh-batman-adv compile
+ make[4] -C /ff/gluon/package/gluon-alfred compile
+ make[3] package/install
+ make[4] -C package/libs/libubox host-compile
+ make[4] -C package/system/opkg host-compile
+ make[4] package/preconfig
+ make[3] target/install
+ make[4] -C target/linux install
+ make[7] -C target/linux/ar71xx/image legacy-images-prepare
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.elf
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.elf
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.elf
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.elf
+ make[7] -C target/linux/ar71xx/image legacy-images
+ make[3] package/index
+ make[3] diffconfig
+ make[3] checksum
+make[1]: Leaving directory '/ff/gluon/lede'
+################# Sun Feb 11 10:45:29 CET 2018 start building target ar71xx-tiny ###########################
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+ make[2] clean
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+ make[2] world
+ make[3] package/cleanup
+ make[3] tools/install
+ make[4] -C tools/flock compile
+ make[4] -C tools/flock install
+ make[4] -C tools/sed compile
+ make[4] -C tools/sed install
+ make[4] -C tools/patch compile
+ make[4] -C tools/xz compile
+ make[4] -C tools/tar compile
+ make[4] -C tools/patch install
+ make[4] -C tools/tar install
+ make[4] -C tools/xz install
+ make[4] -C tools/m4 compile
+ make[4] -C tools/pkg-config compile
+ make[4] -C tools/sstrip compile
+ make[4] -C tools/make-ext4fs compile
+ make[4] -C tools/expat compile
+ make[4] -C tools/patch-image compile
+ make[4] -C tools/scons compile
+ make[4] -C tools/lzma-old compile
+ make[4] -C tools/mtools compile
+ make[4] -C tools/lzma compile
+ make[4] -C tools/squashfs4 compile
+ make[4] -C tools/m4 install
+ make[4] -C tools/pkg-config install
+ make[4] -C tools/expat install
+ make[4] -C tools/sstrip install
+ make[4] -C tools/make-ext4fs install
+ make[4] -C tools/patch-image install
+ make[4] -C tools/mtools install
+ make[4] -C tools/scons install
+ make[4] -C tools/lzma-old install
+ make[4] -C tools/lzma install
+ make[4] -C tools/squashfs4 install
+ make[4] -C tools/libressl compile
+ make[4] -C tools/autoconf compile
+ make[4] -C tools/squashfs compile
+ make[4] -C tools/autoconf install
+ make[4] -C tools/squashfs install
+ make[4] -C tools/automake compile
+ make[4] -C tools/missing-macros compile
+ make[4] -C tools/libressl install
+ make[4] -C tools/missing-macros install
+ make[4] -C tools/automake install
+ make[4] -C tools/firmware-utils compile
+ make[4] -C tools/cmake compile
+ make[4] -C tools/mkimage compile
+ make[4] -C tools/libtool compile
+ make[4] -C tools/dosfstools compile
+ make[4] -C tools/firmware-utils install
+ make[4] -C tools/dosfstools install
+ make[4] -C tools/libtool install
+ make[4] -C tools/gmp compile
+ make[4] -C tools/libelf compile
+ make[4] -C tools/flex compile
+ make[4] -C tools/mklibs compile
+ make[4] -C tools/e2fsprogs compile
+ make[4] -C tools/mm-macros compile
+ make[4] -C tools/gengetopt compile
+ make[4] -C tools/patchelf compile
+ make[4] -C tools/gmp install
+ make[4] -C tools/libelf install
+ make[4] -C tools/flex install
+ make[4] -C tools/mklibs install
+ make[4] -C tools/mm-macros install
+ make[4] -C tools/gengetopt install
+ make[4] -C tools/mpfr compile
+ make[4] -C tools/patchelf install
+ make[4] -C tools/bison compile
+ make[4] -C tools/e2fsprogs install
+ make[4] -C tools/mpfr install
+ make[4] -C tools/bison install
+ make[4] -C tools/mtd-utils compile
+ make[4] -C tools/findutils compile
+ make[4] -C tools/bc compile
+ make[4] -C tools/b43-tools compile
+ make[4] -C tools/mpc compile
+ make[4] -C tools/mtd-utils install
+ make[4] -C tools/b43-tools install
+ make[4] -C tools/bc install
+ make[4] -C tools/mkimage install
+ make[4] -C tools/findutils install
+ make[4] -C tools/cmake install
+ make[4] -C tools/mpc install
+ make[4] -C tools/padjffs2 compile
+ make[4] -C tools/quilt compile
+ make[4] -C tools/padjffs2 install
+ make[4] -C tools/quilt install
+ make[3] target/compile
+ make[4] -C target/linux compile
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[7] -C target/linux/ar71xx/image/lzma-loader compile loader.gz
+ make[3] package/compile
+ make[4] -C package/system/fwtool host-compile
+ make[4] -C package/libs/toolchain compile
+ make[4] -C package/libs/ncurses host-compile
+ make[4] -C package/system/usign host-compile
+ make[4] -C /ff/gluon/packages/luci/modules/luci-base host-compile
+ make[4] -C package/utils/lua host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/expat host-compile
+ make[4] -C package/utils/bzip2 host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/gperf host-compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/mtd-rw compile
+ make[4] -C /ff/gluon/packages/openwrt/net/siit compile
+ make[4] -C package/kernel/gpio-button-hotplug compile
+ make[4] -C package/kernel/trelay compile
+ make[4] -C package/network/services/dropbear compile
+ make[4] -C package/network/utils/linux-atm compile
+ make[4] -C package/network/utils/resolveip compile
+ make[4] -C package/libs/libmnl compile
+ make[4] -C package/network/utils/wwan compile
+ make[4] -C package/utils/nvram compile
+ make[4] -C package/libs/libnl-tiny compile
+ make[4] -C package/libs/libjson-c compile
+ make[4] -C package/utils/lua compile
+ make[4] -C package/libs/ncurses compile
+ make[4] -C package/system/fwtool compile
+ make[4] -C package/boot/rbcfg compile
+ make[4] -C package/libs/zlib compile
+ make[4] -C package/libs/gettext compile
+ make[4] -C package/libs/libiconv compile
+ make[4] -C package/utils/bzip2 compile
+ make[4] -C package/libs/argp-standalone compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/lua-cjson host-compile
+ make[4] -C /ff/gluon/package/libgluonutil compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libplatforminfo compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-jsonc compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-nixio compile
+ make[4] -C package/firmware/linux-firmware compile
+ make[4] -C package/firmware/prism54-firmware compile
+ make[4] -C /ff/gluon/package/gluon-neighbour-info compile
+ make[4] -C /ff/gluon/packages/gluon/net/respondd compile
+ make[4] -C /ff/gluon/packages/gluon/utils/micrond compile
+ make[4] -C /ff/gluon/packages/routing/alfred compile
+ make[4] -C package/firmware/b43legacy-firmware compile
+ make[4] -C package/network/utils/iw compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/libuecc compile
+ make[4] -C /ff/gluon/package/gluon-web compile
+ make[4] -C package/network/services/dnsmasq compile
+ make[4] -C package/libs/mbedtls compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libpacketmark compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/nacl compile
+ make[4] -C /ff/gluon/packages/gluon/net/uradvd compile
+ make[4] -C /ff/gluon/packages/gluon/net/sse-multiplex compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/python host-compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/haveged compile
+ make[4] -C /ff/gluon/packages/openwrt/net/ethtool compile
+ make[4] -C package/libs/libnl compile
+ make[4] -C package/libs/libpcap compile
+ make[4] -C package/libs/openssl compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/tcp_wrappers compile
+ make[4] -C package/libs/libubox compile
+ make[4] -C package/utils/util-linux compile
+ make[4] -C package/devel/binutils compile
+ make[4] -C package/libs/elfutils compile
+ make[4] -C /ff/gluon/package/gluon-site compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-hash compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-platform-info compile
+ make[4] -C package/kernel/linux compile
+ make[4] -C package/network/ipv6/odhcp6c compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/ecdsautils compile
+ make[4] -C package/libs/ustream-ssl compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/node host-compile
+ make[4] -C package/libs/uclient compile
+ make[4] -C package/system/mtd compile
+ make[4] -C package/system/opkg compile
+ make[4] -C package/system/ubus compile
+ make[4] -C package/system/uci compile
+ make[4] -C package/utils/jsonfilter compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-simple-uci compile
+ make[4] -C /ff/gluon/packages/gluon/admin/pretty-hostname compile
+ make[4] -C package/network/services/hostapd compile
+ make[4] -C package/network/utils/iwinfo compile
+ make[4] -C /ff/gluon/packages/gluon/admin/autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-web-theme compile
+ make[4] -C package/network/services/uhttpd compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/eudev compile
+ make[4] -C package/network/config/swconfig compile
+ make[4] -C package/network/services/odhcpd compile
+ make[4] -C package/network/utils/rssileds compile
+ make[4] -C package/utils/busybox compile
+ make[4] -C package/network/services/hostapd compile
+ make[4] -C package/network/config/netifd compile
+ make[4] -C package/system/ubox compile
+ make[4] -C package/devel/perf compile
+ make[4] -C package/system/fstools compile
+ make[4] -C package/system/procd compile
+ make[4] -C package/boot/uboot-envtools compile
+ make[4] -C package/base-files compile
+ make[4] -C package/network/utils/ebtables compile
+ make[4] -C /ff/gluon/packages/gluon/net/batman-adv-legacy compile
+ make[4] -C package/network/utils/iptables compile
+ make[4] -C package/kernel/mac80211 compile
+ make[4] -C /ff/gluon/packages/gluon/net/simple-tc compile
+ make[4] -C /ff/gluon/packages/openwrt/net/fastd compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/dmx_usb_module compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/exfat-nofuse compile
+ make[4] -C /ff/gluon/packages/openwrt/net/jool compile
+ make[4] -C /ff/gluon/packages/openwrt/net/openvswitch compile
+ make[4] -C /ff/gluon/packages/openwrt/net/usbip compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/xr_usb_serial_common compile
+ make[4] -C package/network/ipv6/map compile
+ make[4] -C package/kernel/button-hotplug compile
+ make[4] -C package/kernel/i2c-gpio-custom compile
+ make[4] -C package/kernel/kmod-sched-cake compile
+ make[4] -C package/kernel/rotary-gpio-custom compile
+ make[4] -C package/kernel/spi-gpio-custom compile
+ make[4] -C package/kernel/w1-gpio-custom compile
+ make[4] -C package/network/services/ppp compile
+ make[4] -C package/network/services/wireguard compile
+ make[4] -C package/network/utils/umbim compile
+ make[4] -C package/network/utils/uqmi compile
+ make[4] -C package/network/utils/xtables-addons compile
+ make[4] -C package/network/config/firewall compile
+ make[4] -C /ff/gluon/packages/routing/nat46 compile
+ make[4] -C package/network/utils/comgt compile
+ make[4] -C /ff/gluon/package/gluon-core compile
+ make[4] -C /ff/gluon/package/gluon-respondd compile
+ make[4] -C /ff/gluon/package/gluon-client-bridge compile
+ make[4] -C /ff/gluon/package/gluon-ebtables compile
+ make[4] -C /ff/gluon/package/gluon-authorized-keys compile
+ make[4] -C /ff/gluon/package/gluon-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-lock-password compile
+ make[4] -C /ff/gluon/package/gluon-setup-mode compile
+ make[4] -C /ff/gluon/package/gluon-node-info compile
+ make[4] -C /ff/gluon/package/gluon-wan-dnsmasq compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-multicast compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-ra-dhcp compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-source-filter compile
+ make[4] -C /ff/gluon/package/gluon-radvd compile
+ make[4] -C /ff/gluon/package/gluon-status-page-api compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-core compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-core compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/package/gluon-web-admin compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-contact-info compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-geo-location compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-hostname compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-mesh-vpn compile
+ make[4] -C /ff/gluon/package/gluon-status-page compile
+ make[4] -C /ff/gluon/package/gluon-web-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-web-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/package/gluon-web-network compile
+ make[4] -C /ff/gluon/package/gluon-web-node-role compile
+ make[4] -C /ff/gluon/package/gluon-web-private-wifi compile
+ make[4] -C /ff/gluon/package/gluon-web-wifi-config compile
+ make[4] -C /ff/gluon/packages/routing/batman-adv compile
+ make[4] -C package/kernel/ath10k-ct compile
+ make[4] -C package/kernel/mt76 compile
+ make[4] -C /ff/gluon/packages/routing/batctl compile
+ make[4] -C /ff/gluon/package/gluon-mesh-batman-adv compile
+ make[4] -C /ff/gluon/package/gluon-alfred compile
+ make[3] package/install
+ make[4] -C package/libs/libubox host-compile
+ make[4] -C package/system/opkg host-compile
+ make[4] package/preconfig
+ make[3] target/install
+ make[4] -C target/linux install
+ make[7] -C target/linux/ar71xx/image legacy-images-prepare
+ make[7] -C target/linux/ar71xx/image legacy-images
+ make[3] package/index
+ make[3] diffconfig
+ make[3] checksum
+make[1]: Leaving directory '/ff/gluon/lede'
+################# Sun Feb 11 11:00:52 CET 2018 start building target ar71xx-nand ###########################
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+ make[2] clean
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+ make[2] world
+ make[3] tools/install
+ make[3] package/cleanup
+ make[4] -C tools/flock compile
+ make[4] -C tools/flock install
+ make[4] -C tools/sed compile
+ make[4] -C tools/sed install
+ make[4] -C tools/patch compile
+ make[4] -C tools/xz compile
+ make[4] -C tools/tar compile
+ make[4] -C tools/xz install
+ make[4] -C tools/patch install
+ make[4] -C tools/tar install
+ make[4] -C tools/m4 compile
+ make[4] -C tools/make-ext4fs compile
+ make[4] -C tools/pkg-config compile
+ make[4] -C tools/sstrip compile
+ make[4] -C tools/expat compile
+ make[4] -C tools/patch-image compile
+ make[4] -C tools/scons compile
+ make[4] -C tools/mtools compile
+ make[4] -C tools/lzma-old compile
+ make[4] -C tools/lzma compile
+ make[4] -C tools/squashfs4 compile
+ make[4] -C tools/m4 install
+ make[4] -C tools/pkg-config install
+ make[4] -C tools/expat install
+ make[4] -C tools/sstrip install
+ make[4] -C tools/patch-image install
+ make[4] -C tools/scons install
+ make[4] -C tools/mtools install
+ make[4] -C tools/lzma-old install
+ make[4] -C tools/lzma install
+ make[4] -C tools/squashfs4 install
+ make[4] -C tools/autoconf compile
+ make[4] -C tools/make-ext4fs install
+ make[4] -C tools/libressl compile
+ make[4] -C tools/squashfs compile
+ make[4] -C tools/autoconf install
+ make[4] -C tools/automake compile
+ make[4] -C tools/missing-macros compile
+ make[4] -C tools/squashfs install
+ make[4] -C tools/missing-macros install
+ make[4] -C tools/libressl install
+ make[4] -C tools/automake install
+ make[4] -C tools/libtool compile
+ make[4] -C tools/dosfstools compile
+ make[4] -C tools/mkimage compile
+ make[4] -C tools/cmake compile
+ make[4] -C tools/firmware-utils compile
+ make[4] -C tools/libtool install
+ make[4] -C tools/dosfstools install
+ make[4] -C tools/firmware-utils install
+ make[4] -C tools/gmp compile
+ make[4] -C tools/libelf compile
+ make[4] -C tools/mklibs compile
+ make[4] -C tools/flex compile
+ make[4] -C tools/e2fsprogs compile
+ make[4] -C tools/mkimage install
+ make[4] -C tools/mm-macros compile
+ make[4] -C tools/cmake install
+ make[4] -C tools/gengetopt compile
+ make[4] -C tools/patchelf compile
+ make[4] -C tools/gmp install
+ make[4] -C tools/libelf install
+ make[4] -C tools/flex install
+ make[4] -C tools/mklibs install
+ make[4] -C tools/e2fsprogs install
+ make[4] -C tools/mm-macros install
+ make[4] -C tools/gengetopt install
+ make[4] -C tools/patchelf install
+ make[4] -C tools/mpfr compile
+ make[4] -C tools/bison compile
+ make[4] -C tools/mtd-utils compile
+ make[4] -C tools/mtd-utils install
+ make[4] -C tools/mpfr install
+ make[4] -C tools/bison install
+ make[4] -C tools/findutils compile
+ make[4] -C tools/mpc compile
+ make[4] -C tools/bc compile
+ make[4] -C tools/b43-tools compile
+ make[4] -C tools/bc install
+ make[4] -C tools/mpc install
+ make[4] -C tools/b43-tools install
+ make[4] -C tools/findutils install
+ make[4] -C tools/quilt compile
+ make[4] -C tools/padjffs2 compile
+ make[4] -C tools/padjffs2 install
+ make[4] -C tools/quilt install
+ make[3] target/compile
+ make[4] -C target/linux compile
+ make[3] package/compile
+ make[4] -C package/system/fwtool host-compile
+ make[4] -C /ff/gluon/packages/luci/modules/luci-base host-compile
+ make[4] -C package/system/usign host-compile
+ make[4] -C package/libs/toolchain compile
+ make[4] -C package/libs/ncurses host-compile
+ make[4] -C package/utils/lua host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/expat host-compile
+ make[4] -C package/utils/bzip2 host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/gperf host-compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/mtd-rw compile
+ make[4] -C /ff/gluon/packages/openwrt/net/siit compile
+ make[4] -C package/kernel/gpio-button-hotplug compile
+ make[4] -C package/kernel/trelay compile
+ make[4] -C package/network/services/dropbear compile
+ make[4] -C package/network/utils/linux-atm compile
+ make[4] -C package/network/utils/resolveip compile
+ make[4] -C package/libs/libmnl compile
+ make[4] -C package/network/utils/wwan compile
+ make[4] -C package/utils/nvram compile
+ make[4] -C package/libs/libnl-tiny compile
+ make[4] -C package/libs/libjson-c compile
+ make[4] -C package/utils/lua compile
+ make[4] -C package/libs/ncurses compile
+ make[4] -C package/libs/lzo compile
+ make[4] -C package/libs/zlib compile
+ make[4] -C package/system/fwtool compile
+ make[4] -C package/system/lede-keyring compile
+ make[4] -C package/boot/rbcfg compile
+ make[4] -C package/libs/gettext compile
+ make[4] -C package/libs/libiconv compile
+ make[4] -C package/utils/bzip2 compile
+ make[4] -C package/libs/argp-standalone compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/lua-cjson host-compile
+ make[4] -C /ff/gluon/package/libgluonutil compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libplatforminfo compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-jsonc compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-nixio compile
+ make[4] -C package/firmware/linux-firmware compile
+ make[4] -C package/firmware/prism54-firmware compile
+ make[4] -C /ff/gluon/package/gluon-neighbour-info compile
+ make[4] -C /ff/gluon/packages/gluon/net/respondd compile
+ make[4] -C /ff/gluon/packages/gluon/utils/micrond compile
+ make[4] -C /ff/gluon/packages/routing/alfred compile
+ make[4] -C package/firmware/b43legacy-firmware compile
+ make[4] -C package/network/utils/iw compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/libuecc compile
+ make[4] -C /ff/gluon/package/gluon-web compile
+ make[4] -C package/network/services/dnsmasq compile
+ make[4] -C package/libs/mbedtls compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libpacketmark compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/nacl compile
+ make[4] -C /ff/gluon/packages/gluon/net/uradvd compile
+ make[4] -C /ff/gluon/packages/gluon/net/sse-multiplex compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/python host-compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/haveged compile
+ make[4] -C /ff/gluon/packages/openwrt/net/ethtool compile
+ make[4] -C package/libs/libnl compile
+ make[4] -C package/libs/libpcap compile
+ make[4] -C package/libs/openssl compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/tcp_wrappers compile
+ make[4] -C package/libs/libubox compile
+ make[4] -C package/utils/util-linux compile
+ make[4] -C package/devel/binutils compile
+ make[4] -C package/libs/elfutils compile
+ make[4] -C /ff/gluon/package/gluon-site compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-hash compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-platform-info compile
+ make[4] -C package/kernel/linux compile
+ make[4] -C package/network/ipv6/odhcp6c compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/ecdsautils compile
+ make[4] -C package/libs/ustream-ssl compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/node host-compile
+ make[4] -C package/libs/uclient compile
+ make[4] -C package/system/mtd compile
+ make[4] -C package/system/ubus compile
+ make[4] -C package/system/uci compile
+ make[4] -C package/utils/jsonfilter compile
+ make[4] -C package/system/usign compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-simple-uci compile
+ make[4] -C /ff/gluon/packages/gluon/admin/pretty-hostname compile
+ make[4] -C package/network/services/hostapd compile
+ make[4] -C package/network/utils/iwinfo compile
+ make[4] -C /ff/gluon/packages/gluon/admin/autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-web-theme compile
+ make[4] -C package/network/services/uhttpd compile
+ make[4] -C package/network/config/swconfig compile
+ make[4] -C package/network/services/odhcpd compile
+ make[4] -C package/system/opkg compile
+ make[4] -C package/network/services/hostapd compile
+ make[4] -C package/utils/busybox compile
+ make[4] -C package/network/config/netifd compile
+ make[4] -C package/system/ubox compile
+ make[4] -C package/utils/mtd-utils compile
+ make[4] -C package/system/procd compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/eudev compile
+ make[4] -C package/system/fstools compile
+ make[4] -C package/base-files compile
+ make[4] -C package/boot/uboot-envtools compile
+ make[4] -C package/devel/perf compile
+ make[4] -C package/kernel/mac80211 compile
+ make[4] -C package/network/utils/iptables compile
+ make[4] -C package/network/utils/ebtables compile
+ make[4] -C /ff/gluon/packages/gluon/net/batman-adv-legacy compile
+ make[4] -C /ff/gluon/packages/gluon/net/simple-tc compile
+ make[4] -C /ff/gluon/packages/openwrt/net/fastd compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/dmx_usb_module compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/exfat-nofuse compile
+ make[4] -C /ff/gluon/packages/openwrt/net/jool compile
+ make[4] -C /ff/gluon/packages/openwrt/net/openvswitch compile
+ make[4] -C /ff/gluon/packages/openwrt/net/usbip compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/xr_usb_serial_common compile
+ make[4] -C package/network/ipv6/map compile
+ make[4] -C package/kernel/button-hotplug compile
+ make[4] -C package/kernel/i2c-gpio-custom compile
+ make[4] -C package/kernel/kmod-sched-cake compile
+ make[4] -C package/kernel/rotary-gpio-custom compile
+ make[4] -C package/kernel/spi-gpio-custom compile
+ make[4] -C package/kernel/w1-gpio-custom compile
+ make[4] -C package/network/services/ppp compile
+ make[4] -C package/network/services/wireguard compile
+ make[4] -C package/network/utils/umbim compile
+ make[4] -C package/network/utils/uqmi compile
+ make[4] -C package/network/utils/xtables-addons compile
+ make[4] -C package/network/config/firewall compile
+ make[4] -C /ff/gluon/packages/routing/nat46 compile
+ make[4] -C package/network/utils/comgt compile
+ make[4] -C /ff/gluon/package/gluon-core compile
+ make[4] -C /ff/gluon/package/gluon-respondd compile
+ make[4] -C /ff/gluon/package/gluon-client-bridge compile
+ make[4] -C /ff/gluon/package/gluon-ebtables compile
+ make[4] -C /ff/gluon/package/gluon-authorized-keys compile
+ make[4] -C /ff/gluon/package/gluon-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-lock-password compile
+ make[4] -C /ff/gluon/package/gluon-setup-mode compile
+ make[4] -C /ff/gluon/package/gluon-node-info compile
+ make[4] -C /ff/gluon/package/gluon-wan-dnsmasq compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-multicast compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-ra-dhcp compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-source-filter compile
+ make[4] -C /ff/gluon/package/gluon-radvd compile
+ make[4] -C /ff/gluon/package/gluon-status-page-api compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-core compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-core compile
+ make[4] -C /ff/gluon/package/gluon-status-page compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-contact-info compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-geo-location compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-hostname compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-mesh-vpn compile
+ make[4] -C /ff/gluon/package/gluon-web-admin compile
+ make[4] -C /ff/gluon/package/gluon-web-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-web-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/package/gluon-web-network compile
+ make[4] -C /ff/gluon/package/gluon-web-node-role compile
+ make[4] -C /ff/gluon/package/gluon-web-private-wifi compile
+ make[4] -C /ff/gluon/package/gluon-web-wifi-config compile
+ make[4] -C package/kernel/ath10k-ct compile
+ make[4] -C /ff/gluon/packages/routing/batman-adv compile
+ make[4] -C package/kernel/mt76 compile
+ make[4] -C /ff/gluon/packages/routing/batctl compile
+ make[4] -C /ff/gluon/package/gluon-mesh-batman-adv compile
+ make[4] -C /ff/gluon/package/gluon-alfred compile
+ make[3] package/install
+ make[4] -C package/libs/libubox host-compile
+ make[4] -C package/system/opkg host-compile
+ make[4] package/preconfig
+ make[3] target/install
+ make[4] -C target/linux install
+ make[7] -C target/linux/ar71xx/image legacy-images-prepare
+ make[7] -C target/linux/ar71xx/image legacy-images
+ make[3] package/index
+ make[3] diffconfig
+ make[3] checksum
+make[1]: Leaving directory '/ff/gluon/lede'
+################# Sun Feb 11 11:14:57 CET 2018 start building target brcm2708-bcm2708 ###########################
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+ make[2] clean
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+ make[2] world
+ make[3] package/cleanup
+ make[3] tools/install
+ make[4] -C tools/flock compile
+ make[4] -C tools/flock install
+ make[4] -C tools/sed compile
+ make[4] -C tools/sed install
+ make[4] -C tools/patch compile
+ make[4] -C tools/tar compile
+ make[4] -C tools/xz compile
+ make[4] -C tools/patch install
+ make[4] -C tools/tar install
+ make[4] -C tools/xz install
+ make[4] -C tools/pkg-config compile
+ make[4] -C tools/expat compile
+ make[4] -C tools/sstrip compile
+ make[4] -C tools/make-ext4fs compile
+ make[4] -C tools/m4 compile
+ make[4] -C tools/patch-image compile
+ make[4] -C tools/scons compile
+ make[4] -C tools/mtools compile
+ make[4] -C tools/lzma compile
+ make[4] -C tools/squashfs4 compile
+ make[4] -C tools/m4 install
+ make[4] -C tools/pkg-config install
+ make[4] -C tools/expat install
+ make[4] -C tools/sstrip install
+ make[4] -C tools/patch-image install
+ make[4] -C tools/scons install
+ make[4] -C tools/mtools install
+ make[4] -C tools/lzma install
+ make[4] -C tools/squashfs4 install
+ make[4] -C tools/make-ext4fs install
+ make[4] -C tools/autoconf compile
+ make[4] -C tools/libressl compile
+ make[4] -C tools/autoconf install
+ make[4] -C tools/libressl install
+ make[4] -C tools/missing-macros compile
+ make[4] -C tools/automake compile
+ make[4] -C tools/missing-macros install
+ make[4] -C tools/automake install
+ make[4] -C tools/firmware-utils compile
+ make[4] -C tools/mkimage compile
+ make[4] -C tools/cmake compile
+ make[4] -C tools/libtool compile
+ make[4] -C tools/firmware-utils install
+ make[4] -C tools/dosfstools compile
+ make[4] -C tools/dosfstools install
+ make[4] -C tools/libtool install
+ make[4] -C tools/gmp compile
+ make[4] -C tools/libelf compile
+ make[4] -C tools/flex compile
+ make[4] -C tools/mklibs compile
+ make[4] -C tools/e2fsprogs compile
+ make[4] -C tools/mm-macros compile
+ make[4] -C tools/gengetopt compile
+ make[4] -C tools/patchelf compile
+ make[4] -C tools/gmp install
+ make[4] -C tools/libelf install
+ make[4] -C tools/flex install
+ make[4] -C tools/mklibs install
+ make[4] -C tools/e2fsprogs install
+ make[4] -C tools/mkimage install
+ make[4] -C tools/mm-macros install
+ make[4] -C tools/cmake install
+ make[4] -C tools/gengetopt install
+ make[4] -C tools/patchelf install
+ make[4] -C tools/bison compile
+ make[4] -C tools/mpfr compile
+ make[4] -C tools/mtd-utils compile
+ make[4] -C tools/bison install
+ make[4] -C tools/mtd-utils install
+ make[4] -C tools/mpfr install
+ make[4] -C tools/findutils compile
+ make[4] -C tools/bc compile
+ make[4] -C tools/bc install
+ make[4] -C tools/mpc compile
+ make[4] -C tools/findutils install
+ make[4] -C tools/mpc install
+ make[4] -C tools/quilt compile
+ make[4] -C tools/padjffs2 compile
+ make[4] -C tools/padjffs2 install
+ make[4] -C tools/quilt install
+ make[3] target/compile
+ make[4] -C target/linux compile
+ make[3] package/compile
+ make[4] -C /ff/gluon/packages/luci/modules/luci-base host-compile
+ make[4] -C package/libs/ncurses host-compile
+ make[4] -C package/system/fwtool host-compile
+ make[4] -C package/libs/toolchain compile
+ make[4] -C package/system/usign host-compile
+ make[4] -C package/utils/lua host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/expat host-compile
+ make[4] -C package/utils/bzip2 host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/gperf host-compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/mtd-rw compile
+ make[4] -C /ff/gluon/packages/openwrt/net/siit compile
+ make[4] -C package/kernel/gpio-button-hotplug compile
+ make[4] -C package/kernel/trelay compile
+ make[4] -C package/network/services/dropbear compile
+ make[4] -C package/network/utils/linux-atm compile
+ make[4] -C package/network/utils/resolveip compile
+ make[4] -C package/libs/libmnl compile
+ make[4] -C package/network/utils/wwan compile
+ make[4] -C package/libs/libnl-tiny compile
+ make[4] -C package/libs/libjson-c compile
+ make[4] -C package/utils/lua compile
+ make[4] -C package/libs/ncurses compile
+ make[4] -C package/system/fwtool compile
+ make[4] -C package/system/lede-keyring compile
+ make[4] -C package/libs/zlib compile
+ make[4] -C package/libs/gettext compile
+ make[4] -C package/libs/libiconv compile
+ make[4] -C package/utils/bzip2 compile
+ make[4] -C package/libs/argp-standalone compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/lua-cjson host-compile
+ make[4] -C /ff/gluon/package/libgluonutil compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libplatforminfo compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-jsonc compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-nixio compile
+ make[4] -C package/firmware/linux-firmware compile
+ make[4] -C package/firmware/prism54-firmware compile
+ make[4] -C /ff/gluon/package/gluon-neighbour-info compile
+ make[4] -C /ff/gluon/packages/gluon/net/respondd compile
+ make[4] -C /ff/gluon/packages/gluon/utils/micrond compile
+ make[4] -C /ff/gluon/packages/routing/alfred compile
+ make[4] -C package/firmware/b43legacy-firmware compile
+ make[4] -C package/network/utils/iw compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/libuecc compile
+ make[4] -C /ff/gluon/package/gluon-web compile
+ make[4] -C package/network/services/dnsmasq compile
+ make[4] -C package/libs/mbedtls compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libpacketmark compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/nacl compile
+ make[4] -C /ff/gluon/packages/gluon/net/uradvd compile
+ make[4] -C /ff/gluon/packages/gluon/net/sse-multiplex compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/python host-compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/haveged compile
+ make[4] -C /ff/gluon/packages/openwrt/net/ethtool compile
+ make[4] -C package/libs/libnl compile
+ make[4] -C package/libs/libpcap compile
+ make[4] -C package/libs/openssl compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/tcp_wrappers compile
+ make[4] -C package/kernel/brcm2708-gpu-fw compile
+ make[4] -C package/libs/libubox compile
+ make[4] -C package/devel/binutils compile
+ make[4] -C package/libs/elfutils compile
+ make[4] -C /ff/gluon/package/gluon-site compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-hash compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-platform-info compile
+ make[4] -C package/kernel/linux compile
+ make[4] -C package/network/ipv6/odhcp6c compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/ecdsautils compile
+ make[4] -C package/libs/ustream-ssl compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/node host-compile
+ make[4] -C package/libs/uclient compile
+ make[4] -C package/system/mtd compile
+ make[4] -C package/system/opkg compile
+ make[4] -C package/system/ubus compile
+ make[4] -C package/system/uci compile
+ make[4] -C package/utils/util-linux compile
+ make[4] -C package/utils/jsonfilter compile
+ make[4] -C package/system/usign compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-simple-uci compile
+ make[4] -C /ff/gluon/packages/gluon/admin/pretty-hostname compile
+ make[4] -C package/network/services/hostapd compile
+ make[4] -C package/network/utils/iwinfo compile
+ make[4] -C /ff/gluon/packages/gluon/admin/autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-web-theme compile
+ make[4] -C package/network/services/uhttpd compile
+ make[4] -C package/network/services/odhcpd compile
+ make[4] -C package/utils/busybox compile
+ make[4] -C package/network/services/hostapd compile
+ make[4] -C package/network/config/netifd compile
+ make[4] -C package/system/ubox compile
+ make[4] -C package/network/utils/iptables compile
+ make[4] -C package/network/utils/ebtables compile
+ make[4] -C /ff/gluon/packages/gluon/net/batman-adv-legacy compile
+ make[4] -C package/kernel/mac80211 compile
+ make[4] -C /ff/gluon/packages/gluon/net/simple-tc compile
+ make[4] -C /ff/gluon/packages/openwrt/net/fastd compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/dmx_usb_module compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/exfat-nofuse compile
+ make[4] -C /ff/gluon/packages/openwrt/net/jool compile
+ make[4] -C /ff/gluon/packages/openwrt/net/openvswitch compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/xr_usb_serial_common compile
+ make[4] -C package/network/ipv6/map compile
+ make[4] -C package/kernel/button-hotplug compile
+ make[4] -C package/kernel/i2c-gpio-custom compile
+ make[4] -C package/kernel/kmod-sched-cake compile
+ make[4] -C package/kernel/rotary-gpio-custom compile
+ make[4] -C package/kernel/spi-gpio-custom compile
+ make[4] -C package/kernel/w1-gpio-custom compile
+ make[4] -C package/network/services/ppp compile
+ make[4] -C package/network/services/wireguard compile
+ make[4] -C package/network/utils/umbim compile
+ make[4] -C package/network/utils/uqmi compile
+ make[4] -C package/network/utils/xtables-addons compile
+ make[4] -C package/system/fstools compile
+ make[4] -C package/system/procd compile
+ make[4] -C package/devel/perf compile
+ make[4] -C package/network/config/firewall compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/eudev compile
+ make[4] -C /ff/gluon/packages/routing/nat46 compile
+ make[4] -C package/network/utils/comgt compile
+ make[4] -C package/base-files compile
+ make[4] -C package/boot/uboot-envtools compile
+ make[4] -C /ff/gluon/package/gluon-core compile
+ make[4] -C /ff/gluon/packages/routing/batman-adv compile
+ make[4] -C /ff/gluon/package/gluon-authorized-keys compile
+ make[4] -C /ff/gluon/package/gluon-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-lock-password compile
+ make[4] -C /ff/gluon/package/gluon-setup-mode compile
+ make[4] -C /ff/gluon/package/gluon-node-info compile
+ make[4] -C /ff/gluon/package/gluon-wan-dnsmasq compile
+ make[4] -C /ff/gluon/package/gluon-radvd compile
+ make[4] -C /ff/gluon/package/gluon-respondd compile
+ make[4] -C /ff/gluon/package/gluon-client-bridge compile
+ make[4] -C /ff/gluon/package/gluon-ebtables compile
+ make[4] -C /ff/gluon/packages/routing/batctl compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-core compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-core compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-multicast compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-ra-dhcp compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-source-filter compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/package/gluon-status-page-api compile
+ make[4] -C /ff/gluon/package/gluon-web-admin compile
+ make[4] -C /ff/gluon/package/gluon-mesh-batman-adv compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-contact-info compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-geo-location compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-hostname compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-mesh-vpn compile
+ make[4] -C /ff/gluon/package/gluon-status-page compile
+ make[4] -C /ff/gluon/package/gluon-web-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-web-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/package/gluon-web-network compile
+ make[4] -C /ff/gluon/package/gluon-web-node-role compile
+ make[4] -C /ff/gluon/package/gluon-web-private-wifi compile
+ make[4] -C /ff/gluon/package/gluon-web-wifi-config compile
+ make[4] -C /ff/gluon/package/gluon-alfred compile
+ make[4] -C /ff/gluon/packages/openwrt/net/usbip compile
+ make[3] package/install
+ make[4] -C package/libs/libubox host-compile
+ make[4] -C package/system/opkg host-compile
+ make[4] package/preconfig
+ make[3] target/install
+ make[4] -C target/linux install
+ make[3] package/index
+ make[3] diffconfig
+ make[3] checksum
+make[1]: Leaving directory '/ff/gluon/lede'
+################# Sun Feb 11 11:28:28 CET 2018 start building target brcm2708-bcm2709 ###########################
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+ make[2] clean
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+ make[2] world
+ make[3] tools/install
+ make[3] package/cleanup
+ make[4] -C tools/flock compile
+ make[4] -C tools/flock install
+ make[4] -C tools/sed compile
+ make[4] -C tools/sed install
+ make[4] -C tools/patch compile
+ make[4] -C tools/tar compile
+ make[4] -C tools/xz compile
+ make[4] -C tools/patch install
+ make[4] -C tools/xz install
+ make[4] -C tools/tar install
+ make[4] -C tools/m4 compile
+ make[4] -C tools/pkg-config compile
+ make[4] -C tools/expat compile
+ make[4] -C tools/sstrip compile
+ make[4] -C tools/make-ext4fs compile
+ make[4] -C tools/patch-image compile
+ make[4] -C tools/scons compile
+ make[4] -C tools/mtools compile
+ make[4] -C tools/lzma compile
+ make[4] -C tools/squashfs4 compile
+ make[4] -C tools/m4 install
+ make[4] -C tools/pkg-config install
+ make[4] -C tools/expat install
+ make[4] -C tools/sstrip install
+ make[4] -C tools/patch-image install
+ make[4] -C tools/scons install
+ make[4] -C tools/mtools install
+ make[4] -C tools/lzma install
+ make[4] -C tools/squashfs4 install
+ make[4] -C tools/autoconf compile
+ make[4] -C tools/make-ext4fs install
+ make[4] -C tools/libressl compile
+ make[4] -C tools/autoconf install
+ make[4] -C tools/missing-macros compile
+ make[4] -C tools/automake compile
+ make[4] -C tools/libressl install
+ make[4] -C tools/missing-macros install
+ make[4] -C tools/automake install
+ make[4] -C tools/firmware-utils compile
+ make[4] -C tools/mkimage compile
+ make[4] -C tools/cmake compile
+ make[4] -C tools/dosfstools compile
+ make[4] -C tools/libtool compile
+ make[4] -C tools/firmware-utils install
+ make[4] -C tools/dosfstools install
+ make[4] -C tools/libtool install
+ make[4] -C tools/flex compile
+ make[4] -C tools/libelf compile
+ make[4] -C tools/gmp compile
+ make[4] -C tools/mklibs compile
+ make[4] -C tools/e2fsprogs compile
+ make[4] -C tools/mkimage install
+ make[4] -C tools/mm-macros compile
+ make[4] -C tools/cmake install
+ make[4] -C tools/gengetopt compile
+ make[4] -C tools/patchelf compile
+ make[4] -C tools/libelf install
+ make[4] -C tools/gmp install
+ make[4] -C tools/flex install
+ make[4] -C tools/mklibs install
+ make[4] -C tools/e2fsprogs install
+ make[4] -C tools/mm-macros install
+ make[4] -C tools/gengetopt install
+ make[4] -C tools/patchelf install
+ make[4] -C tools/mpfr compile
+ make[4] -C tools/bison compile
+ make[4] -C tools/mtd-utils compile
+ make[4] -C tools/mpfr install
+ make[4] -C tools/bison install
+ make[4] -C tools/mtd-utils install
+ make[4] -C tools/mpc compile
+ make[4] -C tools/findutils compile
+ make[4] -C tools/bc compile
+ make[4] -C tools/mpc install
+ make[4] -C tools/bc install
+ make[4] -C tools/findutils install
+ make[4] -C tools/quilt compile
+ make[4] -C tools/padjffs2 compile
+ make[4] -C tools/padjffs2 install
+ make[4] -C tools/quilt install
+ make[3] target/compile
+ make[4] -C target/linux compile
+ make[3] package/compile
+ make[4] -C package/libs/toolchain compile
+ make[4] -C package/system/fwtool host-compile
+ make[4] -C /ff/gluon/packages/luci/modules/luci-base host-compile
+ make[4] -C package/libs/ncurses host-compile
+ make[4] -C package/system/usign host-compile
+ make[4] -C package/utils/lua host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/expat host-compile
+ make[4] -C package/utils/bzip2 host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/gperf host-compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/mtd-rw compile
+ make[4] -C /ff/gluon/packages/openwrt/net/siit compile
+ make[4] -C package/kernel/gpio-button-hotplug compile
+ make[4] -C package/kernel/trelay compile
+ make[4] -C package/network/services/dropbear compile
+ make[4] -C package/network/utils/linux-atm compile
+ make[4] -C package/network/utils/resolveip compile
+ make[4] -C package/libs/libmnl compile
+ make[4] -C package/network/utils/wwan compile
+ make[4] -C package/libs/libnl-tiny compile
+ make[4] -C package/libs/libjson-c compile
+ make[4] -C package/utils/lua compile
+ make[4] -C package/libs/ncurses compile
+ make[4] -C package/system/fwtool compile
+ make[4] -C package/system/lede-keyring compile
+ make[4] -C package/libs/zlib compile
+ make[4] -C package/libs/gettext compile
+ make[4] -C package/libs/libiconv compile
+ make[4] -C package/utils/bzip2 compile
+ make[4] -C package/libs/argp-standalone compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/lua-cjson host-compile
+ make[4] -C /ff/gluon/package/libgluonutil compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libplatforminfo compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-jsonc compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-nixio compile
+ make[4] -C package/firmware/linux-firmware compile
+ make[4] -C package/firmware/prism54-firmware compile
+ make[4] -C /ff/gluon/package/gluon-neighbour-info compile
+ make[4] -C /ff/gluon/packages/gluon/net/respondd compile
+ make[4] -C /ff/gluon/packages/gluon/utils/micrond compile
+ make[4] -C /ff/gluon/packages/routing/alfred compile
+ make[4] -C package/firmware/b43legacy-firmware compile
+ make[4] -C package/network/utils/iw compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/libuecc compile
+ make[4] -C /ff/gluon/package/gluon-web compile
+ make[4] -C package/network/services/dnsmasq compile
+ make[4] -C package/libs/mbedtls compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libpacketmark compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/nacl compile
+ make[4] -C /ff/gluon/packages/gluon/net/uradvd compile
+ make[4] -C /ff/gluon/packages/gluon/net/sse-multiplex compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/python host-compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/haveged compile
+ make[4] -C /ff/gluon/packages/openwrt/net/ethtool compile
+ make[4] -C package/libs/libnl compile
+ make[4] -C package/libs/libpcap compile
+ make[4] -C package/libs/openssl compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/tcp_wrappers compile
+ make[4] -C package/kernel/brcm2708-gpu-fw compile
+ make[4] -C package/libs/libubox compile
+ make[4] -C package/devel/binutils compile
+ make[4] -C package/libs/elfutils compile
+ make[4] -C /ff/gluon/package/gluon-site compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-hash compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-platform-info compile
+ make[4] -C package/kernel/linux compile
+ make[4] -C package/network/ipv6/odhcp6c compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/ecdsautils compile
+ make[4] -C package/libs/ustream-ssl compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/node host-compile
+ make[4] -C package/libs/uclient compile
+ make[4] -C package/system/mtd compile
+ make[4] -C package/system/opkg compile
+ make[4] -C package/system/ubus compile
+ make[4] -C package/system/uci compile
+ make[4] -C package/utils/util-linux compile
+ make[4] -C package/utils/jsonfilter compile
+ make[4] -C package/system/usign compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-simple-uci compile
+ make[4] -C /ff/gluon/packages/gluon/admin/pretty-hostname compile
+ make[4] -C package/network/services/hostapd compile
+ make[4] -C package/network/utils/iwinfo compile
+ make[4] -C /ff/gluon/packages/gluon/admin/autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-web-theme compile
+ make[4] -C package/network/services/uhttpd compile
+ make[4] -C package/network/services/odhcpd compile
+ make[4] -C package/utils/busybox compile
+ make[4] -C package/network/config/netifd compile
+ make[4] -C package/system/ubox compile
+ make[4] -C package/system/procd compile
+ make[4] -C package/network/utils/iptables compile
+ make[4] -C package/network/utils/ebtables compile
+ make[4] -C /ff/gluon/packages/gluon/net/batman-adv-legacy compile
+ make[4] -C package/kernel/mac80211 compile
+ make[4] -C /ff/gluon/packages/gluon/net/simple-tc compile
+ make[4] -C /ff/gluon/packages/openwrt/net/fastd compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/dmx_usb_module compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/exfat-nofuse compile
+ make[4] -C /ff/gluon/packages/openwrt/net/jool compile
+ make[4] -C /ff/gluon/packages/openwrt/net/openvswitch compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/xr_usb_serial_common compile
+ make[4] -C package/network/ipv6/map compile
+ make[4] -C package/kernel/button-hotplug compile
+ make[4] -C package/kernel/i2c-gpio-custom compile
+ make[4] -C package/kernel/kmod-sched-cake compile
+ make[4] -C package/kernel/rotary-gpio-custom compile
+ make[4] -C package/kernel/spi-gpio-custom compile
+ make[4] -C package/kernel/w1-gpio-custom compile
+ make[4] -C package/network/services/ppp compile
+ make[4] -C package/network/services/wireguard compile
+ make[4] -C package/network/utils/umbim compile
+ make[4] -C package/network/utils/uqmi compile
+ make[4] -C package/network/utils/xtables-addons compile
+ make[4] -C package/system/fstools compile
+ make[4] -C package/devel/perf compile
+ make[4] -C package/network/config/firewall compile
+ make[4] -C /ff/gluon/packages/routing/batman-adv compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/eudev compile
+ make[4] -C /ff/gluon/packages/routing/nat46 compile
+ make[4] -C package/network/utils/comgt compile
+ make[4] -C package/base-files compile
+ make[4] -C package/boot/uboot-envtools compile
+ make[4] -C /ff/gluon/package/gluon-core compile
+ make[4] -C /ff/gluon/packages/routing/batctl compile
+ make[4] -C /ff/gluon/package/gluon-authorized-keys compile
+ make[4] -C /ff/gluon/package/gluon-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-lock-password compile
+ make[4] -C /ff/gluon/package/gluon-setup-mode compile
+ make[4] -C /ff/gluon/package/gluon-node-info compile
+ make[4] -C /ff/gluon/package/gluon-wan-dnsmasq compile
+ make[4] -C /ff/gluon/package/gluon-radvd compile
+ make[4] -C /ff/gluon/package/gluon-respondd compile
+ make[4] -C /ff/gluon/package/gluon-client-bridge compile
+ make[4] -C /ff/gluon/package/gluon-ebtables compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-core compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-core compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-multicast compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-ra-dhcp compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-source-filter compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/package/gluon-status-page-api compile
+ make[4] -C /ff/gluon/package/gluon-web-admin compile
+ make[4] -C /ff/gluon/package/gluon-mesh-batman-adv compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-contact-info compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-geo-location compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-hostname compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-mesh-vpn compile
+ make[4] -C /ff/gluon/package/gluon-status-page compile
+ make[4] -C /ff/gluon/package/gluon-web-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-web-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/package/gluon-web-network compile
+ make[4] -C /ff/gluon/package/gluon-web-node-role compile
+ make[4] -C /ff/gluon/package/gluon-web-private-wifi compile
+ make[4] -C /ff/gluon/package/gluon-web-wifi-config compile
+ make[4] -C /ff/gluon/package/gluon-alfred compile
+ make[4] -C /ff/gluon/packages/openwrt/net/usbip compile
+ make[3] package/install
+ make[4] -C package/libs/libubox host-compile
+ make[4] -C package/system/opkg host-compile
+ make[4] package/preconfig
+ make[3] target/install
+ make[4] -C target/linux install
+ make[3] package/index
+ make[3] diffconfig
+ make[3] checksum
+make[1]: Leaving directory '/ff/gluon/lede'
+################# Sun Feb 11 11:42:03 CET 2018 start building target mpc85xx-generic ###########################
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+.config:16:warning: override: TARGET_mpc85xx_generic_TLWDR4900 changes choice state
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+ make[2] clean
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+.config:16:warning: override: TARGET_mpc85xx_generic_TLWDR4900 changes choice state
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+ make[2] world
+ make[3] tools/install
+ make[3] package/cleanup
+ make[4] -C tools/flock compile
+ make[4] -C tools/flock install
+ make[4] -C tools/sed compile
+ make[4] -C tools/sed install
+ make[4] -C tools/patch compile
+ make[4] -C tools/tar compile
+ make[4] -C tools/xz compile
+ make[4] -C tools/patch install
+ make[4] -C tools/xz install
+ make[4] -C tools/tar install
+ make[4] -C tools/pkg-config compile
+ make[4] -C tools/make-ext4fs compile
+ make[4] -C tools/sstrip compile
+ make[4] -C tools/m4 compile
+ make[4] -C tools/expat compile
+ make[4] -C tools/patch-image compile
+ make[4] -C tools/scons compile
+ make[4] -C tools/mtools compile
+ make[4] -C tools/upx compile
+ make[4] -C tools/lzma compile
+ make[4] -C tools/squashfs4 compile
+ make[4] -C tools/m4 install
+ make[4] -C tools/pkg-config install
+ make[4] -C tools/expat install
+ make[4] -C tools/sstrip install
+ make[4] -C tools/patch-image install
+ make[4] -C tools/scons install
+ make[4] -C tools/mtools install
+ make[4] -C tools/upx install
+ make[4] -C tools/lzma install
+ make[4] -C tools/squashfs4 install
+ make[4] -C tools/autoconf compile
+ make[4] -C tools/make-ext4fs install
+ make[4] -C tools/libressl compile
+ make[4] -C tools/autoconf install
+ make[4] -C tools/automake compile
+ make[4] -C tools/missing-macros compile
+ make[4] -C tools/missing-macros install
+ make[4] -C tools/libressl install
+ make[4] -C tools/automake install
+ make[4] -C tools/mkimage compile
+ make[4] -C tools/firmware-utils compile
+ make[4] -C tools/libtool compile
+ make[4] -C tools/cmake compile
+ make[4] -C tools/dosfstools compile
+ make[4] -C tools/dosfstools install
+ make[4] -C tools/firmware-utils install
+ make[4] -C tools/libtool install
+ make[4] -C tools/gmp compile
+ make[4] -C tools/flex compile
+ make[4] -C tools/libelf compile
+ make[4] -C tools/mklibs compile
+ make[4] -C tools/e2fsprogs compile
+ make[4] -C tools/mm-macros compile
+ make[4] -C tools/gengetopt compile
+ make[4] -C tools/patchelf compile
+ make[4] -C tools/gmp install
+ make[4] -C tools/libelf install
+ make[4] -C tools/flex install
+ make[4] -C tools/mklibs install
+ make[4] -C tools/e2fsprogs install
+ make[4] -C tools/mkimage install
+ make[4] -C tools/mm-macros install
+ make[4] -C tools/cmake install
+ make[4] -C tools/gengetopt install
+ make[4] -C tools/patchelf install
+ make[4] -C tools/mpfr compile
+ make[4] -C tools/bison compile
+ make[4] -C tools/mtd-utils compile
+ make[4] -C tools/mtd-utils install
+ make[4] -C tools/mpfr install
+ make[4] -C tools/bison install
+ make[4] -C tools/mpc compile
+ make[4] -C tools/findutils compile
+ make[4] -C tools/bc compile
+ make[4] -C tools/b43-tools compile
+ make[4] -C tools/bc install
+ make[4] -C tools/mpc install
+ make[4] -C tools/b43-tools install
+ make[4] -C tools/findutils install
+ make[4] -C tools/quilt compile
+ make[4] -C tools/padjffs2 compile
+ make[4] -C tools/padjffs2 install
+ make[4] -C tools/quilt install
+ make[3] target/compile
+ make[4] -C target/linux compile
+ make[3] package/compile
+ make[4] -C package/libs/toolchain compile
+ make[4] -C package/system/usign host-compile
+ make[4] -C package/libs/ncurses host-compile
+ make[4] -C package/system/fwtool host-compile
+ make[4] -C /ff/gluon/packages/luci/modules/luci-base host-compile
+ make[4] -C package/utils/lua host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/expat host-compile
+ make[4] -C package/utils/bzip2 host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/gperf host-compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/mtd-rw compile
+ make[4] -C /ff/gluon/packages/openwrt/net/siit compile
+ make[4] -C package/kernel/gpio-button-hotplug compile
+ make[4] -C package/kernel/trelay compile
+ make[4] -C package/network/services/dropbear compile
+ make[4] -C package/network/utils/linux-atm compile
+ make[4] -C package/network/utils/resolveip compile
+ make[4] -C package/libs/libmnl compile
+ make[4] -C package/network/utils/wwan compile
+ make[4] -C package/libs/libnl-tiny compile
+ make[4] -C package/libs/libjson-c compile
+ make[4] -C package/utils/lua compile
+ make[4] -C package/libs/ncurses compile
+ make[4] -C package/system/fwtool compile
+ make[4] -C package/system/lede-keyring compile
+ make[4] -C package/libs/zlib compile
+ make[4] -C package/libs/gettext compile
+ make[4] -C package/libs/libiconv compile
+ make[4] -C package/utils/bzip2 compile
+ make[4] -C package/libs/argp-standalone compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/lua-cjson host-compile
+ make[4] -C /ff/gluon/package/libgluonutil compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libplatforminfo compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-jsonc compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-nixio compile
+ make[4] -C package/firmware/linux-firmware compile
+ make[4] -C package/firmware/prism54-firmware compile
+ make[4] -C /ff/gluon/package/gluon-neighbour-info compile
+ make[4] -C /ff/gluon/packages/gluon/net/respondd compile
+ make[4] -C /ff/gluon/packages/gluon/utils/micrond compile
+ make[4] -C /ff/gluon/packages/routing/alfred compile
+ make[4] -C package/firmware/b43legacy-firmware compile
+ make[4] -C package/network/utils/iw compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/libuecc compile
+ make[4] -C /ff/gluon/package/gluon-web compile
+ make[4] -C package/network/services/dnsmasq compile
+ make[4] -C package/libs/mbedtls compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libpacketmark compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/nacl compile
+ make[4] -C /ff/gluon/packages/gluon/net/uradvd compile
+ make[4] -C /ff/gluon/packages/gluon/net/sse-multiplex compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/python host-compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/haveged compile
+ make[4] -C /ff/gluon/packages/openwrt/net/ethtool compile
+ make[4] -C package/libs/libnl compile
+ make[4] -C package/libs/libpcap compile
+ make[4] -C package/libs/openssl compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/tcp_wrappers compile
+ make[4] -C package/libs/libubox compile
+ make[4] -C package/utils/util-linux compile
+ make[4] -C package/devel/binutils compile
+ make[4] -C package/libs/elfutils compile
+ make[4] -C /ff/gluon/package/gluon-site compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-hash compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-platform-info compile
+ make[4] -C package/kernel/linux compile
+ make[4] -C package/network/ipv6/odhcp6c compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/ecdsautils compile
+ make[4] -C package/libs/ustream-ssl compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/node host-compile
+ make[4] -C package/libs/uclient compile
+ make[4] -C package/system/mtd compile
+ make[4] -C package/system/ubus compile
+ make[4] -C package/system/uci compile
+ make[4] -C package/utils/jsonfilter compile
+ make[4] -C package/system/usign compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-simple-uci compile
+ make[4] -C /ff/gluon/packages/gluon/admin/pretty-hostname compile
+ make[4] -C package/network/services/hostapd compile
+ make[4] -C package/network/utils/iwinfo compile
+ make[4] -C /ff/gluon/packages/gluon/admin/autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-web-theme compile
+ make[4] -C package/network/services/uhttpd compile
+ make[4] -C package/network/config/swconfig compile
+ make[4] -C package/system/opkg compile
+ make[4] -C package/utils/busybox compile
+ make[4] -C package/network/config/netifd compile
+ make[4] -C package/system/ubox compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/eudev compile
+ make[4] -C package/system/fstools compile
+ make[4] -C package/system/procd compile
+ make[4] -C package/boot/uboot-envtools compile
+ make[4] -C package/base-files compile
+ make[4] -C package/devel/perf compile
+ make[4] -C package/network/utils/ebtables compile
+ make[4] -C package/network/utils/iptables compile
+ make[4] -C package/kernel/mac80211 compile
+ make[4] -C /ff/gluon/packages/gluon/net/batman-adv-legacy compile
+ make[4] -C /ff/gluon/packages/gluon/net/simple-tc compile
+ make[4] -C /ff/gluon/packages/openwrt/net/fastd compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/dmx_usb_module compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/exfat-nofuse compile
+ make[4] -C /ff/gluon/packages/openwrt/net/jool compile
+ make[4] -C /ff/gluon/packages/openwrt/net/openvswitch compile
+ make[4] -C /ff/gluon/packages/openwrt/net/usbip compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/xr_usb_serial_common compile
+ make[4] -C package/network/ipv6/map compile
+ make[4] -C package/kernel/button-hotplug compile
+ make[4] -C package/kernel/i2c-gpio-custom compile
+ make[4] -C package/kernel/kmod-sched-cake compile
+ make[4] -C package/kernel/rotary-gpio-custom compile
+ make[4] -C package/kernel/spi-gpio-custom compile
+ make[4] -C package/kernel/w1-gpio-custom compile
+ make[4] -C package/network/services/ppp compile
+ make[4] -C package/network/services/wireguard compile
+ make[4] -C package/network/utils/umbim compile
+ make[4] -C package/network/utils/uqmi compile
+ make[4] -C package/network/utils/xtables-addons compile
+ make[4] -C package/network/config/firewall compile
+ make[4] -C /ff/gluon/packages/routing/nat46 compile
+ make[4] -C package/network/utils/comgt compile
+ make[4] -C /ff/gluon/package/gluon-core compile
+ make[4] -C /ff/gluon/package/gluon-respondd compile
+ make[4] -C /ff/gluon/package/gluon-client-bridge compile
+ make[4] -C /ff/gluon/package/gluon-ebtables compile
+ make[4] -C /ff/gluon/package/gluon-authorized-keys compile
+ make[4] -C /ff/gluon/package/gluon-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-lock-password compile
+ make[4] -C /ff/gluon/package/gluon-setup-mode compile
+ make[4] -C /ff/gluon/package/gluon-node-info compile
+ make[4] -C /ff/gluon/package/gluon-wan-dnsmasq compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-multicast compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-ra-dhcp compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-source-filter compile
+ make[4] -C /ff/gluon/package/gluon-radvd compile
+ make[4] -C /ff/gluon/package/gluon-status-page-api compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-core compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-core compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-contact-info compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-geo-location compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-hostname compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-mesh-vpn compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/package/gluon-status-page compile
+ make[4] -C /ff/gluon/package/gluon-web-admin compile
+ make[4] -C /ff/gluon/package/gluon-web-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-web-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/package/gluon-web-network compile
+ make[4] -C /ff/gluon/package/gluon-web-node-role compile
+ make[4] -C /ff/gluon/package/gluon-web-private-wifi compile
+ make[4] -C /ff/gluon/package/gluon-web-wifi-config compile
+ make[4] -C package/kernel/mt76 compile
+ make[4] -C package/kernel/ath10k-ct compile
+ make[4] -C /ff/gluon/packages/routing/batman-adv compile
+ make[4] -C /ff/gluon/packages/routing/batctl compile
+ make[4] -C /ff/gluon/package/gluon-mesh-batman-adv compile
+ make[4] -C /ff/gluon/package/gluon-alfred compile
+ make[3] package/install
+ make[4] -C package/libs/libubox host-compile
+ make[4] -C package/system/opkg host-compile
+ make[4] package/preconfig
+ make[3] target/install
+ make[4] -C target/linux install
+ make[3] package/index
+ make[3] diffconfig
+ make[3] checksum
+make[1]: Leaving directory '/ff/gluon/lede'
+################# Sun Feb 11 11:55:56 CET 2018 start building target ramips-mt7621 ###########################
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+ make[2] clean
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+ make[2] world
+ make[3] tools/install
+ make[3] package/cleanup
+ make[4] -C tools/flock compile
+ make[4] -C tools/flock install
+ make[4] -C tools/sed compile
+ make[4] -C tools/sed install
+ make[4] -C tools/patch compile
+ make[4] -C tools/xz compile
+ make[4] -C tools/tar compile
+ make[4] -C tools/patch install
+ make[4] -C tools/xz install
+ make[4] -C tools/tar install
+ make[4] -C tools/make-ext4fs compile
+ make[4] -C tools/pkg-config compile
+ make[4] -C tools/m4 compile
+ make[4] -C tools/sstrip compile
+ make[4] -C tools/expat compile
+ make[4] -C tools/patch-image compile
+ make[4] -C tools/scons compile
+ make[4] -C tools/mtools compile
+ make[4] -C tools/lzma compile
+ make[4] -C tools/m4 install
+ make[4] -C tools/squashfs4 compile
+ make[4] -C tools/pkg-config install
+ make[4] -C tools/expat install
+ make[4] -C tools/sstrip install
+ make[4] -C tools/patch-image install
+ make[4] -C tools/scons install
+ make[4] -C tools/mtools install
+ make[4] -C tools/lzma install
+ make[4] -C tools/squashfs4 install
+ make[4] -C tools/make-ext4fs install
+ make[4] -C tools/autoconf compile
+ make[4] -C tools/libressl compile
+ make[4] -C tools/autoconf install
+ make[4] -C tools/missing-macros compile
+ make[4] -C tools/automake compile
+ make[4] -C tools/missing-macros install
+ make[4] -C tools/libressl install
+ make[4] -C tools/automake install
+ make[4] -C tools/mkimage compile
+ make[4] -C tools/cmake compile
+ make[4] -C tools/firmware-utils compile
+ make[4] -C tools/libtool compile
+ make[4] -C tools/dosfstools compile
+ make[4] -C tools/firmware-utils install
+ make[4] -C tools/libtool install
+ make[4] -C tools/dosfstools install
+ make[4] -C tools/gmp compile
+ make[4] -C tools/libelf compile
+ make[4] -C tools/flex compile
+ make[4] -C tools/mklibs compile
+ make[4] -C tools/e2fsprogs compile
+ make[4] -C tools/mkimage install
+ make[4] -C tools/mm-macros compile
+ make[4] -C tools/gengetopt compile
+ make[4] -C tools/patchelf compile
+ make[4] -C tools/gmp install
+ make[4] -C tools/libelf install
+ make[4] -C tools/flex install
+ make[4] -C tools/mklibs install
+ make[4] -C tools/e2fsprogs install
+ make[4] -C tools/mm-macros install
+ make[4] -C tools/cmake install
+ make[4] -C tools/gengetopt install
+ make[4] -C tools/patchelf install
+ make[4] -C tools/mpfr compile
+ make[4] -C tools/bison compile
+ make[4] -C tools/mtd-utils compile
+ make[4] -C tools/mtd-utils install
+ make[4] -C tools/bison install
+ make[4] -C tools/findutils compile
+ make[4] -C tools/bc compile
+ make[4] -C tools/b43-tools compile
+ make[4] -C tools/mpfr install
+ make[4] -C tools/bc install
+ make[4] -C tools/b43-tools install
+ make[4] -C tools/findutils install
+ make[4] -C tools/mpc compile
+ make[4] -C tools/mpc install
+ make[4] -C tools/quilt compile
+ make[4] -C tools/padjffs2 compile
+ make[4] -C tools/padjffs2 install
+ make[4] -C tools/quilt install
+ make[3] target/compile
+ make[4] -C target/linux compile
+ make[3] package/compile
+ make[4] -C package/libs/toolchain compile
+ make[4] -C package/libs/ncurses host-compile
+ make[4] -C package/system/fwtool host-compile
+ make[4] -C /ff/gluon/packages/luci/modules/luci-base host-compile
+ make[4] -C package/system/usign host-compile
+ make[4] -C package/utils/lua host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/expat host-compile
+ make[4] -C package/utils/bzip2 host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/gperf host-compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/mtd-rw compile
+ make[4] -C /ff/gluon/packages/openwrt/net/siit compile
+ make[4] -C package/kernel/gpio-button-hotplug compile
+ make[4] -C package/kernel/trelay compile
+ make[4] -C package/network/services/dropbear compile
+ make[4] -C package/network/utils/linux-atm compile
+ make[4] -C package/network/utils/resolveip compile
+ make[4] -C package/libs/libmnl compile
+ make[4] -C package/network/utils/wwan compile
+ make[4] -C package/libs/libnl-tiny compile
+ make[4] -C package/libs/libjson-c compile
+ make[4] -C package/utils/lua compile
+ make[4] -C package/libs/ncurses compile
+ make[4] -C package/libs/lzo compile
+ make[4] -C package/libs/zlib compile
+ make[4] -C package/system/fwtool compile
+ make[4] -C package/system/lede-keyring compile
+ make[4] -C package/libs/gettext compile
+ make[4] -C package/libs/libiconv compile
+ make[4] -C package/utils/bzip2 compile
+ make[4] -C package/libs/argp-standalone compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/lua-cjson host-compile
+ make[4] -C /ff/gluon/package/libgluonutil compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libplatforminfo compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-jsonc compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-nixio compile
+ make[4] -C package/firmware/linux-firmware compile
+ make[4] -C package/firmware/prism54-firmware compile
+ make[4] -C /ff/gluon/package/gluon-neighbour-info compile
+ make[4] -C /ff/gluon/packages/gluon/net/respondd compile
+ make[4] -C /ff/gluon/packages/gluon/utils/micrond compile
+ make[4] -C /ff/gluon/packages/routing/alfred compile
+ make[4] -C package/firmware/b43legacy-firmware compile
+ make[4] -C package/network/utils/iw compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/libuecc compile
+ make[4] -C /ff/gluon/package/gluon-web compile
+ make[4] -C package/network/services/dnsmasq compile
+ make[4] -C package/libs/mbedtls compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libpacketmark compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/nacl compile
+ make[4] -C /ff/gluon/packages/gluon/net/uradvd compile
+ make[4] -C /ff/gluon/packages/gluon/net/sse-multiplex compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/python host-compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/haveged compile
+ make[4] -C /ff/gluon/packages/openwrt/net/ethtool compile
+ make[4] -C package/libs/libnl compile
+ make[4] -C package/libs/libpcap compile
+ make[4] -C package/libs/openssl compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/tcp_wrappers compile
+ make[4] -C package/libs/libubox compile
+ make[4] -C package/utils/util-linux compile
+ make[4] -C package/devel/binutils compile
+ make[4] -C package/libs/elfutils compile
+ make[4] -C /ff/gluon/package/gluon-site compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-hash compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-platform-info compile
+ make[4] -C package/kernel/linux compile
+ make[4] -C package/network/ipv6/odhcp6c compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/ecdsautils compile
+ make[4] -C package/libs/ustream-ssl compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/node host-compile
+ make[4] -C package/system/mtd compile
+ make[4] -C package/system/ubus compile
+ make[4] -C package/system/uci compile
+ make[4] -C package/utils/jsonfilter compile
+ make[4] -C package/system/usign compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-simple-uci compile
+ make[4] -C /ff/gluon/packages/gluon/admin/pretty-hostname compile
+ make[4] -C package/network/services/hostapd compile
+ make[4] -C package/network/utils/iwinfo compile
+ make[4] -C /ff/gluon/packages/gluon/admin/autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-web-theme compile
+ make[4] -C package/network/services/uhttpd compile
+ make[4] -C package/libs/uclient compile
+ make[4] -C package/network/config/swconfig compile
+ make[4] -C package/network/services/odhcpd compile
+ make[4] -C package/system/opkg compile
+ make[4] -C package/network/services/hostapd compile
+ make[4] -C package/utils/busybox compile
+ make[4] -C package/network/config/netifd compile
+ make[4] -C package/system/ubox compile
+ make[4] -C package/utils/mtd-utils compile
+ make[4] -C package/system/procd compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/eudev compile
+ make[4] -C package/system/fstools compile
+ make[4] -C package/base-files compile
+ make[4] -C package/boot/uboot-envtools compile
+ make[4] -C package/devel/perf compile
+ make[4] -C package/network/utils/iptables compile
+ make[4] -C package/network/utils/ebtables compile
+ make[4] -C /ff/gluon/packages/gluon/net/simple-tc compile
+ make[4] -C /ff/gluon/packages/gluon/net/batman-adv-legacy compile
+ make[4] -C package/kernel/mac80211 compile
+ make[4] -C /ff/gluon/packages/openwrt/net/fastd compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/dmx_usb_module compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/exfat-nofuse compile
+ make[4] -C /ff/gluon/packages/openwrt/net/jool compile
+ make[4] -C /ff/gluon/packages/openwrt/net/openvswitch compile
+ make[4] -C /ff/gluon/packages/openwrt/net/usbip compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/xr_usb_serial_common compile
+ make[4] -C package/network/ipv6/map compile
+ make[4] -C package/kernel/button-hotplug compile
+ make[4] -C package/kernel/i2c-gpio-custom compile
+ make[4] -C package/kernel/kmod-sched-cake compile
+ make[4] -C package/kernel/rotary-gpio-custom compile
+ make[4] -C package/kernel/spi-gpio-custom compile
+ make[4] -C package/kernel/w1-gpio-custom compile
+ make[4] -C package/network/services/ppp compile
+ make[4] -C package/network/services/wireguard compile
+ make[4] -C package/network/utils/umbim compile
+ make[4] -C package/network/utils/uqmi compile
+ make[4] -C package/network/utils/xtables-addons compile
+ make[4] -C package/network/config/firewall compile
+ make[4] -C /ff/gluon/packages/routing/nat46 compile
+ make[4] -C package/network/utils/comgt compile
+ make[4] -C /ff/gluon/package/gluon-core compile
+ make[4] -C /ff/gluon/package/gluon-respondd compile
+ make[4] -C /ff/gluon/package/gluon-client-bridge compile
+ make[4] -C /ff/gluon/package/gluon-ebtables compile
+ make[4] -C /ff/gluon/package/gluon-authorized-keys compile
+ make[4] -C /ff/gluon/package/gluon-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-lock-password compile
+ make[4] -C /ff/gluon/package/gluon-setup-mode compile
+ make[4] -C /ff/gluon/package/gluon-node-info compile
+ make[4] -C /ff/gluon/package/gluon-wan-dnsmasq compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-multicast compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-ra-dhcp compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-source-filter compile
+ make[4] -C /ff/gluon/package/gluon-radvd compile
+ make[4] -C /ff/gluon/package/gluon-status-page-api compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-core compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-core compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-contact-info compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-geo-location compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-hostname compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-mesh-vpn compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/package/gluon-status-page compile
+ make[4] -C /ff/gluon/package/gluon-web-admin compile
+ make[4] -C /ff/gluon/package/gluon-web-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-web-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/package/gluon-web-network compile
+ make[4] -C /ff/gluon/package/gluon-web-node-role compile
+ make[4] -C /ff/gluon/package/gluon-web-private-wifi compile
+ make[4] -C /ff/gluon/package/gluon-web-wifi-config compile
+ make[4] -C /ff/gluon/packages/routing/batman-adv compile
+ make[4] -C package/kernel/ath10k-ct compile
+ make[4] -C package/kernel/acx-mac80211 compile
+ make[4] -C package/kernel/mt76 compile
+ make[4] -C /ff/gluon/packages/routing/batctl compile
+ make[4] -C /ff/gluon/package/gluon-mesh-batman-adv compile
+ make[4] -C /ff/gluon/package/gluon-alfred compile
+ make[3] package/install
+ make[4] -C package/libs/libubox host-compile
+ make[4] -C package/system/opkg host-compile
+ make[4] package/preconfig
+ make[3] target/install
+ make[4] -C target/linux install
+ make[3] package/index
+ make[3] diffconfig
+ make[3] checksum
+make[1]: Leaving directory '/ff/gluon/lede'
+################# Sun Feb 11 12:10:49 CET 2018 start building target x86-generic ###########################
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+ make[2] clean
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+ make[2] world
+ make[3] tools/install
+ make[3] package/cleanup
+ make[4] -C tools/flock compile
+ make[4] -C tools/flock install
+ make[4] -C tools/sed compile
+ make[4] -C tools/sed install
+ make[4] -C tools/patch compile
+ make[4] -C tools/xz compile
+ make[4] -C tools/tar compile
+ make[4] -C tools/xz install
+ make[4] -C tools/patch install
+ make[4] -C tools/tar install
+ make[4] -C tools/pkg-config compile
+ make[4] -C tools/m4 compile
+ make[4] -C tools/expat compile
+ make[4] -C tools/make-ext4fs compile
+ make[4] -C tools/sstrip compile
+ make[4] -C tools/patch-image compile
+ make[4] -C tools/scons compile
+ make[4] -C tools/mtools compile
+ make[4] -C tools/lzma compile
+ make[4] -C tools/squashfs4 compile
+ make[4] -C tools/m4 install
+ make[4] -C tools/pkg-config install
+ make[4] -C tools/expat install
+ make[4] -C tools/sstrip install
+ make[4] -C tools/patch-image install
+ make[4] -C tools/scons install
+ make[4] -C tools/mtools install
+ make[4] -C tools/lzma install
+ make[4] -C tools/squashfs4 install
+ make[4] -C tools/autoconf compile
+ make[4] -C tools/make-ext4fs install
+ make[4] -C tools/libressl compile
+ make[4] -C tools/autoconf install
+ make[4] -C tools/automake compile
+ make[4] -C tools/missing-macros compile
+ make[4] -C tools/libressl install
+ make[4] -C tools/missing-macros install
+ make[4] -C tools/automake install
+ make[4] -C tools/mkimage compile
+ make[4] -C tools/cmake compile
+ make[4] -C tools/firmware-utils compile
+ make[4] -C tools/libtool compile
+ make[4] -C tools/dosfstools compile
+ make[4] -C tools/firmware-utils install
+ make[4] -C tools/dosfstools install
+ make[4] -C tools/libtool install
+ make[4] -C tools/gmp compile
+ make[4] -C tools/libelf compile
+ make[4] -C tools/flex compile
+ make[4] -C tools/mklibs compile
+ make[4] -C tools/e2fsprogs compile
+ make[4] -C tools/mm-macros compile
+ make[4] -C tools/gengetopt compile
+ make[4] -C tools/patchelf compile
+ make[4] -C tools/gmp install
+ make[4] -C tools/libelf install
+ make[4] -C tools/flex install
+ make[4] -C tools/mklibs install
+ make[4] -C tools/mkimage install
+ make[4] -C tools/mm-macros install
+ make[4] -C tools/cmake install
+ make[4] -C tools/gengetopt install
+ make[4] -C tools/patchelf install
+ make[4] -C tools/mpfr compile
+ make[4] -C tools/bison compile
+ make[4] -C tools/e2fsprogs install
+ make[4] -C tools/mpfr install
+ make[4] -C tools/mtd-utils compile
+ make[4] -C tools/qemu compile
+ make[4] -C tools/bison install
+ make[4] -C tools/mtd-utils install
+ make[4] -C tools/mpc compile
+ make[4] -C tools/bc compile
+ make[4] -C tools/findutils compile
+ make[4] -C tools/b43-tools compile
+ make[4] -C tools/bc install
+ make[4] -C tools/mpc install
+ make[4] -C tools/findutils install
+ make[4] -C tools/b43-tools install
+ make[4] -C tools/quilt compile
+ make[4] -C tools/padjffs2 compile
+ make[4] -C tools/qemu install
+ make[4] -C tools/padjffs2 install
+ make[4] -C tools/quilt install
+ make[3] target/compile
+ make[4] -C target/linux compile
+ make[3] package/compile
+ make[4] -C package/system/usign host-compile
+ make[4] -C package/libs/toolchain compile
+ make[4] -C package/boot/grub2 host-compile
+ make[4] -C package/system/fwtool host-compile
+ make[4] -C package/libs/ncurses host-compile
+ make[4] -C /ff/gluon/packages/luci/modules/luci-base host-compile
+ make[4] -C package/utils/lua host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/expat host-compile
+ make[4] -C package/utils/bzip2 host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/gperf host-compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/mtd-rw compile
+ make[4] -C /ff/gluon/packages/openwrt/net/siit compile
+ make[4] -C package/kernel/gpio-button-hotplug compile
+ make[4] -C package/kernel/gpio-nct5104d compile
+ make[4] -C package/kernel/leds-apu2 compile
+ make[4] -C package/kernel/trelay compile
+ make[4] -C package/network/services/dropbear compile
+ make[4] -C package/network/utils/linux-atm compile
+ make[4] -C package/network/utils/resolveip compile
+ make[4] -C package/libs/libmnl compile
+ make[4] -C package/network/utils/wwan compile
+ make[4] -C package/libs/libnl-tiny compile
+ make[4] -C package/libs/libjson-c compile
+ make[4] -C package/utils/lua compile
+ make[4] -C package/libs/ncurses compile
+ make[4] -C package/system/fwtool compile
+ make[4] -C package/system/lede-keyring compile
+ make[4] -C package/boot/grub2 compile
+ make[4] -C package/libs/zlib compile
+ make[4] -C package/libs/gettext compile
+ make[4] -C package/libs/libiconv compile
+ make[4] -C package/utils/bzip2 compile
+ make[4] -C package/libs/argp-standalone compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/lua-cjson host-compile
+ make[4] -C /ff/gluon/package/libgluonutil compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libplatforminfo compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-jsonc compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-nixio compile
+ make[4] -C package/firmware/linux-firmware compile
+ make[4] -C package/firmware/prism54-firmware compile
+ make[4] -C /ff/gluon/package/gluon-neighbour-info compile
+ make[4] -C /ff/gluon/packages/gluon/net/respondd compile
+ make[4] -C /ff/gluon/packages/gluon/utils/micrond compile
+ make[4] -C /ff/gluon/packages/routing/alfred compile
+ make[4] -C package/firmware/b43legacy-firmware compile
+ make[4] -C package/network/utils/iw compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/libuecc compile
+ make[4] -C /ff/gluon/package/gluon-web compile
+ make[4] -C package/network/services/dnsmasq compile
+ make[4] -C package/libs/mbedtls compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libpacketmark compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/nacl compile
+ make[4] -C /ff/gluon/packages/gluon/net/uradvd compile
+ make[4] -C /ff/gluon/packages/gluon/net/sse-multiplex compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/python host-compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/haveged compile
+ make[4] -C /ff/gluon/packages/openwrt/net/ethtool compile
+ make[4] -C package/libs/libnl compile
+ make[4] -C package/libs/libpcap compile
+ make[4] -C package/libs/openssl compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/tcp_wrappers compile
+ make[4] -C package/libs/libubox compile
+ make[4] -C package/utils/util-linux compile
+ make[4] -C package/devel/binutils compile
+ make[4] -C package/libs/elfutils compile
+ make[4] -C /ff/gluon/package/gluon-site compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-hash compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-platform-info compile
+ make[4] -C package/kernel/linux compile
+ make[4] -C package/network/ipv6/odhcp6c compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/ecdsautils compile
+ make[4] -C package/libs/ustream-ssl compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/node host-compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/eudev compile
+ make[4] -C package/libs/uclient compile
+ make[4] -C package/system/mtd compile
+ make[4] -C package/system/opkg compile
+ make[4] -C package/utils/e2fsprogs compile
+ make[4] -C package/utils/f2fs-tools compile
+ make[4] -C package/system/ubus compile
+ make[4] -C package/system/uci compile
+ make[4] -C package/utils/jsonfilter compile
+ make[4] -C package/system/usign compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-simple-uci compile
+ make[4] -C /ff/gluon/packages/gluon/admin/pretty-hostname compile
+ make[4] -C package/network/services/hostapd compile
+ make[4] -C package/network/utils/iwinfo compile
+ make[4] -C /ff/gluon/packages/gluon/admin/autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-web-theme compile
+ make[4] -C package/network/services/uhttpd compile
+ make[4] -C package/utils/busybox compile
+ make[4] -C package/network/config/netifd compile
+ make[4] -C package/system/ubox compile
+ make[4] -C package/devel/perf compile
+ make[4] -C package/system/fstools compile
+ make[4] -C package/system/procd compile
+ make[4] -C package/boot/uboot-envtools compile
+ make[4] -C package/base-files compile
+ make[4] -C package/network/utils/iptables compile
+ make[4] -C /ff/gluon/packages/gluon/net/batman-adv-legacy compile
+ make[4] -C /ff/gluon/packages/gluon/net/simple-tc compile
+ make[4] -C package/kernel/mac80211 compile
+ make[4] -C package/network/utils/ebtables compile
+ make[4] -C /ff/gluon/packages/openwrt/net/fastd compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/dmx_usb_module compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/exfat-nofuse compile
+ make[4] -C /ff/gluon/packages/openwrt/net/jool compile
+ make[4] -C /ff/gluon/packages/openwrt/net/openvswitch compile
+ make[4] -C /ff/gluon/packages/openwrt/net/usbip compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/xr_usb_serial_common compile
+ make[4] -C package/network/ipv6/map compile
+ make[4] -C package/kernel/button-hotplug compile
+ make[4] -C package/kernel/i2c-gpio-custom compile
+ make[4] -C package/kernel/kmod-sched-cake compile
+ make[4] -C package/kernel/rotary-gpio-custom compile
+ make[4] -C package/kernel/spi-gpio-custom compile
+ make[4] -C package/kernel/w1-gpio-custom compile
+ make[4] -C package/network/services/ppp compile
+ make[4] -C package/network/services/wireguard compile
+ make[4] -C package/network/utils/umbim compile
+ make[4] -C package/network/utils/uqmi compile
+ make[4] -C package/network/utils/xtables-addons compile
+ make[4] -C package/network/config/firewall compile
+ make[4] -C /ff/gluon/packages/routing/nat46 compile
+ make[4] -C package/network/utils/comgt compile
+ make[4] -C /ff/gluon/package/gluon-core compile
+ make[4] -C /ff/gluon/package/gluon-respondd compile
+ make[4] -C /ff/gluon/package/gluon-ebtables compile
+ make[4] -C /ff/gluon/package/gluon-authorized-keys compile
+ make[4] -C /ff/gluon/package/gluon-client-bridge compile
+ make[4] -C /ff/gluon/package/gluon-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-lock-password compile
+ make[4] -C /ff/gluon/package/gluon-setup-mode compile
+ make[4] -C /ff/gluon/package/gluon-node-info compile
+ make[4] -C /ff/gluon/package/gluon-wan-dnsmasq compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-multicast compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-ra-dhcp compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-source-filter compile
+ make[4] -C /ff/gluon/package/gluon-radvd compile
+ make[4] -C /ff/gluon/package/gluon-status-page-api compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-core compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-core compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-geo-location compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-contact-info compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-hostname compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-mesh-vpn compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/package/gluon-status-page compile
+ make[4] -C /ff/gluon/package/gluon-web-admin compile
+ make[4] -C /ff/gluon/package/gluon-web-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-web-network compile
+ make[4] -C /ff/gluon/package/gluon-web-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/package/gluon-web-node-role compile
+ make[4] -C /ff/gluon/package/gluon-web-private-wifi compile
+ make[4] -C /ff/gluon/package/gluon-web-wifi-config compile
+ make[4] -C /ff/gluon/packages/routing/batman-adv compile
+ make[4] -C package/kernel/ath10k-ct compile
+ make[4] -C package/kernel/mt76 compile
+ make[4] -C /ff/gluon/packages/routing/batctl compile
+ make[4] -C /ff/gluon/package/gluon-mesh-batman-adv compile
+ make[4] -C /ff/gluon/package/gluon-alfred compile
+ make[3] package/install
+ make[4] -C package/libs/libubox host-compile
+ make[4] -C package/system/opkg host-compile
+ make[4] package/preconfig
+ make[3] target/install
+ make[4] -C target/linux install
+ make[3] package/index
+ make[3] diffconfig
+ make[3] checksum
+make[1]: Leaving directory '/ff/gluon/lede'
+################# Sun Feb 11 12:27:35 CET 2018 start building target x86-geode ###########################
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+ make[2] clean
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+ make[2] world
+ make[3] package/cleanup
+ make[3] tools/install
+ make[4] -C tools/flock compile
+ make[4] -C tools/flock install
+ make[4] -C tools/sed compile
+ make[4] -C tools/sed install
+ make[4] -C tools/patch compile
+ make[4] -C tools/xz compile
+ make[4] -C tools/tar compile
+ make[4] -C tools/patch install
+ make[4] -C tools/xz install
+ make[4] -C tools/tar install
+ make[4] -C tools/pkg-config compile
+ make[4] -C tools/m4 compile
+ make[4] -C tools/sstrip compile
+ make[4] -C tools/expat compile
+ make[4] -C tools/make-ext4fs compile
+ make[4] -C tools/patch-image compile
+ make[4] -C tools/scons compile
+ make[4] -C tools/mtools compile
+ make[4] -C tools/lzma compile
+ make[4] -C tools/squashfs4 compile
+ make[4] -C tools/m4 install
+ make[4] -C tools/pkg-config install
+ make[4] -C tools/expat install
+ make[4] -C tools/sstrip install
+ make[4] -C tools/patch-image install
+ make[4] -C tools/scons install
+ make[4] -C tools/mtools install
+ make[4] -C tools/lzma install
+ make[4] -C tools/squashfs4 install
+ make[4] -C tools/make-ext4fs install
+ make[4] -C tools/autoconf compile
+ make[4] -C tools/libressl compile
+ make[4] -C tools/autoconf install
+ make[4] -C tools/automake compile
+ make[4] -C tools/missing-macros compile
+ make[4] -C tools/libressl install
+ make[4] -C tools/missing-macros install
+ make[4] -C tools/automake install
+ make[4] -C tools/firmware-utils compile
+ make[4] -C tools/mkimage compile
+ make[4] -C tools/cmake compile
+ make[4] -C tools/libtool compile
+ make[4] -C tools/dosfstools compile
+ make[4] -C tools/firmware-utils install
+ make[4] -C tools/dosfstools install
+ make[4] -C tools/libtool install
+ make[4] -C tools/libelf compile
+ make[4] -C tools/gmp compile
+ make[4] -C tools/flex compile
+ make[4] -C tools/mklibs compile
+ make[4] -C tools/e2fsprogs compile
+ make[4] -C tools/mm-macros compile
+ make[4] -C tools/gengetopt compile
+ make[4] -C tools/patchelf compile
+ make[4] -C tools/gmp install
+ make[4] -C tools/libelf install
+ make[4] -C tools/flex install
+ make[4] -C tools/mklibs install
+ make[4] -C tools/e2fsprogs install
+ make[4] -C tools/mkimage install
+ make[4] -C tools/mm-macros install
+ make[4] -C tools/cmake install
+ make[4] -C tools/gengetopt install
+ make[4] -C tools/patchelf install
+ make[4] -C tools/qemu compile
+ make[4] -C tools/mpfr compile
+ make[4] -C tools/bison compile
+ make[4] -C tools/mtd-utils compile
+ make[4] -C tools/mtd-utils install
+ make[4] -C tools/mpfr install
+ make[4] -C tools/qemu install
+ make[4] -C tools/bison install
+ make[4] -C tools/mpc compile
+ make[4] -C tools/findutils compile
+ make[4] -C tools/bc compile
+ make[4] -C tools/b43-tools compile
+ make[4] -C tools/mpc install
+ make[4] -C tools/bc install
+ make[4] -C tools/b43-tools install
+ make[4] -C tools/findutils install
+ make[4] -C tools/quilt compile
+ make[4] -C tools/padjffs2 compile
+ make[4] -C tools/padjffs2 install
+ make[4] -C tools/quilt install
+ make[3] target/compile
+ make[4] -C target/linux compile
+ make[3] package/compile
+ make[4] -C package/libs/toolchain compile
+ make[4] -C package/system/usign host-compile
+ make[4] -C package/system/fwtool host-compile
+ make[4] -C package/libs/ncurses host-compile
+ make[4] -C package/boot/grub2 host-compile
+ make[4] -C /ff/gluon/packages/luci/modules/luci-base host-compile
+ make[4] -C package/utils/lua host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/expat host-compile
+ make[4] -C package/utils/bzip2 host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/gperf host-compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/mtd-rw compile
+ make[4] -C /ff/gluon/packages/openwrt/net/siit compile
+ make[4] -C package/kernel/gpio-button-hotplug compile
+ make[4] -C package/kernel/gpio-nct5104d compile
+ make[4] -C package/kernel/leds-apu2 compile
+ make[4] -C package/kernel/trelay compile
+ make[4] -C package/network/services/dropbear compile
+ make[4] -C package/network/utils/linux-atm compile
+ make[4] -C package/network/utils/resolveip compile
+ make[4] -C package/libs/libmnl compile
+ make[4] -C package/network/utils/wwan compile
+ make[4] -C package/libs/libnl-tiny compile
+ make[4] -C package/libs/libjson-c compile
+ make[4] -C package/utils/lua compile
+ make[4] -C package/libs/ncurses compile
+ make[4] -C package/system/fwtool compile
+ make[4] -C package/system/lede-keyring compile
+ make[4] -C package/boot/grub2 compile
+ make[4] -C package/libs/zlib compile
+ make[4] -C package/libs/gettext compile
+ make[4] -C package/libs/libiconv compile
+ make[4] -C package/utils/bzip2 compile
+ make[4] -C package/libs/argp-standalone compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/lua-cjson host-compile
+ make[4] -C /ff/gluon/package/libgluonutil compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libplatforminfo compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-jsonc compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-nixio compile
+ make[4] -C package/firmware/linux-firmware compile
+ make[4] -C package/firmware/prism54-firmware compile
+ make[4] -C /ff/gluon/package/gluon-neighbour-info compile
+ make[4] -C /ff/gluon/packages/gluon/net/respondd compile
+ make[4] -C /ff/gluon/packages/gluon/utils/micrond compile
+ make[4] -C /ff/gluon/packages/routing/alfred compile
+ make[4] -C package/firmware/b43legacy-firmware compile
+ make[4] -C package/network/utils/iw compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/libuecc compile
+ make[4] -C /ff/gluon/package/gluon-web compile
+ make[4] -C package/network/services/dnsmasq compile
+ make[4] -C package/libs/mbedtls compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libpacketmark compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/nacl compile
+ make[4] -C /ff/gluon/packages/gluon/net/uradvd compile
+ make[4] -C /ff/gluon/packages/gluon/net/sse-multiplex compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/python host-compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/dmidecode compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/confuse compile
+ make[4] -C package/libs/libusb compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/kmod compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/haveged compile
+ make[4] -C /ff/gluon/packages/openwrt/net/ethtool compile
+ make[4] -C package/libs/libnl compile
+ make[4] -C package/libs/libpcap compile
+ make[4] -C package/libs/openssl compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/tcp_wrappers compile
+ make[4] -C package/libs/libubox compile
+ make[4] -C package/utils/util-linux compile
+ make[4] -C package/devel/binutils compile
+ make[4] -C package/libs/elfutils compile
+ make[4] -C /ff/gluon/package/gluon-site compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-hash compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-platform-info compile
+ make[4] -C package/kernel/linux compile
+ make[4] -C package/network/ipv6/odhcp6c compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/ecdsautils compile
+ make[4] -C package/libs/ustream-ssl compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/node host-compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/eudev compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/libftdi1 compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/pciutils compile
+ make[4] -C package/libs/libusb-compat compile
+ make[4] -C package/libs/uclient compile
+ make[4] -C package/system/mtd compile
+ make[4] -C package/system/opkg compile
+ make[4] -C package/utils/e2fsprogs compile
+ make[4] -C package/utils/f2fs-tools compile
+ make[4] -C package/system/ubus compile
+ make[4] -C package/system/uci compile
+ make[4] -C package/utils/jsonfilter compile
+ make[4] -C package/system/usign compile
+ make[4] -C package/network/services/hostapd compile
+ make[4] -C package/network/utils/iwinfo compile
+ make[4] -C /ff/gluon/packages/gluon/admin/autoupdater compile
+ make[4] -C package/network/services/uhttpd compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/flashrom compile
+ make[4] -C package/utils/busybox compile
+ make[4] -C package/network/config/netifd compile
+ make[4] -C package/system/ubox compile
+ make[4] -C package/devel/perf compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-simple-uci compile
+ make[4] -C /ff/gluon/packages/gluon/admin/pretty-hostname compile
+ make[4] -C package/system/fstools compile
+ make[4] -C package/system/procd compile
+ make[4] -C /ff/gluon/package/gluon-web-theme compile
+ make[4] -C package/boot/uboot-envtools compile
+ make[4] -C package/base-files compile
+ make[4] -C /ff/gluon/packages/gluon/net/simple-tc compile
+ make[4] -C package/network/utils/iptables compile
+ make[4] -C package/kernel/mac80211 compile
+ make[4] -C /ff/gluon/packages/gluon/net/batman-adv-legacy compile
+ make[4] -C package/network/utils/ebtables compile
+ make[4] -C /ff/gluon/packages/openwrt/net/fastd compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/dmx_usb_module compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/exfat-nofuse compile
+ make[4] -C /ff/gluon/packages/openwrt/net/jool compile
+ make[4] -C /ff/gluon/packages/openwrt/net/openvswitch compile
+ make[4] -C /ff/gluon/packages/openwrt/net/usbip compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/xr_usb_serial_common compile
+ make[4] -C package/network/ipv6/map compile
+ make[4] -C package/kernel/button-hotplug compile
+ make[4] -C package/kernel/i2c-gpio-custom compile
+ make[4] -C package/kernel/kmod-sched-cake compile
+ make[4] -C package/kernel/rotary-gpio-custom compile
+ make[4] -C package/kernel/spi-gpio-custom compile
+ make[4] -C package/kernel/w1-gpio-custom compile
+ make[4] -C package/network/config/soloscli compile
+ make[4] -C package/network/services/ppp compile
+ make[4] -C package/network/services/wireguard compile
+ make[4] -C package/network/utils/iproute2 compile
+ make[4] -C package/network/utils/umbim compile
+ make[4] -C package/network/utils/uqmi compile
+ make[4] -C package/network/utils/xtables-addons compile
+ make[4] -C package/network/config/firewall compile
+ make[4] -C /ff/gluon/packages/routing/nat46 compile
+ make[4] -C package/network/utils/comgt compile
+ make[4] -C /ff/gluon/package/gluon-core compile
+ make[4] -C /ff/gluon/package/gluon-respondd compile
+ make[4] -C /ff/gluon/package/gluon-client-bridge compile
+ make[4] -C /ff/gluon/package/gluon-ebtables compile
+ make[4] -C /ff/gluon/package/gluon-authorized-keys compile
+ make[4] -C /ff/gluon/package/gluon-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-lock-password compile
+ make[4] -C /ff/gluon/package/gluon-setup-mode compile
+ make[4] -C /ff/gluon/package/gluon-node-info compile
+ make[4] -C /ff/gluon/package/gluon-wan-dnsmasq compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-ra-dhcp compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-multicast compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-source-filter compile
+ make[4] -C /ff/gluon/package/gluon-radvd compile
+ make[4] -C /ff/gluon/package/gluon-status-page-api compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-core compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-core compile
+ make[4] -C /ff/gluon/package/gluon-status-page compile
+ make[4] -C /ff/gluon/package/gluon-web-admin compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-contact-info compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-geo-location compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-hostname compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-mesh-vpn compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/package/gluon-web-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-web-network compile
+ make[4] -C /ff/gluon/package/gluon-web-node-role compile
+ make[4] -C /ff/gluon/package/gluon-web-private-wifi compile
+ make[4] -C /ff/gluon/package/gluon-web-wifi-config compile
+ make[4] -C /ff/gluon/package/gluon-web-mesh-vpn-fastd compile
+ make[4] -C package/kernel/ath10k-ct compile
+ make[4] -C package/kernel/mt76 compile
+ make[4] -C /ff/gluon/packages/routing/batman-adv compile
+ make[4] -C /ff/gluon/packages/routing/batctl compile
+ make[4] -C /ff/gluon/package/gluon-mesh-batman-adv compile
+ make[4] -C /ff/gluon/package/gluon-alfred compile
+ make[3] package/install
+ make[4] -C package/libs/libubox host-compile
+ make[4] -C package/system/opkg host-compile
+ make[4] package/preconfig
+ make[3] target/install
+ make[4] -C target/linux install
+ make[3] package/index
+ make[3] diffconfig
+ make[3] checksum
+make[1]: Leaving directory '/ff/gluon/lede'
+################# Sun Feb 11 12:43:08 CET 2018 start building target x86-64 ###########################
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+ make[2] clean
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/ff/gluon/lede'
+make[1]: Entering directory '/ff/gluon/lede'
+make[2]: Entering directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[3]: Entering directory '/ff/gluon/lede'
+make[3]: Leaving directory '/ff/gluon/lede'
+make[2]: Leaving directory '/ff/gluon/lede'
+ make[2] world
+ make[3] tools/install
+ make[3] package/cleanup
+ make[4] -C tools/flock compile
+ make[4] -C tools/flock install
+ make[4] -C tools/sed compile
+ make[4] -C tools/sed install
+ make[4] -C tools/patch compile
+ make[4] -C tools/xz compile
+ make[4] -C tools/tar compile
+ make[4] -C tools/patch install
+ make[4] -C tools/xz install
+ make[4] -C tools/tar install
+ make[4] -C tools/sstrip compile
+ make[4] -C tools/expat compile
+ make[4] -C tools/pkg-config compile
+ make[4] -C tools/make-ext4fs compile
+ make[4] -C tools/m4 compile
+ make[4] -C tools/patch-image compile
+ make[4] -C tools/mtools compile
+ make[4] -C tools/scons compile
+ make[4] -C tools/lzma compile
+ make[4] -C tools/m4 install
+ make[4] -C tools/squashfs4 compile
+ make[4] -C tools/pkg-config install
+ make[4] -C tools/expat install
+ make[4] -C tools/sstrip install
+ make[4] -C tools/scons install
+ make[4] -C tools/patch-image install
+ make[4] -C tools/mtools install
+ make[4] -C tools/squashfs4 install
+ make[4] -C tools/lzma install
+ make[4] -C tools/make-ext4fs install
+ make[4] -C tools/autoconf compile
+ make[4] -C tools/libressl compile
+ make[4] -C tools/autoconf install
+ make[4] -C tools/libressl install
+ make[4] -C tools/automake compile
+ make[4] -C tools/missing-macros compile
+ make[4] -C tools/missing-macros install
+ make[4] -C tools/automake install
+ make[4] -C tools/mkimage compile
+ make[4] -C tools/firmware-utils compile
+ make[4] -C tools/cmake compile
+ make[4] -C tools/firmware-utils install
+ make[4] -C tools/libtool compile
+ make[4] -C tools/dosfstools compile
+ make[4] -C tools/libtool install
+ make[4] -C tools/mkimage install
+ make[4] -C tools/dosfstools install
+ make[4] -C tools/cmake install
+ make[4] -C tools/gmp compile
+ make[4] -C tools/libelf compile
+ make[4] -C tools/flex compile
+ make[4] -C tools/mklibs compile
+ make[4] -C tools/e2fsprogs compile
+ make[4] -C tools/mm-macros compile
+ make[4] -C tools/gengetopt compile
+ make[4] -C tools/patchelf compile
+ make[4] -C tools/gmp install
+ make[4] -C tools/libelf install
+ make[4] -C tools/flex install
+ make[4] -C tools/mklibs install
+ make[4] -C tools/mm-macros install
+ make[4] -C tools/gengetopt install
+ make[4] -C tools/patchelf install
+ make[4] -C tools/e2fsprogs install
+ make[4] -C tools/bison compile
+ make[4] -C tools/mpfr compile
+ make[4] -C tools/mpfr install
+ make[4] -C tools/bison install
+ make[4] -C tools/qemu compile
+ make[4] -C tools/mtd-utils compile
+ make[4] -C tools/bc compile
+ make[4] -C tools/b43-tools compile
+ make[4] -C tools/findutils compile
+ make[4] -C tools/mpc compile
+ make[4] -C tools/mtd-utils install
+ make[4] -C tools/mpc install
+ make[4] -C tools/b43-tools install
+ make[4] -C tools/bc install
+ make[4] -C tools/qemu install
+ make[4] -C tools/findutils install
+ make[4] -C tools/quilt compile
+ make[4] -C tools/padjffs2 compile
+ make[4] -C tools/padjffs2 install
+ make[4] -C tools/quilt install
+ make[3] target/compile
+ make[4] -C target/linux compile
+ make[3] package/compile
+ make[4] -C package/libs/toolchain compile
+ make[4] -C package/libs/ncurses host-compile
+ make[4] -C package/system/fwtool host-compile
+ make[4] -C package/system/usign host-compile
+ make[4] -C package/boot/grub2 host-compile
+ make[4] -C /ff/gluon/packages/luci/modules/luci-base host-compile
+ make[4] -C package/utils/lua host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/expat host-compile
+ make[4] -C package/utils/bzip2 host-compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/gperf host-compile
+ make[4] -C /ff/gluon/packages/openwrt/net/siit compile
+ make[4] -C package/kernel/gpio-button-hotplug compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/mtd-rw compile
+ make[4] -C package/kernel/gpio-nct5104d compile
+ make[4] -C package/kernel/leds-apu2 compile
+ make[4] -C package/kernel/trelay compile
+ make[4] -C package/network/services/dropbear compile
+ make[4] -C package/network/utils/linux-atm compile
+ make[4] -C package/network/utils/resolveip compile
+ make[4] -C package/libs/libmnl compile
+ make[4] -C package/network/utils/wwan compile
+ make[4] -C package/libs/libnl-tiny compile
+ make[4] -C package/libs/libjson-c compile
+ make[4] -C package/utils/lua compile
+ make[4] -C package/libs/ncurses compile
+ make[4] -C package/system/fwtool compile
+ make[4] -C package/system/lede-keyring compile
+ make[4] -C package/boot/grub2 compile
+ make[4] -C package/libs/zlib compile
+ make[4] -C package/libs/gettext compile
+ make[4] -C package/libs/libiconv compile
+ make[4] -C package/utils/bzip2 compile
+ make[4] -C package/libs/argp-standalone compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/lua-cjson host-compile
+ make[4] -C /ff/gluon/package/libgluonutil compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libplatforminfo compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-jsonc compile
+ make[4] -C /ff/gluon/packages/luci/libs/luci-lib-nixio compile
+ make[4] -C package/firmware/linux-firmware compile
+ make[4] -C package/firmware/prism54-firmware compile
+ make[4] -C /ff/gluon/package/gluon-neighbour-info compile
+ make[4] -C /ff/gluon/packages/gluon/net/respondd compile
+ make[4] -C /ff/gluon/packages/gluon/utils/micrond compile
+ make[4] -C /ff/gluon/packages/routing/alfred compile
+ make[4] -C package/firmware/b43legacy-firmware compile
+ make[4] -C package/network/utils/iw compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/libuecc compile
+ make[4] -C /ff/gluon/package/gluon-web compile
+ make[4] -C package/network/services/dnsmasq compile
+ make[4] -C package/libs/mbedtls compile
+ make[4] -C /ff/gluon/packages/gluon/libs/libpacketmark compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/nacl compile
+ make[4] -C /ff/gluon/packages/gluon/net/uradvd compile
+ make[4] -C /ff/gluon/packages/gluon/net/sse-multiplex compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/python host-compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/haveged compile
+ make[4] -C /ff/gluon/packages/openwrt/net/ethtool compile
+ make[4] -C package/libs/libpcap compile
+ make[4] -C package/libs/libnl compile
+ make[4] -C package/libs/openssl compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/tcp_wrappers compile
+ make[4] -C package/libs/libubox compile
+ make[4] -C package/utils/util-linux compile
+ make[4] -C package/devel/binutils compile
+ make[4] -C package/libs/elfutils compile
+ make[4] -C /ff/gluon/package/gluon-site compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-hash compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-platform-info compile
+ make[4] -C package/kernel/linux compile
+ make[4] -C package/network/ipv6/odhcp6c compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/ecdsautils compile
+ make[4] -C package/libs/ustream-ssl compile
+ make[4] -C /ff/gluon/packages/openwrt/lang/node host-compile
+ make[4] -C /ff/gluon/packages/openwrt/utils/eudev compile
+ make[4] -C package/libs/uclient compile
+ make[4] -C package/system/mtd compile
+ make[4] -C package/system/opkg compile
+ make[4] -C package/utils/e2fsprogs compile
+ make[4] -C package/utils/f2fs-tools compile
+ make[4] -C package/system/ubus compile
+ make[4] -C package/system/uci compile
+ make[4] -C package/utils/jsonfilter compile
+ make[4] -C package/system/usign compile
+ make[4] -C /ff/gluon/packages/gluon/libs/lua-simple-uci compile
+ make[4] -C /ff/gluon/packages/gluon/admin/pretty-hostname compile
+ make[4] -C package/network/services/hostapd compile
+ make[4] -C package/network/utils/iwinfo compile
+ make[4] -C /ff/gluon/packages/gluon/admin/autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-web-theme compile
+ make[4] -C package/network/services/uhttpd compile
+ make[4] -C package/utils/busybox compile
+ make[4] -C package/network/config/netifd compile
+ make[4] -C package/system/ubox compile
+ make[4] -C package/devel/perf compile
+ make[4] -C package/system/fstools compile
+ make[4] -C package/system/procd compile
+ make[4] -C package/boot/uboot-envtools compile
+ make[4] -C package/base-files compile
+ make[4] -C package/network/utils/iptables compile
+ make[4] -C package/kernel/mac80211 compile
+ make[4] -C package/network/utils/ebtables compile
+ make[4] -C /ff/gluon/packages/gluon/net/simple-tc compile
+ make[4] -C /ff/gluon/packages/gluon/net/batman-adv-legacy compile
+ make[4] -C /ff/gluon/packages/openwrt/net/fastd compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/dmx_usb_module compile
+ make[4] -C /ff/gluon/packages/openwrt/kernel/exfat-nofuse compile
+ make[4] -C /ff/gluon/packages/openwrt/net/jool compile
+ make[4] -C /ff/gluon/packages/openwrt/net/openvswitch compile
+ make[4] -C /ff/gluon/packages/openwrt/net/usbip compile
+ make[4] -C /ff/gluon/packages/openwrt/libs/xr_usb_serial_common compile
+ make[4] -C package/network/ipv6/map compile
+ make[4] -C package/kernel/button-hotplug compile
+ make[4] -C package/kernel/i2c-gpio-custom compile
+ make[4] -C package/kernel/rotary-gpio-custom compile
+ make[4] -C package/kernel/kmod-sched-cake compile
+ make[4] -C package/kernel/spi-gpio-custom compile
+ make[4] -C package/kernel/w1-gpio-custom compile
+ make[4] -C package/network/services/ppp compile
+ make[4] -C package/network/services/wireguard compile
+ make[4] -C package/network/utils/umbim compile
+ make[4] -C package/network/utils/uqmi compile
+ make[4] -C package/network/utils/xtables-addons compile
+ make[4] -C package/network/config/firewall compile
+ make[4] -C /ff/gluon/packages/routing/nat46 compile
+ make[4] -C package/network/utils/comgt compile
+ make[4] -C /ff/gluon/package/gluon-core compile
+ make[4] -C /ff/gluon/package/gluon-respondd compile
+ make[4] -C /ff/gluon/package/gluon-client-bridge compile
+ make[4] -C /ff/gluon/package/gluon-ebtables compile
+ make[4] -C /ff/gluon/package/gluon-authorized-keys compile
+ make[4] -C /ff/gluon/package/gluon-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-lock-password compile
+ make[4] -C /ff/gluon/package/gluon-setup-mode compile
+ make[4] -C /ff/gluon/package/gluon-node-info compile
+ make[4] -C /ff/gluon/package/gluon-wan-dnsmasq compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-multicast compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-filter-ra-dhcp compile
+ make[4] -C /ff/gluon/package/gluon-ebtables-source-filter compile
+ make[4] -C /ff/gluon/package/gluon-radvd compile
+ make[4] -C /ff/gluon/package/gluon-status-page-api compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-core compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-core compile
+ make[4] -C /ff/gluon/package/gluon-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/package/gluon-status-page compile
+ make[4] -C /ff/gluon/package/gluon-web-admin compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-contact-info compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-geo-location compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-hostname compile
+ make[4] -C /ff/gluon/package/gluon-config-mode-mesh-vpn compile
+ make[4] -C /ff/gluon/package/gluon-web-autoupdater compile
+ make[4] -C /ff/gluon/package/gluon-web-mesh-vpn-fastd compile
+ make[4] -C /ff/gluon/package/gluon-web-network compile
+ make[4] -C /ff/gluon/package/gluon-web-node-role compile
+ make[4] -C /ff/gluon/package/gluon-web-private-wifi compile
+ make[4] -C /ff/gluon/package/gluon-web-wifi-config compile
+ make[4] -C /ff/gluon/packages/routing/batman-adv compile
+ make[4] -C package/kernel/mt76 compile
+ make[4] -C package/kernel/ath10k-ct compile
+ make[4] -C /ff/gluon/packages/routing/batctl compile
+ make[4] -C /ff/gluon/package/gluon-mesh-batman-adv compile
+ make[4] -C /ff/gluon/package/gluon-alfred compile
+ make[3] package/install
+ make[4] -C package/libs/libubox host-compile
+ make[4] -C package/system/opkg host-compile
+ make[4] package/preconfig
+ make[3] target/install
+ make[4] -C target/linux install
+ make[3] package/index
+ make[3] diffconfig
+ make[3] checksum
+make[1]: Leaving directory '/ff/gluon/lede'
+alle Targets wurden erfolgreich erstellt im ordner output/
+finished: Sun Feb 11 12:59:47 CET 2018
+Dauer: 150 Minuten
+schwadorf@build:/ff$ bash sign_exp.sh /ff/key/sign_key_cs experimental
+Enter passphrase for key '/home/schwadorf/.ssh/web_ff01': 
+Enter passphrase for key '/home/schwadorf/.ssh/web_ff01': 
+schwadorf@build:/ff$ exit
+logout
